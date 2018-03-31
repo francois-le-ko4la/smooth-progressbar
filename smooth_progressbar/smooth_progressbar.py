@@ -8,7 +8,7 @@ This package provide a simple progress bar.
 The following files comprise the smoothProg ressBar package:
 * LICENSE: The license file. smoothProgressBar is released under the terms of
 the GNU General Public License (GPL), version 3.
-* README.rst: This readme file.
+* README.md: This readme file.
 * setup.py: The setuptools setup file. See above for installation instructions
 * test_smooth_progressbar.py: Test.
 
