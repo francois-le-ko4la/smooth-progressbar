@@ -41,12 +41,13 @@ setup(
         'Development Status :: 3 - Alpha',
         'Environment :: Console',
         'Programming Language :: Python :: 3.6',
-        'Topic :: REST API :: Social Network / Cloud',
         ],
     url='https://github.com/francois-le-ko4la/smooth-progressbar',
     author='Ko4lA',
     author_email='francois@le.ko4la.fr',
     license='',
+    setup_requires=['pytest-runner'],
+    tests_require=['pytest'],
     packages=['smooth_progressbar'],
     zip_safe=False
     )

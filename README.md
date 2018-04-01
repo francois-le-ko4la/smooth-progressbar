@@ -1,39 +1,44 @@
 # smooth-progressbar
 ## Description:
+
 This package provide a simple progress bar.
 
-The following files comprise the smoothProg ressBar package:
-* LICENSE: The license file. smoothProgressBar is released under the terms of
-the GNU General Public License (GPL), version 3.
-* README.md: This readme file.
-* setup.py: The setuptools setup file. See above for installation instructions
-* test_smooth_progressbar.py: Test.
+The following files comprise the `smooth-progressbar` package:
+* `LICENSE`: The license file. `smooth-progressbar` is released under the terms
+of the GNU General Public License (GPL), version 3.
+* `README.md`: This readme file.
+* `Makefile`: Generic management tasks.
+* `setup.py`: Package and distribution management.
+* `setup.cfg`: The setuptools setup file.
+* `tests/test_smooth_progressbar.py`: Test.
 
-The package contents itself are in the smoothProgressBar directory:
-* __ init __.py: Initialization file for the Python package.
+The package contents itself are in the `smooth_progressbar` directory:
+* `__ init __`.py: Initialization file for the Python package.
+* `smooth_progressbar/smooth_progressbar.py` : The code of interest.
 
 ## Setup:
-
-    git clone https://github.com/francois-le-ko4la/smooth-progressbar.git
-    cd smooth-progressbar
-    sudo ./setup.py install
+```shell
+git clone https://github.com/francois-le-ko4la/smooth-progressbar.git
+cd smooth-progressbar
+make install
+```
 
 ## Test:
+```shell
+make test
+```
 
-    cd tests
-    ./test_smooth_progressbar.py
-
-## How to use this package:
+## Use:
 
 ```python
-    from smooth_progressbar import SmoothProgressBar
-    my_progressbar = SmoothProgressBar()
-    my_progressbar.start(10)
+from smooth_progressbar import SmoothProgressBar
+my_progressbar = SmoothProgressBar()
+my_progressbar.start(10)
 
-    for i in range(1, 11):
-       myPB.update(i, "task "+str(i))
-       time.sleep(2)
-    my_progressbar.stop()
+for i in range(1, 11):
+    myPB.update(i, "task "+str(i))
+    time.sleep(2)
+my_progressbar.stop()
 ```
 
 ## Result:
@@ -42,6 +47,18 @@ The package contents itself are in the smoothProgressBar directory:
     Processing (20.0%): |////                | 0:00:03 | task 2
     Processing (30.0%): |//////              | 0:00:05 | task 3
     ...
+
+## Todo:
+
+- [X] Create the project
+- [X] Write code and tests
+- [X] Test installation and requirements (setup.py and/or Makefile)
+- [X] Test code
+- [X] Validate features
+- [X] Write Doc/stringdoc
+- [X] Run PEP8 validation
+- [ ] Clean & last check
+- [ ] Release
 
 ## Note:
 
@@ -154,20 +171,20 @@ Args:
     None
 
 Attributes:
-    self.__interval(float) : refresh time
-    self.__rows(float): screen size
-    self.__columns(float): screen size
-    self.__text(str): text to print
-    self.__bar_length(int): progressbar size
-    self.__start_time(datetime): start time
-    self.__update_time(datetime): update time
-    self.__max_value(int): maximum value (100%)
-    self.__description(str):
-    self.__current_value(int):
-    self.__current_percent(float)
-    self.__is_running(bool)
-    self.__is_updated(bool)
-    self.__previous_percent(str)
+    self.__interval (float) : refresh time
+    self.__rows (float): screen size
+    self.__columns (float): screen size
+    self.__text (str): text to print
+    self.__bar_length (int): progressbar size
+    self.__start_time (datetime): start time
+    self.__update_time (datetime): update time
+    self.__max_value (int): maximum value (100%)
+    self.__description (str):
+    self.__current_value (int):
+    self.__current_percent (float)
+    self.__is_running (bool)
+    self.__is_updated (bool)
+    self.__previous_percent (str)
 
 Returns:
     obj
@@ -182,7 +199,7 @@ Test if the progress is already running, set _startTime,
 call Timer functions to refresh
 
 Args:
-    max_value(int): the value at 100%.
+    max_value (int): the value at 100%.
 
 Returns:
     None
@@ -207,9 +224,11 @@ This function update currentValue, description, __update_time
 and call __set_percent().
 
 Args:
-    current_value(int): current value
-    description(string): current description
+    current_value (int): current value
+    description (string): current description
 
 Returns:
     None
 ```
+
+
