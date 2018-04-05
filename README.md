@@ -72,163 +72,179 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 ## Dev docstring
-### Class SmoothProgressBar:
-This Class provides a progressbar
+### SmoothProgressBar
 
-#### Function SmoothProgressBar.__get_bar(self):
+````python
+class SmoothProgressBar:
+````
 
-```
-This function provides the string to print the progress and
-informations
+><br />
+> This Class provides a progressbar <br />
+> <br />
 
-Call __get_percentbar(), self.__get_infosbar and provides a complete
-progress bar
-
-Args:
-    None
-
-Returns:
-    string: Processing (70.0%): |///////////////     | 0:00:01 | task 1
-```
-
-#### Function SmoothProgressBar.__get_elapse(self):
-
-```
-This function provides elapse time between start() and now.
-
-self.__update_time-self.__start_time
-
-Args:
-    None
-
-Returns:
-    datetime object
-```
-
-#### Function SmoothProgressBar.__get_infosbar(self):
-
-```
-This function provides an information to print.
-
-Provides : Elapse and description.
-
-Args:
-    None
-
-Returns:
-    string: "{elapse} | {description}"
-```
-
-#### Function SmoothProgressBar.__get_percentbar(self):
-
-```
-This function provides the string to print the progress
-
-Provides progress and bar according to the screen size.
-
-Args:
-    None
-
-Returns:
-    string: Processing (70.0%): |///////////////     |
-```
-
-#### Function SmoothProgressBar.__refresh(self):
-
-```
-This function refresh the progress bar
-
-Call __get_bar(), print the string, call Timer functions to recall
-
-Args:
-    None
-
-Returns:
-    None
-```
-
-#### Function SmoothProgressBar.__set_percent(self):
-
-```
-This function provides current percent.
-
-current_percent=round(self.__current_value/float(self.__max_value), 1)
-
-Args:
-    None
-
-Returns:
-    None
-```
-
-#### Function SmoothProgressBar.__init__(self):
-
-```
-Init the smoothProgressBar Class
-This function define attributes.
-
-Args:
-    None
-
-Attributes:
-    self.__interval (float) : refresh time
-    self.__rows (float): screen size
-    self.__columns (float): screen size
-    self.__text (str): text to print
-    self.__bar_length (int): progressbar size
-    self.__start_time (datetime): start time
-    self.__update_time (datetime): update time
-    self.__max_value (int): maximum value (100%)
-    self.__description (str):
-    self.__current_value (int):
-    self.__current_percent (float)
-    self.__is_running (bool)
-    self.__is_updated (bool)
-    self.__previous_percent (str)
-
-Returns:
-    obj
-```
-
-#### Function SmoothProgressBar.start(self, max_value):
-
-```
-This function start the progress bar
-
-Test if the progress is already running, set _startTime,
-call Timer functions to refresh
-
-Args:
-    max_value (int): the value at 100%.
-
-Returns:
-    None
-```
-
-#### Function SmoothProgressBar.stop(self):
-
-```
-This function stop the progress bar.
-
-Args:
-    None
-
-Results:
-    None
-```
-
-#### Function SmoothProgressBar.update(self, current_value, description=None):
-
-```
-This function update currentValue, description, __update_time
-and call __set_percent().
-
-Args:
-    current_value (int): current value
-    description (string): current description
-
-Returns:
-    None
-```
-
-
+#### SmoothProgressBar.__get_bar
+````python
+def SmoothProgressBar.__get_bar(self):
+````
+><br />
+> This function provides the string to print the progress and <br />
+> informations <br />
+>  <br />
+> Call __get_percentbar(), self.__get_infosbar and provides a complete <br />
+> progress bar <br />
+>  <br />
+> <b> Args: </b> <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   None <br />
+>  <br />
+> <b> Returns: </b> <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   string: Processing (70.0%): |///////////////&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   | 0:00:01 | task 1 <br />
+> <br />
+#### SmoothProgressBar.__get_elapse
+````python
+def SmoothProgressBar.__get_elapse(self):
+````
+><br />
+> This function provides elapse time between start() and now. <br />
+>  <br />
+> self.__update_time-self.__start_time <br />
+>  <br />
+> <b> Args: </b> <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   None <br />
+>  <br />
+> <b> Returns: </b> <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   datetime object <br />
+> <br />
+#### SmoothProgressBar.__get_infosbar
+````python
+def SmoothProgressBar.__get_infosbar(self):
+````
+><br />
+> This function provides an information to print. <br />
+>  <br />
+> Provides : Elapse and description. <br />
+>  <br />
+> <b> Args: </b> <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   None <br />
+>  <br />
+> <b> Returns: </b> <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   string: "{elapse} | {description}" <br />
+> <br />
+#### SmoothProgressBar.__get_percentbar
+````python
+def SmoothProgressBar.__get_percentbar(self):
+````
+><br />
+> This function provides the string to print the progress <br />
+>  <br />
+> Provides progress and bar according to the screen size. <br />
+>  <br />
+> <b> Args: </b> <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   None <br />
+>  <br />
+> <b> Returns: </b> <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   string: Processing (70.0%): |///////////////&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   | <br />
+> <br />
+#### SmoothProgressBar.__refresh
+````python
+def SmoothProgressBar.__refresh(self):
+````
+><br />
+> This function refresh the progress bar <br />
+>  <br />
+> Call __get_bar(), print the string, call Timer functions to recall <br />
+>  <br />
+> <b> Args: </b> <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   None <br />
+>  <br />
+> <b> Returns: </b> <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   None <br />
+> <br />
+#### SmoothProgressBar.__set_percent
+````python
+def SmoothProgressBar.__set_percent(self):
+````
+><br />
+> This function provides current percent. <br />
+>  <br />
+> current_percent=round(self.__current_value/float(self.__max_value), 1) <br />
+>  <br />
+> <b> Args: </b> <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   None <br />
+>  <br />
+> <b> Returns: </b> <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   None <br />
+> <br />
+#### SmoothProgressBar.__init__
+````python
+def SmoothProgressBar.__init__(self):
+````
+><br />
+> Init the smoothProgressBar Class <br />
+> This function define attributes. <br />
+>  <br />
+> <b> Args: </b> <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   None <br />
+>  <br />
+> <b> Attributes: </b> <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   self.__interval (float) : refresh time <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   self.__rows (float): screen size <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   self.__columns (float): screen size <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   self.__text (str): text to print <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   self.__bar_length (int): progressbar size <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   self.__start_time (datetime): start time <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   self.__update_time (datetime): update time <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   self.__max_value (int): maximum value (100%) <br />
+> <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   self.__description (str): </b> <br />
+> <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   self.__current_value (int): </b> <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   self.__current_percent (float) <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   self.__is_running (bool) <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   self.__is_updated (bool) <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   self.__previous_percent (str) <br />
+>  <br />
+> <b> Returns: </b> <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   obj <br />
+> <br />
+#### SmoothProgressBar.start
+````python
+def SmoothProgressBar.start(self, max_value):
+````
+><br />
+> This function start the progress bar <br />
+>  <br />
+> Test if the progress is already running, set _startTime, <br />
+> call Timer functions to refresh <br />
+>  <br />
+> <b> Args: </b> <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   max_value (int): the value at 100%. <br />
+>  <br />
+> <b> Returns: </b> <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   None <br />
+> <br />
+#### SmoothProgressBar.stop
+````python
+def SmoothProgressBar.stop(self):
+````
+><br />
+> This function stop the progress bar. <br />
+>  <br />
+> <b> Args: </b> <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   None <br />
+>  <br />
+> <b> Results: </b> <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   None <br />
+> <br />
+#### SmoothProgressBar.update
+````python
+def SmoothProgressBar.update(self, current_value, description=None):
+````
+><br />
+> This function update currentValue, description, __update_time <br />
+> and call __set_percent(). <br />
+>  <br />
+> <b> Args: </b> <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   current_value (int): current value <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   description (string): current description <br />
+>  <br />
+> <b> Returns: </b> <br />
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   None <br />
+> <br />
