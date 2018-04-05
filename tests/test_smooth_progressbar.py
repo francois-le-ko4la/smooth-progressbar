@@ -13,19 +13,22 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 import time
 from smooth_progressbar import SmoothProgressBar
+import unittest
 
 
-def test_progressbar():
-    """ Test
-    """
-    my_progressbar = SmoothProgressBar()
-    my_progressbar.start(10)
+class TestProgressBar(unittest.TestCase):
+    def test_progressbar(self):
+        """ Test
+        """
+        my_progressbar = SmoothProgressBar(debug=True)
+        my_progressbar.start(10)
 
-    for i in range(1, 11):
-        my_progressbar.update(i, "task "+str(i))
-        time.sleep(2)
-    my_progressbar.stop()
+        for i in range(1, 11):
+            my_progressbar.update(i, "task "+str(i))
+            time.sleep(2)
+        my_progressbar.stop()
+        self.assertTrue(True)
 
 
 if __name__ == '__main__':
-    test_progressbar()
+    unittest.main()

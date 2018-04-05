@@ -12,7 +12,7 @@ class SmoothProgressBar(object):
 
     """This Class provides a progressbar"""
 
-    def __init__(self):
+    def __init__(self, debug=False):
         """Init the smoothProgressBar Class
         This function define attributes.
 
@@ -41,7 +41,12 @@ class SmoothProgressBar(object):
         """
         self.__timer = None
         self.__interval = 0.25
-        self.__rows, self.__columns = os.popen('stty size', 'r').read().split()
+        if debug:
+            self.__rows = 79
+            self.__columns = 24
+        else:
+            self.__rows, self.__columns = os.popen(
+                    'stty size', 'r').read().split()
         self.__text = None
         self.__bar_length = int(0.30 * float(self.__columns))
         self.__filled_length = None
