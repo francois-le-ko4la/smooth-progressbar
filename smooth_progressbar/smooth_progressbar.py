@@ -1,11 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+"""
+                           _   _
+ ___ _ __ ___   ___   ___ | |_| |__
+/ __| '_ ` _ \ / _ \ / _ \| __| '_ \
+\__ \ | | | | | (_) | (_) | |_| | | |
+|___/_| |_| |_|\___/ \___/ \__|_| |_| Progress Bar
 
+
+"""
 import os
 import sys
 import time
 from threading import Timer
 import datetime
+from functools import wraps
 
 
 class SmoothProgressBar(object):
@@ -125,8 +134,8 @@ class SmoothProgressBar(object):
         else:
             block = self.__bar_length
         return "\033[" + self.__rows + ";1H\rProcessing ({0}%): |{1}| ".format(
-            str((self.__current_percent * 100))[0:4],
-            "/" * block + " " * (self.__bar_length - block))
+                str((self.__current_percent * 100))[0:4],
+                    "/" * block + " " * (self.__bar_length - block))
 
     def __get_bar(self):
         """This function provides the string to print the progress and
@@ -151,6 +160,29 @@ class SmoothProgressBar(object):
         new_progressbar += ' ' * int(self.__columns)
         return new_progressbar[0:int(self.__columns)]
 
+    def __isstarted(status=True):
+        """
+        Decorator to check progress bar status
+
+        Args:
+            func: decorated function
+            status (bool): The expected value.
+
+        Returns:
+            func if self.__is_running = status
+
+        """
+        def tags_decorator(func):
+            @wraps(func)
+            def wrapper(self, *args, **kwargs):
+                """ wrapper """
+                if self.__is_running is status:
+                    return func(self, *args, **kwargs)
+                return
+            return wrapper
+        return tags_decorator
+
+    @__isstarted(True)
     def __refresh(self):
         """This function refresh the progress bar
 
@@ -163,13 +195,12 @@ class SmoothProgressBar(object):
             None
 
         """
-        if self.__current_value is not None:
-            sys.stdout.write(self.__get_bar())
-            sys.stdout.flush()
-        if self.__is_running:
-            self.__timer = Timer(self.__interval, self.__refresh)
-            self.__timer.start()
+        sys.stdout.write(self.__get_bar())
+        sys.stdout.flush()
+        self.__timer = Timer(self.__interval, self.__refresh)
+        self.__timer.start()
 
+    @__isstarted(False)
     def start(self, max_value):
         """This function start the progress bar
 
@@ -183,13 +214,15 @@ class SmoothProgressBar(object):
             None
 
         """
-        if self.__is_running is not True:
-            self.__is_running = True
-            self.__max_value = max_value
-            self.__start_time = datetime.datetime.now().replace(microsecond=0)
-            self.__timer = Timer(self.__interval, self.__refresh)
-            self.__timer.start()
+        self.__is_running = True
+        self.__current_valuei = 0
+        self.__description = "Starting..."
+        self.__max_value = max_value
+        self.__start_time = datetime.datetime.now().replace(microsecond=0)
+        self.__timer = Timer(self.__interval, self.__refresh)
+        self.__timer.start()
 
+    @__isstarted(True)
     def update(self, current_value, description=None):
         """This function update currentValue, description, __update_time
         and call __set_percent().
@@ -208,6 +241,7 @@ class SmoothProgressBar(object):
         self.__set_percent()
         self.__is_updated = True
 
+    @__isstarted(True)
     def stop(self):
         """This function stop the progress bar.
 
