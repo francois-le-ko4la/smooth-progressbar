@@ -11,10 +11,128 @@
 """
 import os
 import sys
-import time
 from threading import Timer
 import datetime
 from functools import wraps
+
+
+class ProgressTheme:
+    done = '#'
+    not_done = '.'
+    beggining = '['
+    end = ']'
+    first_description = "Starting..."
+
+class Colors:
+    reset = '\x1b[0m'
+    info = '\x1b[4;30;42m'
+
+
+class ProgressPercent(object):
+
+    """
+    Percent
+    Example :
+        Processing : [ 40%]
+    """
+
+    def __init__(self, max_value):
+        """
+        """
+        self.value = 0
+        self.__max_value = max_value
+        self.__current_percent = 0
+
+    def __repr__(self):
+        """
+        Provide the string according to the %
+        """
+        percent = "Processing: [{0}%]".format(self.__get_str_percent())
+        return "{}{}{}".format(Colors.info, percent, Colors.reset)
+
+    def __str__(self):
+        """
+        """
+        return repr(self)
+
+    def __get_str_percent(self):
+        """
+        """
+        percent = str((self.get_percent() * 100))[0:4]
+        return " " * (5 - len(percent)) + percent
+
+    def get_percent(self):
+        """
+        """
+        return round(self.value / float(self.__max_value), 1)
+
+
+class ProgressDraw(object):
+    def __init__(self, max_size):
+        """
+        """
+        self.__max_size = max_size
+        self.percent = 0
+
+    def __get_block(self):
+        """
+        """
+        if self.percent < 1:
+            block = int(round(self.__max_size * self.percent))
+        else:
+            block = self.__max_size
+        return block
+
+    def __repr__(self):
+        """
+        """
+        block = self.__get_block()
+        return "{}{}{} ".format(
+            ProgressTheme.beggining,
+            ProgressTheme.done * block + ProgressTheme.not_done * (self.__max_size - block),
+            ProgressTheme.end)
+    def __str__(self):
+        """
+        """
+        return repr(self)
+
+
+class ElapseTime(object):
+    def __init__(self):
+        """
+        """
+        self.__start_time = None
+        self.__update_time = None
+
+    def start(self):
+        """
+        """
+        self.__start_time = datetime.datetime.now().replace(microsecond=0)
+
+    def __get_elapse(self):
+        """This function provides elapse time between start() and now.
+
+        self.__update_time-self.__start_time
+
+        Args:
+            None
+
+        Returns:
+            datetime object
+
+        """
+        self.__update_time = datetime.datetime.now().replace(microsecond=0)
+        return (self.__update_time - self.__start_time)
+
+    def __repr__(self):
+        """
+        """
+        return str(self.__get_elapse())
+
+    def __str__(self):
+        """
+        """
+        return repr(self)
 
 
 class SmoothProgressBar(object):
@@ -32,17 +150,13 @@ class SmoothProgressBar(object):
             self.__interval (float) : refresh time
             self.__rows (float): screen size
             self.__columns (float): screen size
-            self.__text (str): text to print
             self.__bar_length (int): progressbar size
-            self.__start_time (datetime): start time
-            self.__update_time (datetime): update time
-            self.__max_value (int): maximum value (100%)
-            self.__description (str):
-            self.__current_value (int):
-            self.__current_percent (float)
+            self.__description (str): task's description
             self.__is_running (bool)
-            self.__is_updated (bool)
-            self.__previous_percent (str)
+            self.__percent (ProgressPercent)
+            self.__draw (ProgressDraw)
+            self.__elapse (ElapseTime)
+            self.__timer (Timer): Thread
 
         Returns:
             obj
@@ -55,110 +169,39 @@ class SmoothProgressBar(object):
             self.__columns = 24
         else:
             self.__rows, self.__columns = os.popen(
-                    'stty size', 'r').read().split()
-        self.__text = None
-        self.__bar_length = int(0.30 * float(self.__columns))
-        self.__filled_length = None
-        self.__start_time = None
-        self.__update_time = None
-        self.__max_value = None
+                'stty size', 'r').read().split()
+
+        self.__percent = None
+        self.__draw = None
+        self.__elapse = ElapseTime()
+
+        self.__bar_length = int(0.50 * float(self.__columns))
         self.__description = None
-        self.__current_value = None
-        self.__current_percent = None
         self.__is_running = False
-        self.__is_updated = False
-        self.__previous_percent = ""
         print("\n")
         os.system('setterm -cursor off')
-
-    def __get_elapse(self):
-        """This function provides elapse time between start() and now.
-
-        self.__update_time-self.__start_time
-
-        Args:
-            None
-
-        Returns:
-            datetime object
-
-        """
-        self.__update_time = datetime.datetime.now().replace(microsecond=0)
-        return (self.__update_time - self.__start_time)
-
-    def __set_percent(self):
-        """This function provides current percent.
-
-        current_percent=round(self.__current_value/float(self.__max_value), 1)
-
-        Args:
-            None
-
-        Returns:
-            None
-
-        """
-        self.__current_percent = round(
-            self.__current_value / float(self.__max_value), 1)
-
-    def __get_infosbar(self):
-        """This function provides an information to print.
-
-        Provides : Elapse and description.
-
-        Args:
-            None
-
-        Returns:
-            string: "{elapse} | {description}"
-
-        """
-        return "{0} | {1}".format(
-            self.__get_elapse(),
-            self.__description)
-
-    def __get_percentbar(self):
-        """This function provides the string to print the progress
-
-        Provides progress and bar according to the screen size.
-
-        Args:
-            None
-
-        Returns:
-            string: Processing (70.0%): |///////////////     |
-
-        """
-        if self.__current_percent < 1:
-            block = int(round(self.__bar_length * self.__current_percent))
-        else:
-            block = self.__bar_length
-        return "\033[" + self.__rows + ";1H\rProcessing ({0}%): |{1}| ".format(
-                str((self.__current_percent * 100))[0:4],
-                    "/" * block + " " * (self.__bar_length - block))
 
     def __get_bar(self):
         """This function provides the string to print the progress and
         informations
 
-        Call __get_percentbar(), self.__get_infosbar and provides a complete
-        progress bar
-
         Args:
             None
 
         Returns:
-            string: Processing (70.0%): |///////////////     | 0:00:01 | task 1
+            string: Processing: [ 100.%] [#########] 0:00:20 - task 10
 
         """
-        if self.__is_updated:
-            self.__previous_percent = self.__get_percentbar()
-            self.__is_updated = False
-        new_progressbar = ""
-        new_progressbar += self.__previous_percent
-        new_progressbar += self.__get_infosbar()
-        new_progressbar += ' ' * int(self.__columns)
-        return new_progressbar[0:int(self.__columns)]
+        bar_location = "\033[" + self.__rows + ";1H\r"
+        current_progressbar = "{}{} {}{} - {}".format(
+            bar_location,
+            self.__percent,
+            self.__draw,
+            self.__elapse,
+            self.__description
+            )
+        current_progressbar += ' ' * int(self.__columns)
+        return current_progressbar[0:int(self.__columns)]
 
     def __isstarted(status=True):
         """
@@ -215,17 +258,18 @@ class SmoothProgressBar(object):
 
         """
         self.__is_running = True
-        self.__current_valuei = 0
-        self.__description = "Starting..."
-        self.__max_value = max_value
-        self.__start_time = datetime.datetime.now().replace(microsecond=0)
+        self.__percent = ProgressPercent(max_value)
+        self.__percent.value = 0
+        self.__draw = ProgressDraw(self.__bar_length)
+        self.__draw.percent = 0
+        self.__elapse.start()
+        self.__description = ProgressTheme.first_description
         self.__timer = Timer(self.__interval, self.__refresh)
         self.__timer.start()
 
     @__isstarted(True)
     def update(self, current_value, description=None):
-        """This function update currentValue, description, __update_time
-        and call __set_percent().
+        """This function update currentValue & description
 
         Args:
             current_value (int): current value
@@ -235,11 +279,9 @@ class SmoothProgressBar(object):
             None
 
         """
-        self.__current_value = current_value
+        self.__percent.value = current_value
+        self.__draw.percent = self.__percent.get_percent()
         self.__description = description
-        self.__update_time = time.time()
-        self.__set_percent()
-        self.__is_updated = True
 
     @__isstarted(True)
     def stop(self):
