@@ -19,9 +19,12 @@ from functools import wraps
 class ProgressTheme:
     done = '#'
     not_done = '.'
+    separator = '-'
     beggining = '['
     end = ']'
     first_description = "Starting..."
+    label_percentage = 'Processing:'
+
 
 class Colors:
     reset = '\x1b[0m'
@@ -31,13 +34,22 @@ class Colors:
 class ProgressPercent(object):
 
     """
-    Percent
+    Provides the percentage indicator
     Example :
         Processing : [ 40%]
     """
 
     def __init__(self, max_value):
         """
+        Init the default values
+        Take the max value to provide the percentage
+
+        Args:
+            max_value (int): value at 100%
+
+        Returns:
+            obj
+
         """
         self.value = 0
         self.__max_value = max_value
@@ -46,23 +58,58 @@ class ProgressPercent(object):
     def __repr__(self):
         """
         Provide the string according to the %
+
+        Args:
+            None
+
+        Returns:
+            str
+
         """
-        percent = "Processing: [{0}%]".format(self.__get_str_percent())
-        return "{}{}{}".format(Colors.info, percent, Colors.reset)
+        return "{}{} {}{}%{}{}".format(Colors.info,
+                                       ProgressTheme.label_percentage,
+                                       ProgressTheme.beggining,
+                                       self.__get_str_percent(),
+                                       ProgressTheme.end,
+                                       Colors.reset)
 
     def __str__(self):
         """
+        Call repr
+
+        Args:
+            None
+
+        Returns:
+            repr result
+
         """
         return repr(self)
 
     def __get_str_percent(self):
         """
+        Provide the percentage / string - fixed size
+
+        Args:
+            None
+
+        Returns:
+            str
+
         """
         percent = str((self.get_percent() * 100))[0:4]
         return " " * (5 - len(percent)) + percent
 
     def get_percent(self):
         """
+        Calculates the percent value
+
+        Args:
+            None
+
+        Returns:
+            float
+
         """
         return round(self.value / float(self.__max_value), 1)
 
@@ -70,12 +117,28 @@ class ProgressPercent(object):
 class ProgressDraw(object):
     def __init__(self, max_size):
         """
+        Init the default value
+        Take the max size (100%)
+
+        Args:
+            max_size (int): max size / 100%
+
+        Returns:
+            obj
+
         """
         self.__max_size = max_size
         self.percent = 0
 
     def __get_block(self):
         """
+        Provides the number of block to print according to the progress
+
+        Args:
+            None
+
+        Returns:
+            int
         """
         if self.percent < 1:
             block = int(round(self.__max_size * self.percent))
@@ -85,14 +148,30 @@ class ProgressDraw(object):
 
     def __repr__(self):
         """
+        Provides the string to print
+
+        Args:
+            None
+
+        Returns:
+            str
         """
         block = self.__get_block()
         return "{}{}{} ".format(
             ProgressTheme.beggining,
-            ProgressTheme.done * block + ProgressTheme.not_done * (self.__max_size - block),
+            ProgressTheme.done * block +
+            ProgressTheme.not_done * (self.__max_size - block),
             ProgressTheme.end)
+
     def __str__(self):
         """
+        call repr
+
+        Args:
+            None
+
+        Returns:
+            repr return
         """
         return repr(self)
 
@@ -100,17 +179,34 @@ class ProgressDraw(object):
 class ElapseTime(object):
     def __init__(self):
         """
+        Init the default values
+
+        Args:
+            None
+
+        Returns:
+            obj
+
         """
         self.__start_time = None
         self.__update_time = None
 
     def start(self):
         """
+        Store the current timestamp in self.__start_time
+
+        Args:
+            None
+
+        Returns:
+            None
+
         """
         self.__start_time = datetime.datetime.now().replace(microsecond=0)
 
     def __get_elapse(self):
-        """This function provides elapse time between start() and now.
+        """
+        This function provides elapse time between start() and now.
 
         self.__update_time-self.__start_time
 
@@ -126,11 +222,27 @@ class ElapseTime(object):
 
     def __repr__(self):
         """
+        Provides the string
+
+        Args:
+            None
+
+        Returns:
+            None
+
         """
         return str(self.__get_elapse())
 
     def __str__(self):
         """
+        Call repr
+
+        Args:
+            None
+
+        Returns:
+            None
+
         """
         return repr(self)
 
@@ -140,8 +252,8 @@ class SmoothProgressBar(object):
     """This Class provides a progressbar"""
 
     def __init__(self, debug=False):
-        """Init the smoothProgressBar Class
-        This function define attributes.
+        """
+        Init the smoothProgressBar Class
 
         Args:
             None
@@ -193,11 +305,12 @@ class SmoothProgressBar(object):
 
         """
         bar_location = "\033[" + self.__rows + ";1H\r"
-        current_progressbar = "{}{} {}{} - {}".format(
+        current_progressbar = "{}{} {}{} {} {}".format(
             bar_location,
             self.__percent,
             self.__draw,
             self.__elapse,
+            ProgressTheme.separator,
             self.__description
             )
         current_progressbar += ' ' * int(self.__columns)
