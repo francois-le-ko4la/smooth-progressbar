@@ -77,4 +77,4 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 __version__ = '0.1_dev'
 
-from .smooth_progressbar import SmoothProgressBar
+from .smooth_progressbar import *
