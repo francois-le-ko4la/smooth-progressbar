@@ -16,11 +16,44 @@ from smooth_progressbar import SmoothProgressBar
 
 
 my_progressbar = SmoothProgressBar()
-my_progressbar.start(10)
-for i in range(1, 11):
+my_progressbar.start(3)
+for i in range(1, 4):
     my_progressbar.update(i-1, "task {} in progress...".format(str(i)))
     time.sleep(1)
     # ....
     my_progressbar.update(i, "task {} finished...".format(str(i)))
     time.sleep(1)
 my_progressbar.stop()
+
+
+my_progressbar = SmoothProgressBar(enable_elapse=False)
+my_progressbar.start(3)
+for i in range(1, 4):
+    my_progressbar.update(i-1, "task {} in progress...".format(str(i)))
+    time.sleep(1)
+    # ....
+    my_progressbar.update(i, "task {} finished...".format(str(i)))
+    time.sleep(1)
+my_progressbar.stop()
+
+my_progressbar = SmoothProgressBar(enable_description=False)
+my_progressbar.start(3)
+for i in range(1, 4):
+    my_progressbar.update(i-1, "task {} in progress...".format(str(i)))
+    time.sleep(2)
+    # ....
+    my_progressbar.update(i, "task {} finished...".format(str(i)))
+    time.sleep(2)
+my_progressbar.stop()
+
+
+my_progressbar = SmoothProgressBar(enable_elapse=False, enable_description=False)
+my_progressbar.start(3)
+for i in range(1, 4):
+    my_progressbar.update(i-1, "task {} in progress...".format(str(i)))
+    time.sleep(2)
+    # ....
+    my_progressbar.update(i, "task {} finished...".format(str(i)))
+    time.sleep(2)
+my_progressbar.stop()
+

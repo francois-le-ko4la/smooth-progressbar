@@ -182,6 +182,67 @@ def ElapseTime.start(self):
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  None<br />
 > <br />
 
+### EscapeSequence()
+
+````python
+class EscapeSequence():
+````
+
+
+> <br />
+> None<br />
+> <br />
+
+### FixedSizeString()
+
+````python
+class FixedSizeString():
+````
+
+
+> <br />
+> None<br />
+> <br />
+
+#### FixedSizeString.__init__(self, max_size)
+
+````python
+def FixedSizeString.__init__(self, max_size):
+````
+
+
+> <br />
+> Initialize self.  See help(type(self)) for accurate signature.<br />
+> <br />
+
+#### FixedSizeString.__repr__(self)
+
+````python
+def FixedSizeString.__repr__(self):
+````
+
+
+> <br />
+> Return repr(self).<br />
+> <br />
+
+#### FixedSizeString.__str__(self)
+
+````python
+def FixedSizeString.__str__(self):
+````
+
+
+> <br />
+> call repr<br />
+> <br />
+> <b>Args:</b><br />
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  None<br />
+> <br />
+> <b>Returns:</b><br />
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  repr return<br />
+> <br />
+
 ### ProgressDraw()
 
 ````python
@@ -383,6 +444,17 @@ class SmoothProgressBar():
 > This Class provides a progressbar<br />
 > <br />
 
+#### SmoothProgressBar.__def_bar_lengh(self)
+
+````python
+def SmoothProgressBar.__def_bar_lengh(self):
+````
+
+
+> <br />
+> None<br />
+> <br />
+
 #### SmoothProgressBar.__get_bar(self)
 
 ````python
@@ -401,10 +473,10 @@ def SmoothProgressBar.__get_bar(self):
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  string: Processing: [ 100.%] [#########] 0:00:20 - task 10<br />
 > <br />
 
-#### SmoothProgressBar.__init__(self, debug=False)
+#### SmoothProgressBar.__init__(self, enable_elapse=True, enable_description=True, debug=False)
 
 ````python
-def SmoothProgressBar.__init__(self, debug=False):
+def SmoothProgressBar.__init__(self, enable_elapse=True, enable_description=True, debug=False):
 ````
 
 
@@ -415,7 +487,6 @@ def SmoothProgressBar.__init__(self, debug=False):
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  None<br />
 > <br />
 > <b>Attributes:</b><br />
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  self.__interval (float) : refresh time<br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  self.__rows (float): screen size<br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  self.__columns (float): screen size<br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  self.__bar_length (int): progressbar size<br />
@@ -521,4 +592,3 @@ def SmoothProgressBar.update(self, current_value, description=None):
 > <b>Returns:</b><br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  None<br />
 > <br />
-
