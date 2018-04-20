@@ -14,8 +14,6 @@ import sys
 from threading import Timer
 import datetime
 from functools import wraps
-
-
 class ProgressTheme:
     refresh_time = 0.25
     done = '#'
@@ -326,7 +324,7 @@ class SmoothProgressBar(object):
 
     def __def_bar_lengh(self):
         self.__rows, self.__columns = os.popen('stty size', 'r').read().split()
-        self.__bar_length = int(self.__columns) - len(ProgressTheme.label_percentage) - 20
+        self.__bar_length = int(self.__columns) - len(ProgressTheme.label_percentage) - 15
         if self.__elapse.enable:
             self.__bar_length = self.__bar_length - ProgressTheme.size_elapse
         if self.__description.enable:
@@ -346,7 +344,6 @@ class SmoothProgressBar(object):
 
         """
         current_progressbar = FixedSizeString(int(self.__columns) + 14)
-
         current_progressbar.value = "{}{} {}{} {}".format(
             '\r',
             self.__percent,
@@ -355,6 +352,20 @@ class SmoothProgressBar(object):
             self.__description
             )
         return str(current_progressbar)
+
+    def __get_log(self):
+        """
+        """
+        empty_line = FixedSizeString(int(self.__columns))
+        empty_line.value = ' '
+        if self.__description.enable is not True:
+            self.__description.enable = True
+            self.__description.max_size = self.__columns
+            log = "\r" + str(empty_line) + "\r" + str(self.__description) + "\n"
+            self.__description.enable = False
+            return log
+        return ""
+
 
     def __isstarted(status=True):
         """
@@ -378,6 +389,12 @@ class SmoothProgressBar(object):
             return wrapper
         return tags_decorator
 
+    def __clean_progress(self):
+        empty_line = FixedSizeString(int(self.__columns))
+        empty_line.value = ' '
+        sys.stdout.write("\r" + str(empty_line) + "\r")
+        sys.stdout.flush()
+
     @__isstarted(True)
     def __refresh(self):
         """This function refresh the progress bar
@@ -394,6 +411,7 @@ class SmoothProgressBar(object):
         if self.__isupdated:
             self.__isupdated = False
             self.__draw.max_size = self.__def_bar_lengh()
+            sys.stdout.write(self.__get_log())
             sys.stdout.write(self.__get_bar())
             sys.stdout.flush()
         self.__timer = Timer(ProgressTheme.refresh_time, self.__refresh)
@@ -454,5 +472,6 @@ class SmoothProgressBar(object):
         """
         self.__is_running = False
         self.__timer.cancel()
+        self.__clean_progress()
         print("\n")
         os.system('setterm -cursor on')
