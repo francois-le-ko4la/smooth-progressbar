@@ -9,11 +9,14 @@
 
 
 """
+
 import os
 import sys
 from threading import Timer
 import datetime
 from functools import wraps
+
+
 class ProgressTheme:
     refresh_time = 0.25
     done = '#'
@@ -26,9 +29,11 @@ class ProgressTheme:
     size_elapse = 10
     size_description = 20
 
+
 class Colors:
     reset = '\x1b[0m'
     info = '\x1b[4;30;42m'
+
 
 class EscapeSequence:
     goback = '\r'
@@ -119,6 +124,7 @@ class ProgressPercent(object):
 
 
 class ProgressDraw(object):
+
     def __init__(self, max_size):
         """
         Init the default value
@@ -181,6 +187,7 @@ class ProgressDraw(object):
 
 
 class FixedSizeString(object):
+
     def __init__(self, max_size):
         self.value = ""
         self.max_size = max_size
@@ -206,6 +213,7 @@ class FixedSizeString(object):
 
 
 class ElapseTime(object):
+
     def __init__(self):
         """
         Init the default values
@@ -282,7 +290,7 @@ class SmoothProgressBar(object):
 
     """This Class provides a progressbar"""
 
-    def __init__(self, enable_elapse=True, enable_description=True, debug=False):
+    def __init__(self, enable_elapse=True, enable_description=True):
         """
         Init the smoothProgressBar Class
 
@@ -320,15 +328,15 @@ class SmoothProgressBar(object):
         self.__is_running = False
         self.__bar_length = self.__def_bar_lengh()
 
-        #os.system('setterm -cursor off')
-
     def __def_bar_lengh(self):
         self.__rows, self.__columns = os.popen('stty size', 'r').read().split()
-        self.__bar_length = int(self.__columns) - len(ProgressTheme.label_percentage) - 15
+        self.__bar_length = int(self.__columns) - len(
+            ProgressTheme.label_percentage) - 15
         if self.__elapse.enable:
             self.__bar_length = self.__bar_length - ProgressTheme.size_elapse
         if self.__description.enable:
-            self.__bar_length = self.__bar_length - ProgressTheme.size_description
+            self.__bar_length = self.__bar_length - \
+                ProgressTheme.size_description
 
         return self.__bar_length
 
@@ -350,7 +358,7 @@ class SmoothProgressBar(object):
             self.__draw,
             self.__elapse,
             self.__description
-            )
+        )
         return str(current_progressbar)
 
     def __get_log(self):
@@ -361,11 +369,11 @@ class SmoothProgressBar(object):
         if self.__description.enable is not True:
             self.__description.enable = True
             self.__description.max_size = self.__columns
-            log = "\r" + str(empty_line) + "\r" + str(self.__description) + "\n"
+            log = "\r" + \
+                str(empty_line) + "\r" + str(self.__description) + "\n"
             self.__description.enable = False
             return log
         return ""
-
 
     def __isstarted(status=True):
         """
@@ -473,5 +481,3 @@ class SmoothProgressBar(object):
         self.__is_running = False
         self.__timer.cancel()
         self.__clean_progress()
-        print("\n")
-        os.system('setterm -cursor on')
