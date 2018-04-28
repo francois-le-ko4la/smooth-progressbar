@@ -22,6 +22,7 @@ Note:
 """
 
 from setuptools import setup
+from smooth_progressbar import __about__
 
 
 def readme():
@@ -33,8 +34,8 @@ def readme():
 
 setup(
     name='smooth-progressbar',
-    version='0.1',
-    description='The funniest progress bar over the world',
+    version=__about__.__version__,
+    description=__about__.__description__,
     long_description=readme(),
     python_requires='>=3.0',
     classifiers=[
@@ -42,9 +43,9 @@ setup(
         'Environment :: Console',
         'Programming Language :: Python :: 3.6',
         ],
-    url='https://github.com/francois-le-ko4la/smooth-progressbar',
-    author='Ko4lA',
-    author_email='francois@le.ko4la.fr',
+    url=__about__.__url__,
+    author=__about__.__author__,
+    author_email=__about__.__email__,
     license='',
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],

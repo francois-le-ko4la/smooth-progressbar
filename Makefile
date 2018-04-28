@@ -30,7 +30,9 @@ clean:
 	@sudo find -type f -name '*.pyc' -delete
 
 doc:
-	@export_docstring2md.py -i $(PACKAGE_DIR) -o README.md
+	@pyreverse $(PACKAGE_DIR) -f ALL -o png -p $(PACKAGE_NAME)
+	@mv *.png pictures/
+	@export_docstring2md.py -i $(PACKAGE_DIR) -o README.md -r requirements.txt -t runtime.txt -u pictures/classes_$(PACKAGE_NAME).png
 
 release:
 	@$(MAKE) clean

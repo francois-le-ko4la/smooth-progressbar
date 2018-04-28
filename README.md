@@ -13,7 +13,7 @@ of the GNU General Public License (GPL), version 3.
 * `tests/test_smooth_progressbar.py`: Test.
 
 The package contents itself are in the `smooth_progressbar` directory:
-* `__ init __`.py: Initialization file for the Python package.
+* `__init__`.py: Initialization file for the Python package.
 * `smooth_progressbar/smooth_progressbar.py` : The code of interest.
 
 ## Setup:
@@ -70,38 +70,79 @@ version 3 of the License, or (at your option) any later version.
 This script is provided in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-## Dev docstring
+## Dev notes
+### Runtime
+
+```
+python-3.6.x
+
+```
+### Requirements
+
+```
+pycodestyle==2.3.1
+setuptools==36.2.7
+
+```
+### UML Diagram
+![alt text](pictures/classes_smooth-progressbar.png)
+
+### Objects
+[Colors()](#colors)<br />
+[ElapseTime()](#elapsetime)<br />
+[ElapseTime.__get_elapse(self)](#elapsetime__get_elapseself)<br />
+[ElapseTime.__init__(self)](#elapsetimeinitself)<br />
+[ElapseTime.__repr__(self)](#elapsetimereprself)<br />
+[ElapseTime.__str__(self)](#elapsetimestrself)<br />
+[ElapseTime.start(self)](#elapsetimestartself)<br />
+[EscapeSequence()](#escapesequence)<br />
+[FixedSizeString()](#fixedsizestring)<br />
+[FixedSizeString.__init__(self, max_size)](#fixedsizestringinitself-max_size)<br />
+[FixedSizeString.__repr__(self)](#fixedsizestringreprself)<br />
+[FixedSizeString.__str__(self)](#fixedsizestringstrself)<br />
+[ProgressDraw()](#progressdraw)<br />
+[ProgressDraw.__get_block(self)](#progressdraw__get_blockself)<br />
+[ProgressDraw.__init__(self, max_size)](#progressdrawinitself-max_size)<br />
+[ProgressDraw.__repr__(self)](#progressdrawreprself)<br />
+[ProgressDraw.__str__(self)](#progressdrawstrself)<br />
+[ProgressPercent()](#progresspercent)<br />
+[ProgressPercent.__get_str_percent(self)](#progresspercent__get_str_percentself)<br />
+[ProgressPercent.__init__(self, max_value)](#progresspercentinitself-max_value)<br />
+[ProgressPercent.__repr__(self)](#progresspercentreprself)<br />
+[ProgressPercent.__str__(self)](#progresspercentstrself)<br />
+[ProgressPercent.get_percent(self)](#progresspercentget_percentself)<br />
+[ProgressTheme()](#progresstheme)<br />
+[SmoothProgressBar()](#smoothprogressbar)<br />
+[SmoothProgressBar.__clean_progress(self)](#smoothprogressbar__clean_progressself)<br />
+[SmoothProgressBar.__def_bar_lengh(self)](#smoothprogressbar__def_bar_lenghself)<br />
+[SmoothProgressBar.__get_bar(self)](#smoothprogressbar__get_barself)<br />
+[SmoothProgressBar.__get_log(self)](#smoothprogressbar__get_logself)<br />
+[SmoothProgressBar.__init__(self, enable_elapse=True, enable_description=True)](#smoothprogressbarinitself-enable_elapsetrue-enable_descriptiontrue)<br />
+[SmoothProgressBar.__isstarted(status=True)](#smoothprogressbar__isstartedstatustrue)<br />
+[SmoothProgressBar.__refresh(self)](#smoothprogressbar__refreshself)<br />
+[SmoothProgressBar.start(self, max_value)](#smoothprogressbarstartself-max_value)<br />
+[SmoothProgressBar.stop(self)](#smoothprogressbarstopself)<br />
+[SmoothProgressBar.update(self, current_value, description=None)](#smoothprogressbarupdateself-current_value-descriptionnone)<br />
 
 
-### Colors()
-
-````python
-class Colors():
-````
-
-
+#### Colors()
+```python
+class Colors:
+```
 > <br />
-> None<br />
+> <b>- docstring empty -</b><br />
 > <br />
-
-### ElapseTime()
-
-````python
-class ElapseTime():
-````
-
-
+#### ElapseTime()
+```python
+class ElapseTime(object):
+```
 > <br />
-> None<br />
+> <b>- docstring empty -</b><br />
 > <br />
-
-#### ElapseTime.__get_elapse(self)
-
-````python
+##### ElapseTime.__get_elapse(self)
+```python
 def ElapseTime.__get_elapse(self):
-````
-
-
+```
 > <br />
 > This function provides elapse time between start() and now.<br />
 > <br />
@@ -113,14 +154,10 @@ def ElapseTime.__get_elapse(self):
 > <b>Returns:</b><br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  datetime object<br />
 > <br />
-
-#### ElapseTime.__init__(self)
-
-````python
+##### ElapseTime.__init__(self)
+```python
 def ElapseTime.__init__(self):
-````
-
-
+```
 > <br />
 > Init the default values<br />
 > <br />
@@ -130,14 +167,10 @@ def ElapseTime.__init__(self):
 > <b>Returns:</b><br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  obj<br />
 > <br />
-
-#### ElapseTime.__repr__(self)
-
-````python
+##### ElapseTime.__repr__(self)
+```python
 def ElapseTime.__repr__(self):
-````
-
-
+```
 > <br />
 > Provides the string<br />
 > <br />
@@ -147,14 +180,10 @@ def ElapseTime.__repr__(self):
 > <b>Returns:</b><br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  None<br />
 > <br />
-
-#### ElapseTime.__str__(self)
-
-````python
+##### ElapseTime.__str__(self)
+```python
 def ElapseTime.__str__(self):
-````
-
-
+```
 > <br />
 > Call repr<br />
 > <br />
@@ -164,14 +193,10 @@ def ElapseTime.__str__(self):
 > <b>Returns:</b><br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  None<br />
 > <br />
-
-#### ElapseTime.start(self)
-
-````python
+##### ElapseTime.start(self)
+```python
 def ElapseTime.start(self):
-````
-
-
+```
 > <br />
 > Store the current timestamp in self.__start_time<br />
 > <br />
@@ -181,58 +206,38 @@ def ElapseTime.start(self):
 > <b>Returns:</b><br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  None<br />
 > <br />
-
-### EscapeSequence()
-
-````python
-class EscapeSequence():
-````
-
-
+#### EscapeSequence()
+```python
+class EscapeSequence:
+```
 > <br />
-> None<br />
+> <b>- docstring empty -</b><br />
 > <br />
-
-### FixedSizeString()
-
-````python
-class FixedSizeString():
-````
-
-
+#### FixedSizeString()
+```python
+class FixedSizeString(object):
+```
 > <br />
-> None<br />
+> <b>- docstring empty -</b><br />
 > <br />
-
-#### FixedSizeString.__init__(self, max_size)
-
-````python
+##### FixedSizeString.__init__(self, max_size)
+```python
 def FixedSizeString.__init__(self, max_size):
-````
-
-
+```
 > <br />
 > Initialize self.  See help(type(self)) for accurate signature.<br />
 > <br />
-
-#### FixedSizeString.__repr__(self)
-
-````python
+##### FixedSizeString.__repr__(self)
+```python
 def FixedSizeString.__repr__(self):
-````
-
-
+```
 > <br />
 > Return repr(self).<br />
 > <br />
-
-#### FixedSizeString.__str__(self)
-
-````python
+##### FixedSizeString.__str__(self)
+```python
 def FixedSizeString.__str__(self):
-````
-
-
+```
 > <br />
 > call repr<br />
 > <br />
@@ -242,25 +247,17 @@ def FixedSizeString.__str__(self):
 > <b>Returns:</b><br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  repr return<br />
 > <br />
-
-### ProgressDraw()
-
-````python
-class ProgressDraw():
-````
-
-
+#### ProgressDraw()
+```python
+class ProgressDraw(object):
+```
 > <br />
-> None<br />
+> <b>- docstring empty -</b><br />
 > <br />
-
-#### ProgressDraw.__get_block(self)
-
-````python
+##### ProgressDraw.__get_block(self)
+```python
 def ProgressDraw.__get_block(self):
-````
-
-
+```
 > <br />
 > Provides the number of block to print according to the progress<br />
 > <br />
@@ -270,14 +267,10 @@ def ProgressDraw.__get_block(self):
 > <b>Returns:</b><br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  int<br />
 > <br />
-
-#### ProgressDraw.__init__(self, max_size)
-
-````python
+##### ProgressDraw.__init__(self, max_size)
+```python
 def ProgressDraw.__init__(self, max_size):
-````
-
-
+```
 > <br />
 > Init the default value<br />
 > Take the max size (100%)<br />
@@ -288,14 +281,10 @@ def ProgressDraw.__init__(self, max_size):
 > <b>Returns:</b><br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  obj<br />
 > <br />
-
-#### ProgressDraw.__repr__(self)
-
-````python
+##### ProgressDraw.__repr__(self)
+```python
 def ProgressDraw.__repr__(self):
-````
-
-
+```
 > <br />
 > Provides the string to print<br />
 > <br />
@@ -305,14 +294,10 @@ def ProgressDraw.__repr__(self):
 > <b>Returns:</b><br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  str<br />
 > <br />
-
-#### ProgressDraw.__str__(self)
-
-````python
+##### ProgressDraw.__str__(self)
+```python
 def ProgressDraw.__str__(self):
-````
-
-
+```
 > <br />
 > call repr<br />
 > <br />
@@ -322,27 +307,19 @@ def ProgressDraw.__str__(self):
 > <b>Returns:</b><br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  repr return<br />
 > <br />
-
-### ProgressPercent()
-
-````python
-class ProgressPercent():
-````
-
-
+#### ProgressPercent()
+```python
+class ProgressPercent(object):
+```
 > <br />
 > Provides the percentage indicator<br />
 > <b>Example :</b><br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Processing : [ 40%]<br />
 > <br />
-
-#### ProgressPercent.__get_str_percent(self)
-
-````python
+##### ProgressPercent.__get_str_percent(self)
+```python
 def ProgressPercent.__get_str_percent(self):
-````
-
-
+```
 > <br />
 > Provide the percentage / string - fixed size<br />
 > <br />
@@ -352,14 +329,10 @@ def ProgressPercent.__get_str_percent(self):
 > <b>Returns:</b><br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  str<br />
 > <br />
-
-#### ProgressPercent.__init__(self, max_value)
-
-````python
+##### ProgressPercent.__init__(self, max_value)
+```python
 def ProgressPercent.__init__(self, max_value):
-````
-
-
+```
 > <br />
 > Init the default values<br />
 > Take the max value to provide the percentage<br />
@@ -370,14 +343,10 @@ def ProgressPercent.__init__(self, max_value):
 > <b>Returns:</b><br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  obj<br />
 > <br />
-
-#### ProgressPercent.__repr__(self)
-
-````python
+##### ProgressPercent.__repr__(self)
+```python
 def ProgressPercent.__repr__(self):
-````
-
-
+```
 > <br />
 > Provide the string according to the %<br />
 > <br />
@@ -387,14 +356,10 @@ def ProgressPercent.__repr__(self):
 > <b>Returns:</b><br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  str<br />
 > <br />
-
-#### ProgressPercent.__str__(self)
-
-````python
+##### ProgressPercent.__str__(self)
+```python
 def ProgressPercent.__str__(self):
-````
-
-
+```
 > <br />
 > Call repr<br />
 > <br />
@@ -404,14 +369,10 @@ def ProgressPercent.__str__(self):
 > <b>Returns:</b><br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  repr result<br />
 > <br />
-
-#### ProgressPercent.get_percent(self)
-
-````python
+##### ProgressPercent.get_percent(self)
+```python
 def ProgressPercent.get_percent(self):
-````
-
-
+```
 > <br />
 > Calculates the percent value<br />
 > <br />
@@ -421,47 +382,38 @@ def ProgressPercent.get_percent(self):
 > <b>Returns:</b><br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  float<br />
 > <br />
-
-### ProgressTheme()
-
-````python
-class ProgressTheme():
-````
-
-
+#### ProgressTheme()
+```python
+class ProgressTheme:
+```
 > <br />
-> None<br />
+> <b>- docstring empty -</b><br />
 > <br />
-
-### SmoothProgressBar()
-
-````python
-class SmoothProgressBar():
-````
-
-
+#### SmoothProgressBar()
+```python
+class SmoothProgressBar(object):
+```
 > <br />
 > This Class provides a progressbar<br />
 > <br />
-
-#### SmoothProgressBar.__def_bar_lengh(self)
-
-````python
+##### SmoothProgressBar.__clean_progress(self)
+```python
+def SmoothProgressBar.__clean_progress(self):
+```
+> <br />
+> <b>- docstring empty -</b><br />
+> <br />
+##### SmoothProgressBar.__def_bar_lengh(self)
+```python
 def SmoothProgressBar.__def_bar_lengh(self):
-````
-
-
+```
 > <br />
-> None<br />
+> <b>- docstring empty -</b><br />
 > <br />
-
-#### SmoothProgressBar.__get_bar(self)
-
-````python
+##### SmoothProgressBar.__get_bar(self)
+```python
 def SmoothProgressBar.__get_bar(self):
-````
-
-
+```
 > <br />
 > This function provides the string to print the progress and<br />
 > informations<br />
@@ -472,14 +424,17 @@ def SmoothProgressBar.__get_bar(self):
 > <b>Returns:</b><br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  string: Processing: [ 100.%] [#########] 0:00:20 - task 10<br />
 > <br />
-
-#### SmoothProgressBar.__init__(self, enable_elapse=True, enable_description=True, debug=False)
-
-````python
-def SmoothProgressBar.__init__(self, enable_elapse=True, enable_description=True, debug=False):
-````
-
-
+##### SmoothProgressBar.__get_log(self)
+```python
+def SmoothProgressBar.__get_log(self):
+```
+> <br />
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <br />
+> <br />
+##### SmoothProgressBar.__init__(self, enable_elapse=True, enable_description=True)
+```python
+def SmoothProgressBar.__init__(self, enable_elapse=True, enable_description=True):
+```
 > <br />
 > Init the smoothProgressBar Class<br />
 > <br />
@@ -500,14 +455,10 @@ def SmoothProgressBar.__init__(self, enable_elapse=True, enable_description=True
 > <b>Returns:</b><br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  obj<br />
 > <br />
-
-#### SmoothProgressBar.__isstarted(status=True)
-
-````python
+##### SmoothProgressBar.__isstarted(status=True)
+```python
 def SmoothProgressBar.__isstarted(status=True):
-````
-
-
+```
 > <br />
 > Decorator to check progress bar status<br />
 > <br />
@@ -518,14 +469,11 @@ def SmoothProgressBar.__isstarted(status=True):
 > <b>Returns:</b><br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  func if self.__is_running = status<br />
 > <br />
-
-#### SmoothProgressBar.__refresh(self)
-
-````python
+##### SmoothProgressBar.__refresh(self)
+```python
+@__isstarted(True)
 def SmoothProgressBar.__refresh(self):
-````
-
-
+```
 > <br />
 > This function refresh the progress bar<br />
 > <br />
@@ -537,14 +485,11 @@ def SmoothProgressBar.__refresh(self):
 > <b>Returns:</b><br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  None<br />
 > <br />
-
-#### SmoothProgressBar.start(self, max_value)
-
-````python
+##### SmoothProgressBar.start(self, max_value)
+```python
+@__isstarted(False)
 def SmoothProgressBar.start(self, max_value):
-````
-
-
+```
 > <br />
 > This function start the progress bar<br />
 > <br />
@@ -557,14 +502,11 @@ def SmoothProgressBar.start(self, max_value):
 > <b>Returns:</b><br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  None<br />
 > <br />
-
-#### SmoothProgressBar.stop(self)
-
-````python
+##### SmoothProgressBar.stop(self)
+```python
+@__isstarted(True)
 def SmoothProgressBar.stop(self):
-````
-
-
+```
 > <br />
 > This function stop the progress bar.<br />
 > <br />
@@ -574,14 +516,11 @@ def SmoothProgressBar.stop(self):
 > <b>Results:</b><br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  None<br />
 > <br />
-
-#### SmoothProgressBar.update(self, current_value, description=None)
-
-````python
+##### SmoothProgressBar.update(self, current_value, description=None)
+```python
+@__isstarted(True)
 def SmoothProgressBar.update(self, current_value, description=None):
-````
-
-
+```
 > <br />
 > This function update currentValue & description<br />
 > <br />

@@ -16,7 +16,7 @@ of the GNU General Public License (GPL), version 3.
 * `tests/test_smooth_progressbar.py`: Test.
 
 The package contents itself are in the `smooth_progressbar` directory:
-* `__ init __`.py: Initialization file for the Python package.
+* `__init__`.py: Initialization file for the Python package.
 * `smooth_progressbar/smooth_progressbar.py` : The code of interest.
 
 ## Setup:
@@ -75,6 +75,5 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 """
 
-__version__ = '0.1_dev'
-
-from .smooth_progressbar import *
+import smooth_progressbar.__about__
+from smooth_progressbar.progressbar import *
