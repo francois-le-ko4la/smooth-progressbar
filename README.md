@@ -75,7 +75,7 @@ my_progressbar.stop()
 
 ## License
 
-smooth-progressbar is distributed under the [GPLv3 license](./LICENSE)
+This package is distributed under the [GPLv3 license](./LICENSE)
 ## Dev notes
 ### Runtime
 
