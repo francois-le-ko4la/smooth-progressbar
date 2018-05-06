@@ -22,7 +22,7 @@ Note:
 """
 
 from setuptools import setup
-from smooth_progressbar import __about__
+from smoothprogressbar import __about__
 
 
 def readme():
@@ -33,7 +33,7 @@ def readme():
 
 
 setup(
-    name='smooth-progressbar',
+    name=__about__.__name__,
     version=__about__.__version__,
     description=__about__.__description__,
     long_description=readme(),
@@ -49,6 +49,6 @@ setup(
     license='',
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
-    packages=['smooth_progressbar'],
+    packages=[__about__.__name__],
     zip_safe=False
     )

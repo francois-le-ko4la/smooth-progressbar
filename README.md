@@ -3,19 +3,6 @@
 
 This package provide a simple progress bar.
 
-The following files comprise the `smooth-progressbar` package:
-* `LICENSE`: The license file. `smooth-progressbar` is released under the terms
-of the GNU General Public License (GPL), version 3.
-* `README.md`: This readme file.
-* `Makefile`: Generic management tasks.
-* `setup.py`: Package and distribution management.
-* `setup.cfg`: The setuptools setup file.
-* `tests/test_smooth_progressbar.py`: Test.
-
-The package contents itself are in the `smooth_progressbar` directory:
-* `__init__`.py: Initialization file for the Python package.
-* `smooth_progressbar/smooth_progressbar.py` : The code of interest.
-
 ## Setup:
 ```shell
 git clone https://github.com/francois-le-ko4la/smooth-progressbar.git
@@ -31,7 +18,7 @@ make test
 ## Use:
 
 ```python
-from smooth_progressbar import SmoothProgressBar
+from smoothprogressbar import SmoothProgressBar
 my_progressbar = SmoothProgressBar()
 my_progressbar.start(10)
 
@@ -48,6 +35,32 @@ my_progressbar.stop()
     Processing (30.0%): |//////              | 0:00:05 | task 3
     ...
 
+
+## Project Structure
+```
+.
+├── last_check.log
+├── LICENSE
+├── Makefile
+├── MANIFEST.in
+├── pictures
+│   ├── classes_smooth-progressbar.png
+│   └── packages_smooth-progressbar.png
+├── README.md
+├── requirements.txt
+├── runtime.txt
+├── setup.cfg
+├── setup.py
+├── smooth_progressbar
+│   ├── __about__.py
+│   ├── __init__.py
+│   └── progressbar.py
+└── tests
+    ├── run_it.py
+    ├── test_doctest.py
+    └── test_pycodestyle.py
+```
+
 ## Todo:
 
 - [X] Create the project
@@ -60,16 +73,9 @@ my_progressbar.stop()
 - [ ] Clean & last check
 - [ ] Release
 
-## Note:
+## License
 
-This script is free software; you can redistribute it and/or
-modify it under the terms of the GNU Lesser General Public
-License as published by the Free Software Foundation; either
-version 3 of the License, or (at your option) any later version.
-
-This script is provided in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+smooth-progressbar is distributed under the [GPLv3 license](./LICENSE)
 ## Dev notes
 ### Runtime
 
@@ -80,12 +86,12 @@ python-3.6.x
 ### Requirements
 
 ```
-pycodestyle==2.3.1
-setuptools==36.2.7
+pycodestyle>=2.3.1
+setuptools>=36.2.7
 
 ```
 ### UML Diagram
-![alt text](pictures/classes_smooth-progressbar.png)
+![alt text](pictures/classes_smoothprogressbar.png)
 
 ### Objects
 [Colors()](#colors)<br />
@@ -129,16 +135,20 @@ setuptools==36.2.7
 ```python
 class Colors:
 ```
-> <br />
-> <b>- docstring empty -</b><br />
-> <br />
+
+```
+Docstring empty
+```
+
 #### ElapseTime()
 ```python
 class ElapseTime(object):
 ```
-> <br />
-> <b>- docstring empty -</b><br />
-> <br />
+
+```
+Docstring empty
+```
+
 ##### ElapseTime.__get_elapse(self)
 ```python
 def ElapseTime.__get_elapse(self):
@@ -210,16 +220,20 @@ def ElapseTime.start(self):
 ```python
 class EscapeSequence:
 ```
-> <br />
-> <b>- docstring empty -</b><br />
-> <br />
+
+```
+Docstring empty
+```
+
 #### FixedSizeString()
 ```python
 class FixedSizeString(object):
 ```
-> <br />
-> <b>- docstring empty -</b><br />
-> <br />
+
+```
+Docstring empty
+```
+
 ##### FixedSizeString.__init__(self, max_size)
 ```python
 def FixedSizeString.__init__(self, max_size):
@@ -251,9 +265,24 @@ def FixedSizeString.__str__(self):
 ```python
 class ProgressDraw(object):
 ```
-> <br />
-> <b>- docstring empty -</b><br />
-> <br />
+
+```
+Use:
+    >>> draw = ProgressDraw(10)
+    >>> draw.percent = 0.1
+    >>> print("<START>" + str(draw) + "<END>")
+    <START>[#.........] <END>
+    >>> draw.percent = 0.2
+    >>> print("<START>" + str(draw) + "<END>")
+    <START>[##........] <END>
+    >>> draw.percent = 0.5
+    >>> print("<START>" + str(draw) + "<END>")
+    <START>[#####.....] <END>
+    >>> draw.percent = 1
+    >>> print("<START>" + str(draw) + "<END>")
+    <START>[##########] <END>
+```
+
 ##### ProgressDraw.__get_block(self)
 ```python
 def ProgressDraw.__get_block(self):
@@ -311,11 +340,25 @@ def ProgressDraw.__str__(self):
 ```python
 class ProgressPercent(object):
 ```
-> <br />
-> Provides the percentage indicator<br />
-> <b>Example :</b><br />
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Processing : [ 40%]<br />
-> <br />
+
+```
+Provides the percentage indicator
+Example:
+    Processing : [ 40.0%]
+
+Use:
+    >>> percent = ProgressPercent(1000)
+    >>> percent.value = 100
+    >>> print(percent)
+    [4;30;42mProcessing: [ 10.0%][0m
+    >>> percent.value = 500
+    >>> print(percent)
+    [4;30;42mProcessing: [ 50.0%][0m
+    >>> percent.value = 1000
+    >>> print(percent)
+    [4;30;42mProcessing: [ 100.%][0m
+```
+
 ##### ProgressPercent.__get_str_percent(self)
 ```python
 def ProgressPercent.__get_str_percent(self):
@@ -386,29 +429,33 @@ def ProgressPercent.get_percent(self):
 ```python
 class ProgressTheme:
 ```
-> <br />
-> <b>- docstring empty -</b><br />
-> <br />
+
+```
+Docstring empty
+```
+
 #### SmoothProgressBar()
 ```python
 class SmoothProgressBar(object):
 ```
-> <br />
-> This Class provides a progressbar<br />
-> <br />
+
+```
+This Class provides a progressbar
+```
+
 ##### SmoothProgressBar.__clean_progress(self)
 ```python
 def SmoothProgressBar.__clean_progress(self):
 ```
 > <br />
-> <b>- docstring empty -</b><br />
+> Docstring empty<br />
 > <br />
 ##### SmoothProgressBar.__def_bar_lengh(self)
 ```python
 def SmoothProgressBar.__def_bar_lengh(self):
 ```
 > <br />
-> <b>- docstring empty -</b><br />
+> Docstring empty<br />
 > <br />
 ##### SmoothProgressBar.__get_bar(self)
 ```python

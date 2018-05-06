@@ -46,8 +46,21 @@ class ProgressPercent(object):
 
     """
     Provides the percentage indicator
-    Example :
-        Processing : [ 40%]
+    Example:
+        Processing : [ 40.0%]
+
+    Use:
+        >>> percent = ProgressPercent(1000)
+        >>> percent.value = 100
+        >>> print(percent)
+        \x1b[4;30;42mProcessing: [ 10.0%]\x1b[0m
+        >>> percent.value = 500
+        >>> print(percent)
+        \x1b[4;30;42mProcessing: [ 50.0%]\x1b[0m
+        >>> percent.value = 1000
+        >>> print(percent)
+        \x1b[4;30;42mProcessing: [ 100.%]\x1b[0m
+
     """
 
     def __init__(self, max_value):
@@ -126,6 +139,24 @@ class ProgressPercent(object):
 
 
 class ProgressDraw(object):
+
+    """
+    Use:
+        >>> draw = ProgressDraw(10)
+        >>> draw.percent = 0.1
+        >>> print("<START>" + str(draw) + "<END>")
+        <START>[#.........] <END>
+        >>> draw.percent = 0.2
+        >>> print("<START>" + str(draw) + "<END>")
+        <START>[##........] <END>
+        >>> draw.percent = 0.5
+        >>> print("<START>" + str(draw) + "<END>")
+        <START>[#####.....] <END>
+        >>> draw.percent = 1
+        >>> print("<START>" + str(draw) + "<END>")
+        <START>[##########] <END>
+
+    """
 
     def __init__(self, max_size):
         """

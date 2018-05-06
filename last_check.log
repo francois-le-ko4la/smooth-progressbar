@@ -1,0 +1,30 @@
+running pytest
+Searching for pytest
+Best match: pytest 3.5.1
+Processing pytest-3.5.1-py3.6.egg
+
+Using /home/ko4la/GIT/smooth-progressbar/.eggs/pytest-3.5.1-py3.6.egg
+running egg_info
+writing smoothprogressbar.egg-info/PKG-INFO
+writing dependency_links to smoothprogressbar.egg-info/dependency_links.txt
+writing top-level names to smoothprogressbar.egg-info/top_level.txt
+reading manifest file 'smoothprogressbar.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+writing manifest file 'smoothprogressbar.egg-info/SOURCES.txt'
+running build_ext
+============================= test session starts ==============================
+platform linux -- Python 3.6.5, pytest-3.5.1, py-1.5.3, pluggy-0.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/ko4la/GIT/smooth-progressbar, inifile: setup.cfg
+collecting ... collected 8 items
+
+tests/test_doctest.py::RunDocTest::test_mod_progressbar.py PASSED        [ 12%]
+tests/test_pycodestyle.py::RunPyCodeStyle::test_/home/ko4la/GIT/smooth-progressbar/setup.py PASSED [ 25%]
+tests/test_pycodestyle.py::RunPyCodeStyle::test_/home/ko4la/GIT/smooth-progressbar/smoothprogressbar/__about__.py PASSED [ 37%]
+tests/test_pycodestyle.py::RunPyCodeStyle::test_/home/ko4la/GIT/smooth-progressbar/smoothprogressbar/__init__.py PASSED [ 50%]
+tests/test_pycodestyle.py::RunPyCodeStyle::test_/home/ko4la/GIT/smooth-progressbar/smoothprogressbar/progressbar.py PASSED [ 62%]
+tests/test_pycodestyle.py::RunPyCodeStyle::test_/home/ko4la/GIT/smooth-progressbar/tests/run_it.py PASSED [ 75%]
+tests/test_pycodestyle.py::RunPyCodeStyle::test_/home/ko4la/GIT/smooth-progressbar/tests/test_doctest.py PASSED [ 87%]
+tests/test_pycodestyle.py::RunPyCodeStyle::test_/home/ko4la/GIT/smooth-progressbar/tests/test_pycodestyle.py PASSED [100%]
+
+=========================== 8 passed in 0.23 seconds ===========================

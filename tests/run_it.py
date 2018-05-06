@@ -12,7 +12,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 """
 
 import time
-from smooth_progressbar import SmoothProgressBar
+from smoothprogressbar import SmoothProgressBar
 
 
 my_progressbar = SmoothProgressBar()
