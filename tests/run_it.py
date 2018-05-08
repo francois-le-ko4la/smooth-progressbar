@@ -12,7 +12,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 """
 
 import time
-from smoothprogressbar import SmoothProgressBar
+from smoothprogressbar.prgbr import SmoothProgressBar
 
 
 my_progressbar = SmoothProgressBar()
@@ -36,7 +36,7 @@ for i in range(1, 4):
     time.sleep(1)
 my_progressbar.stop()
 
-my_progressbar = SmoothProgressBar(enable_description=False)
+my_progressbar = SmoothProgressBar(enable_msg=False)
 my_progressbar.start(3)
 for i in range(1, 4):
     my_progressbar.update(i-1, "task {} in progress...".format(str(i)))
@@ -48,7 +48,7 @@ my_progressbar.stop()
 
 
 my_progressbar = SmoothProgressBar(enable_elapse=False,
-                                   enable_description=False)
+                                   enable_msg=False)
 my_progressbar.start(3)
 for i in range(1, 4):
     my_progressbar.update(i-1, "task {} in progress...".format(str(i)))

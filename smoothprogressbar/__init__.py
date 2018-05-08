@@ -83,4 +83,6 @@ This package is distributed under the [GPLv3 license](./LICENSE)
 """
 
 import smoothprogressbar.__about__
-from smoothprogressbar.progressbar import *
+from smoothprogressbar.consolestring import ConsoleString
+from smoothprogressbar.elapse import ElapseTime
+from smoothprogressbar.prgbr import SmoothProgressBar

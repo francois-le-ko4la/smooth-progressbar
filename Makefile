@@ -24,6 +24,9 @@ uninstall:
 install:
 	@sudo ./setup.py install
 
+dev:
+	@sudo python3 setup.py develop
+
 clean:
 	@sudo rm -Rf *.egg *.egg-info .cache .coverage .tox build dist docs/build htmlcov .pytest_cache
 	@sudo find -depth -type d -name __pycache__ -exec rm -Rf {} \;
