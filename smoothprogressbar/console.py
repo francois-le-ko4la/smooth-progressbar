@@ -32,15 +32,8 @@ class Console(object):
         self.__output = ""
 
     @property
-    def row(self):
-        rows, columns = os.popen('stty size', 'r').read().split()
-        self.__rows = rows
-        return self.__rows
-
-    @property
-    def colums(self):
-        rows, columns = os.popen('stty size', 'r').read().split()
-        self.__columns = columns
+    def size(self):
+        self.__rows, self.__columns = os.popen('stty size', 'r').read().split()
         return self.__columns
 
     def addmsg(self, msg):

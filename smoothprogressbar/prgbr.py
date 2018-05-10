@@ -12,7 +12,6 @@
 
 """
 
-import time
 from threading import Lock
 from smoothprogressbar.elapse import ElapseTime
 from smoothprogressbar.percent import Percent
@@ -28,6 +27,7 @@ class SmoothProgressBar(object):
         self.__enable_msg = enable_msg
         self.__percent = None
         self.__console = Console()
+        self.__size = None
         self.__elapse = ElapseTime()
         self.__mthr = MultiThread(self.__refresh, 0.25)
         self.__updated = False
@@ -45,12 +45,13 @@ class SmoothProgressBar(object):
 
     def start(self, max_value):
         self.__percent = Percent(max_value)
+        self.__size = int(self.__console.size) - 1
         self.__elapse.start()
         self.__mthr.start()
 
     def stop(self):
         self.__console.goback()
-        self.__console.addmsg(" " * int(self.__console.colums))
+        self.__console.addmsg(" " * self.__size)
         self.__console.goback()
         self.__console.print()
         self.__mthr.stop()
@@ -65,17 +66,18 @@ class SmoothProgressBar(object):
             return
 
         self.__lock.acquire()
-        prgbr = self.__prgbr.build_progressbar(int(self.__console.colums) - 1,
+        prgbr = self.__prgbr.build_progressbar(self.__size,
                                                self.__percent,
                                                self.__msg,
                                                str(self.__elapse)
                                                )
         self.__console.goback()
         if self.__enable_msg is not True:
-            self.__console.addmsg(" " * int(self.__console.colums))
+            self.__console.addmsg(" " * self.__size)
             self.__console.goback()
             self.__console.addmsg(self.__msg)
             self.__console.newline()
+
         self.__console.addmsg(prgbr)
         self.__console.print()
         self.__updated = False

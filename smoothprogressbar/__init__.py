@@ -82,7 +82,13 @@ This package is distributed under the [GPLv3 license](./LICENSE)
 
 """
 
+
 import smoothprogressbar.__about__
 from smoothprogressbar.consolestring import ConsoleString
+from smoothprogressbar.consolelabel import ConsoleLabel
+from smoothprogressbar.consoleprogress import ConsoleProgress
+from smoothprogressbar.console import Console
+from smoothprogressbar.multithreading import MultiThread
+from smoothprogressbar.percent import Percent
 from smoothprogressbar.elapse import ElapseTime
 from smoothprogressbar.prgbr import SmoothProgressBar
