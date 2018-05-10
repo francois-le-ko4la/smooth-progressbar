@@ -50,6 +50,10 @@ class ConsolePrgBr(object):
         self.__debug = debug
         self.__enable_elapse = enable_elapse
         self.__enable_msg = enable_msg
+        """ DEF """
+        self.__widgt_label = ConsoleLabel("")
+        self.__widgt_percent = ConsolePercent(Percent(1))
+        self.__widgt_progress = ConsoleProgress(1, 1)
 
     def build_progressbar(self, size, percent, msg="", elapse=""):
         """

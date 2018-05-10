@@ -104,17 +104,17 @@ setuptools>=36.2.7
 [Console.newline(self)](#consolenewlineself)<br />
 [Console.print(self)](#consoleprintself)<br />
 [ConsoleLabel()](#consolelabel)<br />
-[ConsoleLabel.__init__(self, txt, frmt=<function ConsoleString.align_left at 0x7f90ccd6ef28>, tag_beg='', tag_end='', color=False)](#consolelabelinitself-txt-frmtfunction-consolestringalign_left-at-0x7f90ccd6ef28-tag_beg-tag_end-colorfalse)<br />
+[ConsoleLabel.__init__(self, txt, frmt=<function ConsoleString.align_left at 0x7f3c63f5df28>, tag_beg='', tag_end='', color=False)](#consolelabelinitself-txt-frmtfunction-consolestringalign_left-at-0x7f3c63f5df28-tag_beg-tag_end-colorfalse)<br />
 [ConsoleLabel.__len__(self)](#consolelabellenself)<br />
-[ConsoleLabel.__new__(cls, txt, frmt=<function ConsoleString.align_left at 0x7f90ccd6ef28>, *args, **kw)](#consolelabelnewcls-txt-frmtfunction-consolestringalign_left-at-0x7f90ccd6ef28-args-kw)<br />
+[ConsoleLabel.__new__(cls, txt, frmt=<function ConsoleString.align_left at 0x7f3c63f5df28>, *args, **kw)](#consolelabelnewcls-txt-frmtfunction-consolestringalign_left-at-0x7f3c63f5df28-args-kw)<br />
 [ConsoleString.__repr__(self)](#consolestringreprself)<br />
 [ConsoleString.__str__(self)](#consolestringstrself)<br />
 [ConsoleString.align_left(self)](#consolestringalign_leftself)<br />
 [ConsoleString.align_right(self)](#consolestringalign_rightself)<br />
 [ConsoleProgress()](#consoleprogress)<br />
-[ConsoleProgress.__init__(self, size, ratio, frmt=<function ConsoleString.align_left at 0x7f90ccd6ef28>, tag_beg='[', tag_end=']', block='#', empty='.')](#consoleprogressinitself-size-ratio-frmtfunction-consolestringalign_left-at-0x7f90ccd6ef28-tag_beg-tag_end-block-empty)<br />
+[ConsoleProgress.__init__(self, size, ratio, frmt=<function ConsoleString.align_left at 0x7f3c63f5df28>, tag_beg='[', tag_end=']', block='#', empty='.')](#consoleprogressinitself-size-ratio-frmtfunction-consolestringalign_left-at-0x7f3c63f5df28-tag_beg-tag_end-block-empty)<br />
 [ConsoleProgress.__len__(self)](#consoleprogresslenself)<br />
-[ConsoleProgress.__new__(cls, size, ratio, frmt=<function ConsoleString.align_left at 0x7f90ccd6ef28>, tag_beg='[', tag_end=']', block='#', empty='.', *args, **kw)](#consoleprogressnewcls-size-ratio-frmtfunction-consolestringalign_left-at-0x7f90ccd6ef28-tag_beg-tag_end-block-empty-args-kw)<br />
+[ConsoleProgress.__new__(cls, size, ratio, frmt=<function ConsoleString.align_left at 0x7f3c63f5df28>, tag_beg='[', tag_end=']', block='#', empty='.', *args, **kw)](#consoleprogressnewcls-size-ratio-frmtfunction-consolestringalign_left-at-0x7f3c63f5df28-tag_beg-tag_end-block-empty-args-kw)<br />
 [ConsoleString.__repr__(self)](#consolestringreprself)<br />
 [ConsoleString.__str__(self)](#consolestringstrself)<br />
 [ConsoleString.align_left(self)](#consolestringalign_leftself)<br />
@@ -272,9 +272,9 @@ Use:
     'lorem ipsum dol'
 ```
 
-##### ConsoleLabel.__init__(self, txt, frmt=<function ConsoleString.align_left at 0x7f90ccd6ef28>, tag_beg='', tag_end='', color=False)
+##### ConsoleLabel.__init__(self, txt, frmt=<function ConsoleString.align_left at 0x7f3c63f5df28>, tag_beg='', tag_end='', color=False)
 ```python
-def ConsoleLabel.__init__(self, txt, frmt=<function ConsoleString.align_left at 0x7f90ccd6ef28>, tag_beg='', tag_end='', color=False):
+def ConsoleLabel.__init__(self, txt, frmt=<function ConsoleString.align_left at 0x7f3c63f5df28>, tag_beg='', tag_end='', color=False):
 ```
 > <br />
 > Initialize self.  See help(type(self)) for accurate signature.<br />
@@ -286,9 +286,9 @@ def ConsoleLabel.__len__(self):
 > <br />
 > Return len(self).<br />
 > <br />
-##### ConsoleLabel.__new__(cls, txt, frmt=<function ConsoleString.align_left at 0x7f90ccd6ef28>, *args, **kw)
+##### ConsoleLabel.__new__(cls, txt, frmt=<function ConsoleString.align_left at 0x7f3c63f5df28>, *args, **kw)
 ```python
-def ConsoleLabel.__new__(cls, txt, frmt=<function ConsoleString.align_left at 0x7f90ccd6ef28>, *args, **kw):
+def ConsoleLabel.__new__(cls, txt, frmt=<function ConsoleString.align_left at 0x7f3c63f5df28>, *args, **kw):
 ```
 > <br />
 > Create and return a new object.  See help(type) for accurate signature.<br />
@@ -338,9 +338,9 @@ Use:
     12
 ```
 
-##### ConsoleProgress.__init__(self, size, ratio, frmt=<function ConsoleString.align_left at 0x7f90ccd6ef28>, tag_beg='[', tag_end=']', block='#', empty='.')
+##### ConsoleProgress.__init__(self, size, ratio, frmt=<function ConsoleString.align_left at 0x7f3c63f5df28>, tag_beg='[', tag_end=']', block='#', empty='.')
 ```python
-def ConsoleProgress.__init__(self, size, ratio, frmt=<function ConsoleString.align_left at 0x7f90ccd6ef28>, tag_beg='[', tag_end=']', block='#', empty='.'):
+def ConsoleProgress.__init__(self, size, ratio, frmt=<function ConsoleString.align_left at 0x7f3c63f5df28>, tag_beg='[', tag_end=']', block='#', empty='.'):
 ```
 > <br />
 > Initialize self.  See help(type(self)) for accurate signature.<br />
@@ -352,9 +352,9 @@ def ConsoleProgress.__len__(self):
 > <br />
 > Return len(self).<br />
 > <br />
-##### ConsoleProgress.__new__(cls, size, ratio, frmt=<function ConsoleString.align_left at 0x7f90ccd6ef28>, tag_beg='[', tag_end=']', block='#', empty='.', *args, **kw)
+##### ConsoleProgress.__new__(cls, size, ratio, frmt=<function ConsoleString.align_left at 0x7f3c63f5df28>, tag_beg='[', tag_end=']', block='#', empty='.', *args, **kw)
 ```python
-def ConsoleProgress.__new__(cls, size, ratio, frmt=<function ConsoleString.align_left at 0x7f90ccd6ef28>, tag_beg='[', tag_end=']', block='#', empty='.', *args, **kw):
+def ConsoleProgress.__new__(cls, size, ratio, frmt=<function ConsoleString.align_left at 0x7f3c63f5df28>, tag_beg='[', tag_end=']', block='#', empty='.', *args, **kw):
 ```
 > <br />
 > Create and return a new object.  See help(type) for accurate signature.<br />
