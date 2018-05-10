@@ -40,10 +40,10 @@ my_progressbar = SmoothProgressBar(enable_msg=False)
 my_progressbar.start(3)
 for i in range(1, 4):
     my_progressbar.update(i-1, "task {} in progress...".format(str(i)))
-    time.sleep(2)
+    time.sleep(1)
     # ....
     my_progressbar.update(i, "task {} finished...".format(str(i)))
-    time.sleep(2)
+    time.sleep(1)
 my_progressbar.stop()
 
 
@@ -52,7 +52,10 @@ my_progressbar = SmoothProgressBar(enable_elapse=False,
 my_progressbar.start(3)
 for i in range(1, 4):
     my_progressbar.update(i-1, "task {} in progress...".format(str(i)))
-    time.sleep(2)
+    time.sleep(1)
+    my_progressbar.msg = "ouuuups error...."
+    time.sleep(1)
+    my_progressbar.msg = "ouuuups warning...."
     # ....
     my_progressbar.update(i, "task {} finished...".format(str(i)))
     time.sleep(2)
