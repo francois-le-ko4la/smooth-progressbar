@@ -12,7 +12,7 @@ class Console(object):
 
     """
     This Class provides a simple way to manage the screen
-    
+
     Use:
         >>> c = Console()
         >>> c.addmsg("lorem ipsum dolor sit amet consectetur adipiscing elit")

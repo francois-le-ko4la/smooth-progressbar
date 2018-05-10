@@ -4,6 +4,7 @@
 
 """
 
+
 class ConsoleString(str):
     """
     Console string is a string to print (stdout) with
@@ -19,47 +20,47 @@ class ConsoleString(str):
         >>> c.tag_beg = "["
         >>> c.tag_end="]"
         >>> for i in range(15): c.max_size = i ; str(c)
-	'[]'
-	'[l]'
-	'[lo]'
-	'[lor]'
-	'[lore]'
-	'[lorem]'
-	'[lorem ]'
-	'[lorem i]'
-	'[lorem ip]'
-	'[lorem ips]'
-	'[lorem ipsu]'
-	'[lorem ipsum]'
-	'[lorem ipsum] '
-	'[lorem ipsum]  '
-	'[lorem ipsum]   '
+        '[]'
+        '[l]'
+        '[lo]'
+        '[lor]'
+        '[lore]'
+        '[lorem]'
+        '[lorem ]'
+        '[lorem i]'
+        '[lorem ip]'
+        '[lorem ips]'
+        '[lorem ipsu]'
+        '[lorem ipsum]'
+        '[lorem ipsum] '
+        '[lorem ipsum]  '
+        '[lorem ipsum]   '
         >>> len(c)
         11
         >>> c.text
         'lorem ipsum'
         >>> c = ConsoleString("lorem")
         >>> for i in range(9): c.max_size = i ; str(c)
-    	''
-    	'l'
-    	'lo'
-    	'lor'
-    	'lore'
-    	'lorem'
-    	'lorem '
-    	'lorem  '
-    	'lorem   '
+        ''
+        'l'
+        'lo'
+        'lor'
+        'lore'
+        'lorem'
+        'lorem '
+        'lorem  '
+        'lorem   '
         >>> c = ConsoleString("lorem", ConsoleString.align_right)
         >>> for i in range(9): c.max_size = i ; str(c)
-	''
-	'l'
-	'lo'
-	'lor'
-	'lore'
-	'lorem'
-	' lorem'
-	'  lorem'
-	'   lorem'
+        ''
+        'l'
+        'lo'
+        'lor'
+        'lore'
+        'lorem'
+        ' lorem'
+        '  lorem'
+        '   lorem'
     """
     def __new__(cls, txt, *args, **kw):
         return str.__new__(cls, txt)
@@ -95,7 +96,11 @@ class ConsoleString(str):
             txt = self.tag_beg + self[0:(self.__max_size)] + self.tag_end
         else:
             txt = self.text
-            txt = self.__frmt.format(self.tag_beg, txt, self.tag_end, " " * (self.__max_size - len(txt)))
+            txt = self.__frmt.format(self.tag_beg,
+                                     txt,
+                                     self.tag_end,
+                                     " " * (self.__max_size - len(txt))
+                                     )
         return txt
 
     def __str__(self):

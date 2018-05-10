@@ -5,6 +5,7 @@
 """
 from smoothprogressbar.consolestring import ConsoleString
 
+
 class ConsoleLabel(ConsoleString):
     """
 
@@ -28,7 +29,8 @@ class ConsoleLabel(ConsoleString):
     def __new__(cls, txt, frmt=ConsoleString.align_left, *args, **kw):
         return ConsoleString.__new__(cls, txt, frmt)
 
-    def __init__(self, txt, frmt=ConsoleString.align_left, tag_beg="", tag_end="", color=False):
+    def __init__(self, txt, frmt=ConsoleString.align_left,
+                 tag_beg="", tag_end="", color=False):
         super().__init__(txt, frmt)
         self.max_size = len(txt)
         self.tag_beg = tag_beg

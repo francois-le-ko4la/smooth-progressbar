@@ -47,7 +47,7 @@ class ConsoleProgress(ConsoleString):
                  block=__config__.ProgressTheme.done,
                  empty=__config__.ProgressTheme.not_done):
         super().__init__("", frmt)
-        if ratio >= 0 and ratio <=1:
+        if ratio >= 0 and ratio <= 1:
             self.max_size = size - len(tag_beg) - len(tag_end)
             self.tag_beg = tag_beg
             self.tag_end = tag_end

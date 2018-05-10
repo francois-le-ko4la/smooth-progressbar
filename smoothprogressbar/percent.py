@@ -36,19 +36,18 @@ class Percent(float):
         0.2
         >>> p = Percent(8)
         >>> for i in range(9): p.value = i ; print("{}-{}".format(p, p.ratio))
-	0.0%-0.0
-	12.5%-0.125
-	25.0%-0.25
-	37.5%-0.375
-	50.0%-0.5
-	62.5%-0.625
-	75.0%-0.75
-	87.5%-0.875
-	100.%-1.0
+        0.0%-0.0
+        12.5%-0.125
+        25.0%-0.25
+        37.5%-0.375
+        50.0%-0.5
+        62.5%-0.625
+        75.0%-0.75
+        87.5%-0.875
+        100.%-1.0
     """
 
     def __init__(self, max_value):
-        #float.__init__(max_value)
         if max_value is 0:
             raise ValueError("max_value cant be 0")
         self.__value = 0
@@ -75,7 +74,7 @@ class Percent(float):
         return " " * (5 - len(percent)) + percent
         """
         return "{}%".format(str(round(100 * self.ratio, 1))[0:4])
-        
+
     def __str__(self):
         return str(self.__repr__())
 

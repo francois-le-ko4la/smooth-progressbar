@@ -6,6 +6,7 @@
 from smoothprogressbar.consolestring import ConsoleString
 from smoothprogressbar import __config__
 
+
 class ConsolePercent(ConsoleString):
     """
 
@@ -30,7 +31,9 @@ class ConsolePercent(ConsoleString):
     def __new__(cls, percent, frmt=ConsoleString.align_right, *args, **kw):
         return ConsoleString.__new__(cls, percent, frmt)
 
-    def __init__(self, percent, frmt=ConsoleString.align_right, tag_beg=__config__.ProgressTheme.beggining, tag_end=__config__.ProgressTheme.end):
+    def __init__(self, percent, frmt=ConsoleString.align_right,
+                 tag_beg=__config__.ProgressTheme.beggining,
+                 tag_end=__config__.ProgressTheme.end):
         super().__init__(percent, frmt)
         self.max_size = 6
         self.tag_beg = tag_beg

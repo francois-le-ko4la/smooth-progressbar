@@ -46,7 +46,6 @@ class ConsolePrgBr(object):
     size_widgt_label_label = len(progress_label)
     size_widgt_percent = 5
 
-
     def __init__(self, enable_elapse=True, enable_msg=True, debug=False):
         self.__debug = debug
         self.__enable_elapse = enable_elapse
@@ -68,9 +67,8 @@ class ConsolePrgBr(object):
         other
         """
         psize = size - widgt_label.max_size - len(widgt_percent) - \
-                widgt_elapse.max_size
+            widgt_elapse.max_size
 
-        #msg
         widgt_msg = ConsoleLabel(" " + msg)
         if self.__enable_msg:
             size_widgt_progress = int(0.5 * psize) - 1
@@ -78,9 +76,8 @@ class ConsolePrgBr(object):
         else:
             size_widgt_progress = psize - 1
             widgt_msg.max_size = 0
-        
-        widgt_bar = ConsoleProgress(size_widgt_progress, percent.ratio)
 
+        widgt_bar = ConsoleProgress(size_widgt_progress, percent.ratio)
 
         color_start = __config__.Color.info
         color_stop = __config__.Color.reset
