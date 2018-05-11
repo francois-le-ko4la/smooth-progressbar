@@ -1,0 +1,28 @@
+digraph "classes" {
+charset="utf-8"
+rankdir=BT
+"0" [label="{Color|info : str\lreset : str\l|}", shape="record"];
+"1" [label="{Console|size\l|addmsg()\laddtab()\lemptyline()\lgoback()\lnewline()\lprint()\l}", shape="record"];
+"2" [label="{ConsoleLabel|max_size : int\ltag_beg : str\ltag_end : str\l|}", shape="record"];
+"3" [label="{ConsolePercent|max_size : int\ltag_beg : str\ltag_end : str\l|}", shape="record"];
+"4" [label="{ConsolePrgBr|progress_label : str\lsize_widgt_label_label\lsize_widgt_percent : int\l|build_progressbar()\l}", shape="record"];
+"5" [label="{ConsoleProgress|max_size\ltag_beg : str\ltag_end : str\l|}", shape="record"];
+"6" [label="{ConsoleString|max_size\ltag_beg : str\ltag_end : str\ltext\l|align_left()\lalign_right()\l}", shape="record"];
+"7" [label="{ElapseTime|\l|start()\l}", shape="record"];
+"8" [label="{EscapeSequence|goback : str\llinefeed : str\l|}", shape="record"];
+"9" [label="{MultiThread|func\l|run()\lstop()\l}", shape="record"];
+"10" [label="{Percent|max_value\lratio\lvalue\lvalue\l|}", shape="record"];
+"11" [label="{ProgressTheme|beggining : str\ldone : str\lend : str\lfirst_description : str\llabel : str\lnot_done : str\lrefresh_time : float\lseparator : str\lsize_description : int\lsize_elapse : int\l|}", shape="record"];
+"12" [label="{SmoothProgressBar|msg\l|start()\lstop()\lupdate()\l}", shape="record"];
+"2" -> "6" [arrowhead="empty", arrowtail="none"];
+"3" -> "6" [arrowhead="empty", arrowtail="none"];
+"5" -> "6" [arrowhead="empty", arrowtail="none"];
+"1" -> "12" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="__console", style="solid"];
+"2" -> "4" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="__widgt_label", style="solid"];
+"3" -> "4" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="__widgt_percent", style="solid"];
+"4" -> "12" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="__prgbr", style="solid"];
+"5" -> "4" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="__widgt_progress", style="solid"];
+"7" -> "12" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="__elapse", style="solid"];
+"9" -> "12" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="__mthr", style="solid"];
+"10" -> "12" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="__percent", style="solid"];
+}

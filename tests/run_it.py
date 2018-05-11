@@ -56,6 +56,8 @@ for i in range(1, 4):
     my_progressbar.msg = "ouuuups error...."
     time.sleep(1)
     my_progressbar.msg = "ouuuups warning...."
+    time.sleep(0.25)
+    my_progressbar.msg = "ouuuups warning...."
     # ....
     my_progressbar.update(i, "task {} finished...".format(str(i)))
     time.sleep(2)

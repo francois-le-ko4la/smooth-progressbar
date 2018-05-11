@@ -2,9 +2,16 @@
 # -*- coding: utf-8 -*-
 """
 
+#######
+   #     #    #  #####   ######    ##    #####
+   #     #    #  #    #  #        #  #   #    #
+   #     ######  #    #  #####   #    #  #    #
+   #     #    #  #####   #       ######  #    #
+   #     #    #  #   #   #       #    #  #    #
+   #     #    #  #    #  ######  #    #  #####
+
 """
 
-from threading import Timer
 from threading import Thread
 import time
 
@@ -13,11 +20,10 @@ class MultiThread(Thread):
     """
     Use:
         >>> def mytask(): print("lorem ipsum dolor sit amet consectetur")
-        >>> mthr = MultiThread(mytask, 0.25)
-        >>> mthr.start() ; print("other task");time.sleep(1) ; mthr.stop()
+        >>> mthr = MultiThread(mytask, 0.1)
+        >>> mthr.start() ; print("other task");time.sleep(0.3) ; mthr.stop()
         lorem ipsum dolor sit amet consectetur
         other task
-        lorem ipsum dolor sit amet consectetur
         lorem ipsum dolor sit amet consectetur
         lorem ipsum dolor sit amet consectetur
         lorem ipsum dolor sit amet consectetur
@@ -31,6 +37,9 @@ class MultiThread(Thread):
 
     @property
     def func(self):
+        """
+        define the func called by the Thread
+        """
         return self.__func
 
     def run(self):
@@ -40,6 +49,9 @@ class MultiThread(Thread):
             self.run()
 
     def stop(self):
+        """
+        Stop the Thread
+        """
         self.__running = False
         self.join()
 

@@ -2,6 +2,13 @@
 # -*- coding: utf-8 -*-
 """
 
+  ####   #         ##    #####   ######  #
+ #    #  #        #  #   #    #  #       #
+ #       #       #    #  #####   #####   #
+ #       #       ######  #    #  #       #
+ #    #  #       #    #  #    #  #       #
+  ####   ######  #    #  #####   ######  ######
+
 """
 from smoothprogressbar.consolestring import ConsoleString
 
@@ -26,15 +33,14 @@ class ConsoleLabel(ConsoleString):
         'lorem ipsum dol'
     """
 
-    def __new__(cls, txt, frmt=ConsoleString.align_left, *args, **kw):
+    def __new__(cls, txt, frmt=ConsoleString.align_left):
         return ConsoleString.__new__(cls, txt, frmt)
 
-    def __init__(self, txt, frmt=ConsoleString.align_left,
-                 tag_beg="", tag_end="", color=False):
+    def __init__(self, txt, frmt=ConsoleString.align_left):
         super().__init__(txt, frmt)
         self.max_size = len(txt)
-        self.tag_beg = tag_beg
-        self.tag_end = tag_end
+        self.tag_beg = ""
+        self.tag_end = ""
 
     def __len__(self):
         return self.max_size + len(self.tag_beg) + len(self.tag_end)

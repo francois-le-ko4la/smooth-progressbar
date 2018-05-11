@@ -2,6 +2,13 @@
 # -*- coding: utf-8 -*-
 """
 
+  ####    ####   #    #   ####    ####   #       ######
+ #    #  #    #  ##   #  #       #    #  #       #
+ #       #    #  # #  #   ####   #    #  #       #####
+ #       #    #  #  # #       #  #    #  #       #
+ #    #  #    #  #   ##  #    #  #    #  #       #
+  ####    ####   #    #   ####    ####   ######  ######
+
 """
 
 import os
@@ -33,25 +40,46 @@ class Console(object):
 
     @property
     def size(self):
+        """
+        screen size (columns)
+        """
         self.__rows, self.__columns = os.popen('stty size', 'r').read().split()
         return self.__columns
 
     def addmsg(self, msg):
+        """
+        store a message
+        """
         self.__output += msg
 
     def emptyline(self):
+        """
+        store an empty line
+        """
         self.__output += " "
 
     def addtab(self):
+        """
+        store a tab
+        """
         self.__output += "\t"
 
     def goback(self):
+        """
+        store a goback caracter
+        """
         self.__output += "\r"
 
     def newline(self):
+        """
+        store a new line
+        """
         self.__output += "\n"
 
     def print(self):
+        """
+        print the buffer
+        """
         sys.stdout.write(self.__output)
         sys.stdout.flush()
         self.__output = ""

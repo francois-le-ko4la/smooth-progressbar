@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# pylint: disable=R0903
 """
 
  ######  #         ##    #####    ####   ######
@@ -72,7 +73,7 @@ class ElapseTime(object):
             None
 
         Returns:
-            None
+            str: 'X:XX:XX'
 
         """
         if self.__start_time is None:
@@ -89,7 +90,7 @@ class ElapseTime(object):
             None
 
         Returns:
-            None
+            str: 'X:XX:XX'
 
         """
         return repr(self)

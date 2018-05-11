@@ -2,6 +2,13 @@
 # -*- coding: utf-8 -*-
 """
 
+  ####    #####  #####      #    #    #   ####
+ #          #    #    #     #    ##   #  #    #
+  ####      #    #    #     #    # #  #  #
+      #     #    #####      #    #  # #  #  ###
+ #    #     #    #   #      #    #   ##  #    #
+  ####      #    #    #     #    #    #   ####
+
 """
 
 
@@ -62,45 +69,46 @@ class ConsoleString(str):
         '  lorem'
         '   lorem'
     """
-    def __new__(cls, txt, *args, **kw):
-        return str.__new__(cls, txt)
+    def __new__(cls, txt, frmt=None):
+        return super(ConsoleString, cls).__new__(cls, txt)
 
     def __init__(self, txt, frmt=None):
         if frmt is None:
             frmt = ConsoleString.align_left
-        self.__max_size = 0
+        self.max_size = 0
         self.tag_beg = ""
         self.tag_end = ""
-        self.__frmt = frmt(self)
+        self.frmt = frmt(self)
 
     @property
     def text(self):
+        """
+        get original text
+        """
         return super().__str__()
 
-    @property
-    def max_size(self):
-        return self.__max_size
-
-    @max_size.setter
-    def max_size(self, max_size):
-        self.__max_size = max_size
-
     def align_left(self):
+        """
+        function to align left
+        """
         return "{0}{1}{2}{3}"
 
     def align_right(self):
+        """
+        function to align right
+        """
         return "{0}{3}{1}{2}"
 
     def __repr__(self):
-        if len(self.text) >= self.__max_size + 1:
-            txt = self.tag_beg + self[0:(self.__max_size)] + self.tag_end
+        if len(self.text) >= self.max_size + 1:
+            txt = self.tag_beg + self[0:(self.max_size)] + self.tag_end
         else:
             txt = self.text
-            txt = self.__frmt.format(self.tag_beg,
-                                     txt,
-                                     self.tag_end,
-                                     " " * (self.__max_size - len(txt))
-                                     )
+            txt = self.frmt.format(self.tag_beg,
+                                   txt,
+                                   self.tag_end,
+                                   " " * (self.max_size - len(txt))
+                                   )
         return txt
 
     def __str__(self):

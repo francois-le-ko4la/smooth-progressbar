@@ -2,9 +2,14 @@
 # -*- coding: utf-8 -*-
 """
 
-"""
+ #####   ######  #####    ####   ######  #    #   #####
+ #    #  #       #    #  #    #  #       ##   #     #
+ #    #  #####   #    #  #       #####   # #  #     #
+ #####   #       #####   #       #       #  # #     #
+ #       #       #   #   #    #  #       #   ##     #
+ #       ######  #    #   ####   ######  #    #     #
 
-from smoothprogressbar.consolestring import ConsoleString
+"""
 
 
 class Percent(float):
@@ -16,26 +21,26 @@ class Percent(float):
         >>> p = Percent(0)
         Traceback (most recent call last):
         ...
-        ValueError: max_value cant be 0
+        ValueError: Percent: "whole" cant be 0
         >>> #oups 3
         >>> p = Percent(10)
-        >>> p.ratio = 10
+        >>> p.value = 10
         Traceback (most recent call last):
         ...
         AttributeError: can't set attribute
         >>> #correct usage:
         >>> p = Percent(10)
-        >>> p.value = 2
-        >>> p.value
+        >>> p.part = 2
+        >>> p.part
         2
         >>> p
         20.0%
         >>> str(p)
         '20.0%'
-        >>> p.ratio
+        >>> p.value
         0.2
         >>> p = Percent(8)
-        >>> for i in range(9): p.value = i ; print("{}-{}".format(p, p.ratio))
+        >>> for i in range(9): p.part = i ; print("{}-{}".format(p, p.value))
         0.0%-0.0
         12.5%-0.125
         25.0%-0.25
@@ -44,36 +49,48 @@ class Percent(float):
         62.5%-0.625
         75.0%-0.75
         87.5%-0.875
-        100.%-1.0
+        100.0%-1.0
     """
 
-    def __init__(self, max_value):
-        if max_value is 0:
-            raise ValueError("max_value cant be 0")
-        self.__value = 0
+    def __new__(cls, whole):
+        return super(Percent, cls).__new__(cls, whole)
+
+    def __init__(self, whole):
+        super().__init__()
+        if whole is 0:
+            raise ValueError("Percent: \"whole\" cant be 0")
+        self.__part = 0
 
     @property
-    def max_value(self):
+    def whole(self):
+        """
+            X% = 100 * (part / whole)
+        """
         return float(super().__repr__())
 
     @property
-    def value(self):
-        return self.__value
+    def part(self):
+        """
+            X% = 100 * (part / whole)
+        """
+        return self.__part
 
-    @value.setter
-    def value(self, value):
-        self.__value = value
+    @part.setter
+    def part(self, part):
+        self.__part = part
 
     @property
-    def ratio(self):
-        return float(self.__value) / self.max_value
+    def value(self):
+        """
+            value = X%/100 = part / whole
+        """
+        return float(self.part) / self.whole
 
     def __repr__(self):
         """
-        percent = str((self.get_percent() * 100))[0:4]
-        return " " * (5 - len(percent)) + percent
+            str: "XXX.X%"
         """
-        return "{}%".format(str(round(100 * self.ratio, 1))[0:4])
+        return "{:.1%}".format(self.value)
 
     def __str__(self):
         return str(self.__repr__())

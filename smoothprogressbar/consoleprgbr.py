@@ -1,7 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# pylint: disable=R0903
 """
 
+  ####   #####   #####    ####   #####   #####
+ #    #  #    #  #    #  #    #  #    #  #    #
+ #       #    #  #    #  #       #####   #    #
+ #       #####   #####   #  ###  #    #  #####
+ #    #  #       #   #   #    #  #    #  #   #
+  ####   #       #    #   ####   #####   #    #
 
 """
 
@@ -20,7 +27,7 @@ class ConsolePrgBr(object):
     >>> from smoothprogressbar.elapse import ElapseTime
     >>> size = 40
     >>> percent = Percent(10)
-    >>> percent.value = 2
+    >>> percent.part = 2
     >>> msg = "lorem ipsum dolor sit amet consectetur adipiscing elit"
     >>> elapse = ElapseTime()
     >>> elapse.start()
@@ -67,9 +74,6 @@ class ConsolePrgBr(object):
         else:
             widgt_elapse.max_size = 0
 
-        """
-        other
-        """
         psize = size - widgt_label.max_size - len(widgt_percent) - \
             widgt_elapse.max_size
 
@@ -81,7 +85,7 @@ class ConsolePrgBr(object):
             size_widgt_progress = psize - 1
             widgt_msg.max_size = 0
 
-        widgt_bar = ConsoleProgress(size_widgt_progress, percent.ratio)
+        widgt_bar = ConsoleProgress(size_widgt_progress, percent.value)
 
         color_start = __config__.Color.info
         color_stop = __config__.Color.reset
