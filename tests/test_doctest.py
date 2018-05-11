@@ -32,7 +32,7 @@ class RunDocTest(unittest.TestCase):
             self.assertTrue(False)
 
 
-code_folder = '../' + __about__.__name__ + '/'
+code_folder = '../' + __about__.__pkg_name__ + '/'
 path = pathlib.Path(
     pathlib.PurePath(
         pathlib.Path(__file__).resolve().parent, code_folder)

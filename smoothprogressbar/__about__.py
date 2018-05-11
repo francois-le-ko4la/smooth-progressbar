@@ -12,7 +12,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 """
 
 __version__ = '0.1.2'
-__name__ = 'smoothprogressbar'
+__pkg_name__ = 'smoothprogressbar'
 __author__ = 'Ko4lA'
 __email__ = 'francois@le.ko4la.fr'
 __description__ = 'The funniest progress bar over the world'

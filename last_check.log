@@ -49,4 +49,4 @@ tests/test_pycodestyle.py::RunPyCodeStyle::test_/home/ko4la/GIT/smooth-progressb
 tests/test_pycodestyle.py::RunPyCodeStyle::test_/home/ko4la/GIT/smooth-progressbar/tests/test_doctest.py PASSED [ 96%]
 tests/test_pycodestyle.py::RunPyCodeStyle::test_/home/ko4la/GIT/smooth-progressbar/tests/test_pycodestyle.py PASSED [100%]
 
-========================== 30 passed in 3.62 seconds ===========================
+========================== 30 passed in 3.64 seconds ===========================

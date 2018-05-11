@@ -11,7 +11,7 @@
 
 """
 
-import os
+import subprocess
 import sys
 
 
@@ -43,8 +43,11 @@ class Console(object):
         """
         screen size (columns)
         """
-        self.__rows, self.__columns = os.popen('stty size', 'r').read().split()
-        return self.__columns
+        p = subprocess.Popen('stty size', stdout=subprocess.PIPE, shell=True)
+        (output, err) = p.communicate()
+        p_status = p.wait()
+        self.__rows, self.__columns = output.split()
+        return self.__columns.decode('UTF-8')
 
     def addmsg(self, msg):
         """
