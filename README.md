@@ -91,7 +91,7 @@ setuptools>=36.2.7
 
 ```
 ### UML Diagram
-![alt text](/home/ko4la/GIT/smooth-progressbar/pictures/classes_smoothprogressbar.png)
+![alt text](pictures/classes_smoothprogressbar.png)
 
 ### Objects
 [Console()](#console)<br />
