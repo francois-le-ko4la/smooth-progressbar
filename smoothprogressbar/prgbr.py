@@ -33,6 +33,7 @@ class SmoothProgressBar(object):
         self.__prgbr = ConsolePrgBr(enable_elapse, enable_msg, debug=debug)
         self.__enable_msg = enable_msg
         self.__percent = None
+        self.__msg = None
         self.__console = Console()
         self.__size = None
         self.__elapse = ElapseTime()
@@ -68,7 +69,7 @@ class SmoothProgressBar(object):
         stop the progress bar
         """
         self.__console.goback()
-        self.__console.addmsg(" " * self.__size)
+        self.__console.emptyline()
         self.__console.goback()
         self.__console.print()
         self.__mthr.stop()
@@ -86,11 +87,13 @@ class SmoothProgressBar(object):
             return
 
         self.__lock.acquire()
-        prgbr = self.__prgbr.build_progressbar(self.__size,
-                                               self.__percent,
-                                               self.__msg,
-                                               str(self.__elapse)
-                                               )
+        self.__size = int(self.__console.size) - 1
+        prgbr = self.__prgbr.build_progressbar(
+            self.__size,
+            self.__percent,
+            self.__msg,
+            str(self.__elapse)
+        )
         if self.__debug is not True:
             self.__console.goback()
         if self.__enable_msg is not True:

@@ -93,14 +93,15 @@ class ConsolePrgBr(object):
             color_start = ""
             color_stop = ""
 
-        return "{}{}{}{} {}{}{}".format(color_start,
-                                        widgt_label,
-                                        widgt_percent,
-                                        color_stop,
-                                        widgt_bar,
-                                        widgt_elapse,
-                                        widgt_msg
-                                        )
+        return "{}{}{}{} {}{}{}".format(
+            color_start,
+            widgt_label,
+            widgt_percent,
+            color_stop,
+            widgt_bar,
+            widgt_elapse,
+            widgt_msg
+        )
 
 
 if __name__ == "__main__":

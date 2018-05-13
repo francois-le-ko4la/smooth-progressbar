@@ -91,12 +91,11 @@ setuptools>=36.2.7
 
 ```
 ### UML Diagram
-![alt text](pictures/classes_smoothprogressbar.png)
+![alt text](/home/ko4la/GIT/smooth-progressbar/pictures/classes_smoothprogressbar.png)
 
 ### Objects
 [Console()](#console)<br />
 [@Property: Console.size](#property-consolesize)<br />
-[Console.__init__(self)](#consoleinitself)<br />
 [Console.addmsg(self, msg)](#consoleaddmsgself-msg)<br />
 [Console.addtab(self)](#consoleaddtabself)<br />
 [Console.emptyline(self)](#consoleemptylineself)<br />
@@ -104,40 +103,21 @@ setuptools>=36.2.7
 [Console.newline(self)](#consolenewlineself)<br />
 [Console.print(self)](#consoleprintself)<br />
 [ConsoleLabel()](#consolelabel)<br />
-[ConsoleLabel.__init__(self, txt, frmt=<function ConsoleString.align_left at 0x7fe0e58b8e18>)](#consolelabelinitself-txt-frmtfunction-consolestringalign_left-at-0x7fe0e58b8e18)<br />
-[ConsoleLabel.__len__(self)](#consolelabellenself)<br />
-[ConsoleLabel.__new__(cls, txt, frmt=<function ConsoleString.align_left at 0x7fe0e58b8e18>)](#consolelabelnewcls-txt-frmtfunction-consolestringalign_left-at-0x7fe0e58b8e18)<br />
-[ConsoleString.__repr__(self)](#consolestringreprself)<br />
-[ConsoleString.__str__(self)](#consolestringstrself)<br />
 [ConsoleString.align_left(self)](#consolestringalign_leftself)<br />
 [ConsoleString.align_right(self)](#consolestringalign_rightself)<br />
 [ConsoleProgress()](#consoleprogress)<br />
-[ConsoleProgress.__init__(self, size, ratio, frmt=<function ConsoleString.align_left at 0x7fe0e58b8e18>)](#consoleprogressinitself-size-ratio-frmtfunction-consolestringalign_left-at-0x7fe0e58b8e18)<br />
-[ConsoleProgress.__len__(self)](#consoleprogresslenself)<br />
-[ConsoleProgress.__new__(cls, size, ratio, frmt=<function ConsoleString.align_left at 0x7fe0e58b8e18>)](#consoleprogressnewcls-size-ratio-frmtfunction-consolestringalign_left-at-0x7fe0e58b8e18)<br />
-[ConsoleString.__repr__(self)](#consolestringreprself)<br />
-[ConsoleString.__str__(self)](#consolestringstrself)<br />
 [ConsoleString.align_left(self)](#consolestringalign_leftself)<br />
 [ConsoleString.align_right(self)](#consolestringalign_rightself)<br />
 [ConsoleString()](#consolestring)<br />
 [@Property: ConsoleString.text](#property-consolestringtext)<br />
-[ConsoleString.__init__(self, txt, frmt=None)](#consolestringinitself-txt-frmtnone)<br />
-[ConsoleString.__new__(cls, txt, frmt=None)](#consolestringnewcls-txt-frmtnone)<br />
-[ConsoleString.__repr__(self)](#consolestringreprself)<br />
-[ConsoleString.__str__(self)](#consolestringstrself)<br />
 [ConsoleString.align_left(self)](#consolestringalign_leftself)<br />
 [ConsoleString.align_right(self)](#consolestringalign_rightself)<br />
 [ElapseTime()](#elapsetime)<br />
-[ElapseTime.__init__(self)](#elapsetimeinitself)<br />
-[ElapseTime.__repr__(self)](#elapsetimereprself)<br />
-[ElapseTime.__str__(self)](#elapsetimestrself)<br />
 [ElapseTime.start(self)](#elapsetimestartself)<br />
 [MultiThread()](#multithread)<br />
 [@Property: MultiThread.func](#property-multithreadfunc)<br />
-[MultiThread.__init__(self, func, elapse)](#multithreadinitself-func-elapse)<br />
 [MultiThread.run(self)](#multithreadrunself)<br />
 [MultiThread.stop(self)](#multithreadstopself)<br />
-[Thread.__repr__(self)](#threadreprself)<br />
 [Thread._bootstrap(self)](#thread_bootstrapself)<br />
 [Thread._bootstrap_inner(self)](#thread_bootstrap_innerself)<br />
 [Thread._delete(self)](#thread_deleteself)<br />
@@ -157,14 +137,8 @@ setuptools>=36.2.7
 [@Property: Percent.part](#property-percentpart)<br />
 [@Property: Percent.value](#property-percentvalue)<br />
 [@Property: Percent.whole](#property-percentwhole)<br />
-[Percent.__init__(self, whole)](#percentinitself-whole)<br />
-[Percent.__new__(cls, whole)](#percentnewcls-whole)<br />
-[Percent.__repr__(self)](#percentreprself)<br />
-[Percent.__str__(self)](#percentstrself)<br />
 [SmoothProgressBar()](#smoothprogressbar)<br />
 [@Property: SmoothProgressBar.msg](#property-smoothprogressbarmsg)<br />
-[SmoothProgressBar.__init__(self, enable_elapse=True, enable_msg=True, debug=False)](#smoothprogressbarinitself-enable_elapsetrue-enable_msgtrue-debugfalse)<br />
-[SmoothProgressBar.__refresh(self)](#smoothprogressbar__refreshself)<br />
 [SmoothProgressBar.start(self, max_value)](#smoothprogressbarstartself-max_value)<br />
 [SmoothProgressBar.stop(self)](#smoothprogressbarstopself)<br />
 [SmoothProgressBar.update(self, value, msg='')](#smoothprogressbarupdateself-value-msg)<br />
@@ -199,13 +173,6 @@ def Console.size(self):
 ```
 > <br />
 > screen size (columns)<br />
-> <br />
-##### Console.__init__(self)
-```python
-def Console.__init__(self):
-```
-> <br />
-> Initialize self.  See help(type(self)) for accurate signature.<br />
 > <br />
 ##### Console.addmsg(self, msg)
 ```python
@@ -272,41 +239,6 @@ Use:
     'lorem ipsum dol'
 ```
 
-##### ConsoleLabel.__init__(self, txt, frmt=<function ConsoleString.align_left at 0x7fe0e58b8e18>)
-```python
-def ConsoleLabel.__init__(self, txt, frmt=<function ConsoleString.align_left at 0x7fe0e58b8e18>):
-```
-> <br />
-> Initialize self.  See help(type(self)) for accurate signature.<br />
-> <br />
-##### ConsoleLabel.__len__(self)
-```python
-def ConsoleLabel.__len__(self):
-```
-> <br />
-> Return len(self).<br />
-> <br />
-##### ConsoleLabel.__new__(cls, txt, frmt=<function ConsoleString.align_left at 0x7fe0e58b8e18>)
-```python
-def ConsoleLabel.__new__(cls, txt, frmt=<function ConsoleString.align_left at 0x7fe0e58b8e18>):
-```
-> <br />
-> Create and return a new object.  See help(type) for accurate signature.<br />
-> <br />
-##### ConsoleString.__repr__(self)
-```python
-def ConsoleString.__repr__(self):
-```
-> <br />
-> Return repr(self).<br />
-> <br />
-##### ConsoleString.__str__(self)
-```python
-def ConsoleString.__str__(self):
-```
-> <br />
-> Return str(self).<br />
-> <br />
 ##### ConsoleString.align_left(self)
 ```python
 def ConsoleString.align_left(self):
@@ -338,41 +270,6 @@ Use:
     12
 ```
 
-##### ConsoleProgress.__init__(self, size, ratio, frmt=<function ConsoleString.align_left at 0x7fe0e58b8e18>)
-```python
-def ConsoleProgress.__init__(self, size, ratio, frmt=<function ConsoleString.align_left at 0x7fe0e58b8e18>):
-```
-> <br />
-> Initialize self.  See help(type(self)) for accurate signature.<br />
-> <br />
-##### ConsoleProgress.__len__(self)
-```python
-def ConsoleProgress.__len__(self):
-```
-> <br />
-> Return len(self).<br />
-> <br />
-##### ConsoleProgress.__new__(cls, size, ratio, frmt=<function ConsoleString.align_left at 0x7fe0e58b8e18>)
-```python
-def ConsoleProgress.__new__(cls, size, ratio, frmt=<function ConsoleString.align_left at 0x7fe0e58b8e18>):
-```
-> <br />
-> Create and return a new object.  See help(type) for accurate signature.<br />
-> <br />
-##### ConsoleString.__repr__(self)
-```python
-def ConsoleString.__repr__(self):
-```
-> <br />
-> Return repr(self).<br />
-> <br />
-##### ConsoleString.__str__(self)
-```python
-def ConsoleString.__str__(self):
-```
-> <br />
-> Return str(self).<br />
-> <br />
 ##### ConsoleString.align_left(self)
 ```python
 def ConsoleString.align_left(self):
@@ -458,34 +355,6 @@ def ConsoleString.text(self):
 > <br />
 > get original text<br />
 > <br />
-##### ConsoleString.__init__(self, txt, frmt=None)
-```python
-def ConsoleString.__init__(self, txt, frmt=None):
-```
-> <br />
-> Initialize self.  See help(type(self)) for accurate signature.<br />
-> <br />
-##### ConsoleString.__new__(cls, txt, frmt=None)
-```python
-def ConsoleString.__new__(cls, txt, frmt=None):
-```
-> <br />
-> Create and return a new object.  See help(type) for accurate signature.<br />
-> <br />
-##### ConsoleString.__repr__(self)
-```python
-def ConsoleString.__repr__(self):
-```
-> <br />
-> Return repr(self).<br />
-> <br />
-##### ConsoleString.__str__(self)
-```python
-def ConsoleString.__str__(self):
-```
-> <br />
-> Return str(self).<br />
-> <br />
 ##### ConsoleString.align_left(self)
 ```python
 def ConsoleString.align_left(self):
@@ -527,45 +396,6 @@ Use:
     '0:00:02'
 ```
 
-##### ElapseTime.__init__(self)
-```python
-def ElapseTime.__init__(self):
-```
-> <br />
-> Init the default values<br />
-> <br />
-> <b>Args:</b><br />
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  None<br />
-> <br />
-> <b>Returns:</b><br />
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  obj<br />
-> <br />
-##### ElapseTime.__repr__(self)
-```python
-def ElapseTime.__repr__(self):
-```
-> <br />
-> Provides the string<br />
-> <br />
-> <b>Args:</b><br />
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  None<br />
-> <br />
-> <b>Returns:</b><br />
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  str: 'X:XX:XX'<br />
-> <br />
-##### ElapseTime.__str__(self)
-```python
-def ElapseTime.__str__(self):
-```
-> <br />
-> Call repr<br />
-> <br />
-> <b>Args:</b><br />
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  None<br />
-> <br />
-> <b>Returns:</b><br />
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  str: 'X:XX:XX'<br />
-> <br />
 ##### ElapseTime.start(self)
 ```python
 def ElapseTime.start(self):
@@ -605,31 +435,6 @@ def MultiThread.func(self):
 > <br />
 > define the func called by the Thread<br />
 > <br />
-##### MultiThread.__init__(self, func, elapse)
-```python
-def MultiThread.__init__(self, func, elapse):
-```
-> <br />
-> <b>This constructor should always be called with keyword arguments. Arguments are:</b><br />
-> <br />
-> *group* should be None; reserved for future extension when a ThreadGroup<br />
-> class is implemented.<br />
-> <br />
-> *target* is the callable object to be invoked by the run()<br />
-> method. Defaults to None, meaning nothing is called.<br />
-> <br />
-> *name* is the thread name. By default, a unique name is constructed of<br />
-> the form "Thread-N" where N is a small decimal number.<br />
-> <br />
-> *args* is the argument tuple for the target invocation. Defaults to ().<br />
-> <br />
-> *kwargs* is a dictionary of keyword arguments for the target<br />
-> invocation. Defaults to {}.<br />
-> <br />
-> If a subclass overrides the constructor, it must make sure to invoke<br />
-> the base class constructor (Thread.__init__()) before doing anything<br />
-> else to the thread.<br />
-> <br />
 ##### MultiThread.run(self)
 ```python
 def MultiThread.run(self):
@@ -648,13 +453,6 @@ def MultiThread.stop(self):
 ```
 > <br />
 > Stop the Thread<br />
-> <br />
-##### Thread.__repr__(self)
-```python
-def Thread.__repr__(self):
-```
-> <br />
-> Return repr(self).<br />
 > <br />
 ##### Thread._bootstrap(self)
 ```python
@@ -865,34 +663,6 @@ def Percent.whole(self):
 > <br />
 > X% = 100 * (part / whole)<br />
 > <br />
-##### Percent.__init__(self, whole)
-```python
-def Percent.__init__(self, whole):
-```
-> <br />
-> Initialize self.  See help(type(self)) for accurate signature.<br />
-> <br />
-##### Percent.__new__(cls, whole)
-```python
-def Percent.__new__(cls, whole):
-```
-> <br />
-> Create and return a new object.  See help(type) for accurate signature.<br />
-> <br />
-##### Percent.__repr__(self)
-```python
-def Percent.__repr__(self):
-```
-> <br />
-> str: "XXX.X%"<br />
-> <br />
-##### Percent.__str__(self)
-```python
-def Percent.__str__(self):
-```
-> <br />
-> Return str(self).<br />
-> <br />
 #### SmoothProgressBar()
 ```python
 class SmoothProgressBar(object):
@@ -914,20 +684,6 @@ def SmoothProgressBar.msg(self, msg):
 ```
 > <br />
 > Message<br />
-> <br />
-##### SmoothProgressBar.__init__(self, enable_elapse=True, enable_msg=True, debug=False)
-```python
-def SmoothProgressBar.__init__(self, enable_elapse=True, enable_msg=True, debug=False):
-```
-> <br />
-> Initialize self.  See help(type(self)) for accurate signature.<br />
-> <br />
-##### SmoothProgressBar.__refresh(self)
-```python
-def SmoothProgressBar.__refresh(self):
-```
-> <br />
-> Docstring empty<br />
 > <br />
 ##### SmoothProgressBar.start(self, max_value)
 ```python

@@ -104,11 +104,12 @@ class ConsoleString(str):
             txt = self.tag_beg + self[0:(self.max_size)] + self.tag_end
         else:
             txt = self.text
-            txt = self.frmt.format(self.tag_beg,
-                                   txt,
-                                   self.tag_end,
-                                   " " * (self.max_size - len(txt))
-                                   )
+            txt = self.frmt.format(
+                self.tag_beg,
+                txt,
+                self.tag_end,
+                " " * (self.max_size - len(txt))
+            )
         return txt
 
     def __str__(self):

@@ -47,7 +47,7 @@ class Console(object):
         (output, err) = p.communicate()
         p_status = p.wait()
         self.__rows, self.__columns = output.split()
-        return self.__columns.decode('UTF-8')
+        return int(self.__columns.decode('UTF-8'))
 
     def addmsg(self, msg):
         """
@@ -59,7 +59,7 @@ class Console(object):
         """
         store an empty line
         """
-        self.__output += " "
+        self.__output += " " * self.size
 
     def addtab(self):
         """

@@ -40,10 +40,12 @@ path = pathlib.Path(
 sys.path.append(path)
 
 for current_file in list(path.glob('**/*.py')):
+    current_file = pathlib.Path(current_file)
+
     def ch(current_file):
         return lambda self: self.run_doctest(current_file)
     setattr(RunDocTest,
-            "test_mod_{}".format(current_file),
+            "test_mod_{}".format(current_file.name),
             ch(str(current_file))
             )
 
