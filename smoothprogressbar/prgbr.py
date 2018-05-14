@@ -18,7 +18,7 @@ from smoothprogressbar.percent import Percent
 from smoothprogressbar.consoleprgbr import ConsolePrgBr
 from smoothprogressbar.console import Console
 from smoothprogressbar.multithreading import MultiThread
-from smoothprogressbar import __config__
+from smoothprogressbar.__config__ import THEME
 
 
 class SmoothProgressBar(object):
@@ -37,7 +37,7 @@ class SmoothProgressBar(object):
         self.__console = Console()
         self.__size = None
         self.__elapse = ElapseTime()
-        self.__mthr = MultiThread(self.__refresh, 0.25)
+        self.__mthr = MultiThread(self.__refresh, THEME["refresh_time"])
         self.__updated = False
         self.__lock = Lock()
 
@@ -88,22 +88,19 @@ class SmoothProgressBar(object):
 
         self.__lock.acquire()
         self.__size = int(self.__console.size) - 1
-        prgbr = self.__prgbr.build_progressbar(
-            self.__size,
-            self.__percent,
-            self.__msg,
-            str(self.__elapse)
-        )
         if self.__debug is not True:
             self.__console.goback()
         if self.__enable_msg is not True:
-            self.__console.addmsg(" " * self.__size)
-            self.__console.goback()
-            self.__console.addmsg(self.__msg)
-            self.__console.newline()
+            self.__console.emptyline().goback().addmsg(self.__msg).newline()
 
-        self.__console.addmsg(prgbr)
-        self.__console.print()
+        self.__console.addmsg(
+            self.__prgbr.update(
+                self.__size,
+                self.__percent,
+                self.__msg,
+                str(self.__elapse)
+            ).get()
+        ).print()
         self.__updated = False
         self.__lock.release()
 

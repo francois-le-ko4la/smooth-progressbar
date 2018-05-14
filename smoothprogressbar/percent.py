@@ -22,33 +22,43 @@ class Percent(float):
         Traceback (most recent call last):
         ...
         ValueError: Percent: "whole" cant be 0
+        >>> #oups 2
+        >>> p = Percent("az")
+        Traceback (most recent call last):
+        ...
+        ValueError: could not convert string to float: 'az'
         >>> #oups 3
         >>> p = Percent(10)
         >>> p.value = 10
         Traceback (most recent call last):
         ...
         AttributeError: can't set attribute
+        >>> #oups 4
+        >>> p.part = "rt"
+        Traceback (most recent call last):
+        ...
+        TypeError: invalid literal for int() with base 10: 'rt'
         >>> #correct usage:
         >>> p = Percent(10)
         >>> p.part = 2
         >>> p.part
         2
         >>> p
-        20.0%
+         20.0%
         >>> str(p)
-        '20.0%'
+        ' 20.0%'
         >>> p.value
         0.2
         >>> p = Percent(8)
         >>> for i in range(9): p.part = i ; print("{}-{}".format(p, p.value))
-        0.0%-0.0
-        12.5%-0.125
-        25.0%-0.25
-        37.5%-0.375
-        50.0%-0.5
-        62.5%-0.625
-        75.0%-0.75
-        87.5%-0.875
+          0.0%-0.0
+         12.5%-0.125
+         25.0%-0.25
+         37.5%-0.375
+         50.0%-0.5
+         62.5%-0.625
+         75.0%-0.75
+         87.5%-0.875
         100.0%-1.0
     """
 
@@ -76,8 +86,15 @@ class Percent(float):
         return self.__part
 
     @part.setter
-    def part(self, part):
-        self.__part = part
+    def part(self, value):
+        if isinstance(value, int):
+            self.__part = value
+        else:
+            raise TypeError(
+                "invalid literal for int() with base 10: '{}'".format(
+                    value
+                )
+            )
 
     @property
     def value(self):
@@ -90,7 +107,12 @@ class Percent(float):
         """
             str: "XXX.X%"
         """
-        return "{:.1%}".format(self.value)
+        return '{0:{fill}{align}{size}}'.format(
+            "{:3.1%}".format(self.value),
+            fill=" ",
+            align=">",
+            size=6
+        )
 
     def __str__(self):
         return str(self.__repr__())

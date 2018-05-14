@@ -102,16 +102,19 @@ setuptools>=36.2.7
 [Console.goback(self)](#consolegobackself)<br />
 [Console.newline(self)](#consolenewlineself)<br />
 [Console.print(self)](#consoleprintself)<br />
-[ConsoleLabel()](#consolelabel)<br />
-[ConsoleString.align_left(self)](#consolestringalign_leftself)<br />
-[ConsoleString.align_right(self)](#consolestringalign_rightself)<br />
 [ConsoleProgress()](#consoleprogress)<br />
+[ConsoleProgress.update(self, size, ratio)](#consoleprogressupdateself-size-ratio)<br />
 [ConsoleString.align_left(self)](#consolestringalign_leftself)<br />
 [ConsoleString.align_right(self)](#consolestringalign_rightself)<br />
 [ConsoleString()](#consolestring)<br />
-[@Property: ConsoleString.text](#property-consolestringtext)<br />
+[@Property: ConsoleString.current_text_size](#property-consolestringcurrent_text_size)<br />
+[@Property: ConsoleString.enable](#property-consolestringenable)<br />
+[@Property: ConsoleString.max_size](#property-consolestringmax_size)<br />
+[@Property: ConsoleString.max_text_size](#property-consolestringmax_text_size)<br />
+[@Property: ConsoleString.tag_size](#property-consolestringtag_size)<br />
 [ConsoleString.align_left(self)](#consolestringalign_leftself)<br />
 [ConsoleString.align_right(self)](#consolestringalign_rightself)<br />
+[ConsoleString.update(self, text=None, max_size=None, tag_beg=None, tag_end=None)](#consolestringupdateself-textnone-max_sizenone-tag_begnone-tag_endnone)<br />
 [ElapseTime()](#elapsetime)<br />
 [ElapseTime.start(self)](#elapsetimestartself)<br />
 [MultiThread()](#multithread)<br />
@@ -154,14 +157,10 @@ This Class provides a simple way to manage the screen
 
 Use:
     >>> c = Console()
-    >>> c.addmsg("lorem ipsum dolor sit amet consectetur adipiscing elit")
-    >>> c.print()
-    lorem ipsum dolor sit amet consectetur adipiscing elit
-    >>> c.addmsg("lorem ipsum dolor sit amet consectetur adipiscing elit")
-    >>> c.newline()
-    >>> c.addmsg("LOREM")
-    >>> c.print()
-    lorem ipsum dolor sit amet consectetur adipiscing elit
+    >>> c.addmsg("lorem ipsum dolor").print()
+    lorem ipsum dolor
+    >>> c.addmsg("lorem ipsum dolor").newline().addmsg("LOREM").print()
+    lorem ipsum dolor
     LOREM
 ```
 
@@ -216,43 +215,6 @@ def Console.print(self):
 > <br />
 > print the buffer<br />
 > <br />
-#### ConsoleLabel()
-```python
-class ConsoleLabel(ConsoleString):
-```
-
-```
-Why:
-    It's usefull to manage the screen size.
-
-Use:
-    >>> c = ConsoleLabel("lorem ipsum dolor")
-    >>> str(c)
-    'lorem ipsum dolor'
-    >>> c.max_size = 5
-    >>> print(c.max_size)
-    5
-    >>> str(c)
-    'lorem'
-    >>> c.max_size = 15
-    >>> str(c)
-    'lorem ipsum dol'
-```
-
-##### ConsoleString.align_left(self)
-```python
-def ConsoleString.align_left(self):
-```
-> <br />
-> function to align left<br />
-> <br />
-##### ConsoleString.align_right(self)
-```python
-def ConsoleString.align_right(self):
-```
-> <br />
-> function to align right<br />
-> <br />
 #### ConsoleProgress()
 ```python
 class ConsoleProgress(ConsoleString):
@@ -260,70 +222,84 @@ class ConsoleProgress(ConsoleString):
 
 ```
 Use:
-    >>> str(ConsoleProgress(12, 0.1))
+    >>> c = ConsoleProgress()
+    >>> str(c.update(12, 0.1))
     '[#.........]'
-    >>> str(ConsoleProgress(12, 0.4))
+    >>> str(c.update(12, 0.4))
     '[####......]'
-    >>> str(ConsoleProgress(12, 1))
+    >>> str(c.update(12, 1))
     '[##########]'
-    >>> len(ConsoleProgress(12, 1))
+    >>> len(c.update(12, 1))
     12
 ```
 
+##### ConsoleProgress.update(self, size, ratio)
+```python
+def ConsoleProgress.update(self, size, ratio):
+```
+> <br />
+> update the string<br />
+> <br />
 ##### ConsoleString.align_left(self)
 ```python
 def ConsoleString.align_left(self):
 ```
 > <br />
-> function to align left<br />
+> Apply 'align-left' to the string<br />
 > <br />
 ##### ConsoleString.align_right(self)
 ```python
 def ConsoleString.align_right(self):
 ```
 > <br />
-> function to align right<br />
+> Apply 'align-right' to the string<br />
 > <br />
 #### ConsoleString()
 ```python
-class ConsoleString(str):
+class ConsoleString(object):
 ```
 
 ```
 Console string is a string to print (stdout) with
-fixed size and console code
-The console code is not calsulate in 'max_size'.
+fixed size.
+
+'[XXXXXXXXX ]                  '
+ -          -                    : tag size
+  ----------                     : text size
+|------------------------------| : max size
 
 Why:
     It's usefull to manage the screen size.
 
 Use:
-    >>> c = ConsoleString("lorem ipsum")
-    >>> # console code:
+    >>> #oups
+    >>> c = ConsoleString("lorem", max_size="3")
+    Traceback (most recent call last):
+    ...
+    TypeError: invalid literal for int() with base 10: '3'
+    >>> c = ConsoleString("lorem", max_size=3)
+    >>> c
+    lor
+    >>> c = ConsoleString("lorem")
+    >>> # tag
     >>> c.tag_beg = "["
     >>> c.tag_end="]"
-    >>> for i in range(15): c.max_size = i ; str(c)
+    >>> for i in range(9): c.max_size = i ; str(c)
+    ''
+    '['
     '[]'
     '[l]'
     '[lo]'
     '[lor]'
     '[lore]'
     '[lorem]'
-    '[lorem ]'
-    '[lorem i]'
-    '[lorem ip]'
-    '[lorem ips]'
-    '[lorem ipsu]'
-    '[lorem ipsum]'
-    '[lorem ipsum] '
-    '[lorem ipsum]  '
-    '[lorem ipsum]   '
+    '[lorem] '
     >>> len(c)
-    11
+    8
     >>> c.text
-    'lorem ipsum'
+    'lorem'
     >>> c = ConsoleString("lorem")
-    >>> for i in range(9): c.max_size = i ; str(c)
+    >>> for i in range(9): c.max_size = i ; str(c.align_left())
     ''
     'l'
     'lo'
@@ -333,8 +309,8 @@ Use:
     'lorem '
     'lorem  '
     'lorem   '
-    >>> c = ConsoleString("lorem", ConsoleString.align_right)
-    >>> for i in range(9): c.max_size = i ; str(c)
+    >>> c = ConsoleString("lorem")
+    >>> for i in range(9): c.max_size = i ; str(c.align_right())
     ''
     'l'
     'lo'
@@ -344,30 +320,79 @@ Use:
     ' lorem'
     '  lorem'
     '   lorem'
+    >>> txt = "lorem ipsum dolor sit amet consectetur adipiscing elit"
+    >>> str(c.update(text=txt, max_size=15, tag_beg="*** "))
+    '*** lorem ipsum'
 ```
 
-##### @Property: ConsoleString.text
+##### @Property: ConsoleString.current_text_size
 ```python
 @property
-def ConsoleString.text(self):
+def ConsoleString.current_text_size(self):
 
 ```
 > <br />
-> get original text<br />
+> Text size according to text_size and max_text_size<br />
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  min(text_size, len(text))<br />
+> <br />
+##### @Property: ConsoleString.enable
+```python
+@property
+def ConsoleString.enable(self):
+
+```
+> <br />
+> Enable object<br />
+> <br />
+##### @Property: ConsoleString.max_size
+```python
+@property
+def ConsoleString.max_size(self):
+@max_size.setter
+def ConsoleString.max_size(self, value):
+
+```
+> <br />
+> string max size<br />
+> <br />
+##### @Property: ConsoleString.max_text_size
+```python
+@property
+def ConsoleString.max_text_size(self):
+
+```
+> <br />
+> Tag size setter<br />
+> <br />
+##### @Property: ConsoleString.tag_size
+```python
+@property
+def ConsoleString.tag_size(self):
+
+```
+> <br />
+> Tag size<br />
 > <br />
 ##### ConsoleString.align_left(self)
 ```python
 def ConsoleString.align_left(self):
 ```
 > <br />
-> function to align left<br />
+> Apply 'align-left' to the string<br />
 > <br />
 ##### ConsoleString.align_right(self)
 ```python
 def ConsoleString.align_right(self):
 ```
 > <br />
-> function to align right<br />
+> Apply 'align-right' to the string<br />
+> <br />
+##### ConsoleString.update(self, text=None, max_size=None, tag_beg=None, tag_end=None)
+```python
+def ConsoleString.update(self, text=None, max_size=None, tag_beg=None, tag_end=None):
+```
+> <br />
+> update the string<br />
 > <br />
 #### ElapseTime()
 ```python
@@ -604,33 +629,43 @@ Use:
     Traceback (most recent call last):
     ...
     ValueError: Percent: "whole" cant be 0
+    >>> #oups 2
+    >>> p = Percent("az")
+    Traceback (most recent call last):
+    ...
+    ValueError: could not convert string to float: 'az'
     >>> #oups 3
     >>> p = Percent(10)
     >>> p.value = 10
     Traceback (most recent call last):
     ...
     AttributeError: can't set attribute
+    >>> #oups 4
+    >>> p.part = "rt"
+    Traceback (most recent call last):
+    ...
+    TypeError: invalid literal for int() with base 10: 'rt'
     >>> #correct usage:
     >>> p = Percent(10)
     >>> p.part = 2
     >>> p.part
     2
     >>> p
-    20.0%
+     20.0%
     >>> str(p)
-    '20.0%'
+    ' 20.0%'
     >>> p.value
     0.2
     >>> p = Percent(8)
     >>> for i in range(9): p.part = i ; print("{}-{}".format(p, p.value))
-    0.0%-0.0
-    12.5%-0.125
-    25.0%-0.25
-    37.5%-0.375
-    50.0%-0.5
-    62.5%-0.625
-    75.0%-0.75
-    87.5%-0.875
+      0.0%-0.0
+     12.5%-0.125
+     25.0%-0.25
+     37.5%-0.375
+     50.0%-0.5
+     62.5%-0.625
+     75.0%-0.75
+     87.5%-0.875
     100.0%-1.0
 ```
 
@@ -639,7 +674,7 @@ Use:
 @property
 def Percent.part(self):
 @part.setter
-def Percent.part(self, part):
+def Percent.part(self, value):
 
 ```
 > <br />

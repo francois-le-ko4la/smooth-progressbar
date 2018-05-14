@@ -13,6 +13,7 @@
 
 import subprocess
 import sys
+from smoothprogressbar.__config__ import THEME
 
 
 class Console(object):
@@ -22,14 +23,10 @@ class Console(object):
 
     Use:
         >>> c = Console()
-        >>> c.addmsg("lorem ipsum dolor sit amet consectetur adipiscing elit")
-        >>> c.print()
-        lorem ipsum dolor sit amet consectetur adipiscing elit
-        >>> c.addmsg("lorem ipsum dolor sit amet consectetur adipiscing elit")
-        >>> c.newline()
-        >>> c.addmsg("LOREM")
-        >>> c.print()
-        lorem ipsum dolor sit amet consectetur adipiscing elit
+        >>> c.addmsg("lorem ipsum dolor").print()
+        lorem ipsum dolor
+        >>> c.addmsg("lorem ipsum dolor").newline().addmsg("LOREM").print()
+        lorem ipsum dolor
         LOREM
     """
 
@@ -43,9 +40,13 @@ class Console(object):
         """
         screen size (columns)
         """
-        p = subprocess.Popen('stty size', stdout=subprocess.PIPE, shell=True)
-        (output, err) = p.communicate()
-        p_status = p.wait()
+        cur_proc = subprocess.Popen(
+            'stty size',
+            stdout=subprocess.PIPE,
+            shell=True
+        )
+        (output, err) = cur_proc.communicate()
+        p_status = cur_proc.wait()
         self.__rows, self.__columns = output.split()
         return int(self.__columns.decode('UTF-8'))
 
@@ -54,30 +55,35 @@ class Console(object):
         store a message
         """
         self.__output += msg
+        return self
 
     def emptyline(self):
         """
         store an empty line
         """
         self.__output += " " * self.size
+        return self
 
     def addtab(self):
         """
         store a tab
         """
-        self.__output += "\t"
+        self.__output += THEME["tab"]
+        return self
 
     def goback(self):
         """
         store a goback caracter
         """
-        self.__output += "\r"
+        self.__output += THEME["goback"]
+        return self
 
     def newline(self):
         """
         store a new line
         """
-        self.__output += "\n"
+        self.__output += THEME["linefeed"]
+        return self
 
     def print(self):
         """

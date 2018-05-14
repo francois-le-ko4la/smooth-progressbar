@@ -13,17 +13,17 @@
 """
 
 from smoothprogressbar.consolestring import ConsoleString
-from smoothprogressbar.consolelabel import ConsoleLabel
 from smoothprogressbar.consoleprogress import ConsoleProgress
-from smoothprogressbar.percent import Percent
-from smoothprogressbar.consolepercent import ConsolePercent
-from smoothprogressbar import __config__
+from smoothprogressbar.__config__ import THEME
 
 
 class ConsolePrgBr(object):
 
     """
+    This class print all components according to parameters.
+
     Use:
+    >>> from smoothprogressbar.percent import Percent
     >>> from smoothprogressbar.elapse import ElapseTime
     >>> size = 40
     >>> percent = Percent(10)
@@ -32,20 +32,20 @@ class ConsolePrgBr(object):
     >>> elapse = ElapseTime()
     >>> elapse.start()
     >>> prgbr = ConsolePrgBr(debug=True)
-    >>> prgbr.build_progressbar(size, percent, msg, str(elapse))
+    >>> prgbr.update(size, percent, msg, str(elapse)).get()
     'Processing: [ 20.0%] [...] 0:00:00 lorem'
     >>> size = 70
     >>> prgbr = ConsolePrgBr(debug=True)
-    >>> prgbr.build_progressbar(size, percent, msg, str(elapse))
+    >>> prgbr.update(size, percent, msg, str(elapse)).get()
     'Processing: [ 20.0%] [###...............] 0:00:00 lorem ipsum dolor si'
     >>> prgbr = ConsolePrgBr(enable_elapse=False, enable_msg=False, debug=True)
-    >>> prgbr.build_progressbar(size, percent, msg, str(elapse))
+    >>> prgbr.update(size, percent, msg, str(elapse)).get()
     'Processing: [ 20.0%] [#########......................................]'
     >>> prgbr = ConsolePrgBr(enable_elapse=True, enable_msg=False, debug=True)
-    >>> prgbr.build_progressbar(size, percent, msg, str(elapse))
+    >>> prgbr.update(size, percent, msg, str(elapse)).get()
     'Processing: [ 20.0%] [#######................................] 0:00:00'
     >>> prgbr = ConsolePrgBr(enable_elapse=False, enable_msg=True, debug=True)
-    >>> prgbr.build_progressbar(size, percent, msg, str(elapse))
+    >>> prgbr.update(size, percent, msg, str(elapse)).get()
     'Processing: [ 20.0%] [####..................] lorem ipsum dolor sit am'
 
     """
@@ -55,53 +55,69 @@ class ConsolePrgBr(object):
 
     def __init__(self, enable_elapse=True, enable_msg=True, debug=False):
         self.__debug = debug
-        self.__enable_elapse = enable_elapse
-        self.__enable_msg = enable_msg
+        self.__output = ""
         """ DEF """
-        self.__widgt_label = ConsoleLabel("")
-        self.__widgt_percent = ConsolePercent(Percent(1))
-        self.__widgt_progress = ConsoleProgress(1, 1)
+        self.__widgt_label = ConsoleString(THEME["label"], len(THEME["label"]))
+        self.__widgt_percent = ConsoleString(
+            "",
+            max_size=8,
+            tag_beg=THEME["beggining"],
+            tag_end=THEME["end"]
+        )
+        self.__widgt_elapse = ConsoleString("", enable=enable_elapse)
+        self.__widgt_msg = ConsoleString("", tag_beg=" ", enable=enable_msg)
+        self.__widgt_progress = ConsoleProgress(
+            tag_beg=" " + THEME["beggining"])
 
-    def build_progressbar(self, size, percent, msg="", elapse=""):
+    def update(self, size, percent, msg="", elapse=""):
         """
-        fixed size
+        Update() the progress bar
         """
-        widgt_label = ConsoleLabel(__config__.ProgressTheme.label)
-        widgt_percent = ConsolePercent(percent)
-        widgt_elapse = ConsoleLabel(elapse, ConsoleString.align_right)
-        if self.__enable_elapse:
-            widgt_elapse.max_size = 8
+        size_widgt_progress = 0
+        if self.__widgt_elapse.enable:
+            self.__widgt_elapse.max_size = 8
         else:
-            widgt_elapse.max_size = 0
+            self.__widgt_elapse.max_size = 0
 
-        psize = size - widgt_label.max_size - len(widgt_percent) - \
-            widgt_elapse.max_size
+        psize = size - self.__widgt_label.max_size - \
+            len(self.__widgt_percent) - self.__widgt_elapse.max_size
 
-        widgt_msg = ConsoleLabel(" " + msg)
-        if self.__enable_msg:
-            size_widgt_progress = int(0.5 * psize) - 1
-            widgt_msg.max_size = psize - size_widgt_progress - 1
+        self.__widgt_msg.update(msg)
+        if self.__widgt_msg.enable:
+            size_widgt_progress = int(0.5 * psize)
+            self.__widgt_msg.max_size = psize - size_widgt_progress
         else:
-            size_widgt_progress = psize - 1
-            widgt_msg.max_size = 0
+            size_widgt_progress = psize
+            self.__widgt_msg.max_size = 0
 
-        widgt_bar = ConsoleProgress(size_widgt_progress, percent.value)
-
-        color_start = __config__.Color.info
-        color_stop = __config__.Color.reset
+        color_start = THEME["info"]
+        color_stop = THEME["reset"]
         if self.__debug:
             color_start = ""
             color_stop = ""
 
-        return "{}{}{}{} {}{}{}".format(
+        self.__output = "{}{}{}{}{}{}{}".format(
             color_start,
-            widgt_label,
-            widgt_percent,
+            self.__widgt_label,
+            self.__widgt_percent.update(str(percent)),
             color_stop,
-            widgt_bar,
-            widgt_elapse,
-            widgt_msg
+            self.__widgt_progress.update(size_widgt_progress, percent.value),
+            self.__widgt_elapse.update(elapse).align_right(),
+            self.__widgt_msg.update(msg)
         )
+        return self
+
+    def get(self):
+        """
+        Get the string
+        """
+        return str(self)
+
+    def __repr__(self):
+        return self.__output
+
+    def __str__(self):
+        return repr(self)
 
 
 if __name__ == "__main__":
