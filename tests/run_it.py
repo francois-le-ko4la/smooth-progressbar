@@ -53,11 +53,11 @@ my_progressbar.start(3)
 for i in range(1, 4):
     my_progressbar.update(i-1, "task {} in progress...".format(str(i)))
     time.sleep(1)
-    my_progressbar.msg = "ouuuups error...."
+    my_progressbar.msg = "ouuuups error 1/1...."
     time.sleep(1)
-    my_progressbar.msg = "ouuuups warning...."
+    my_progressbar.msg = "ouuuups warning 1/2...."
     time.sleep(0.25)
-    my_progressbar.msg = "ouuuups warning...."
+    my_progressbar.msg = "ouuuups warning 2/2...."
     # ....
     my_progressbar.update(i, "task {} finished...".format(str(i)))
     time.sleep(2)

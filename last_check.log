@@ -1,48 +1,40 @@
 running pytest
-Searching for pytest
-Best match: pytest 3.5.1
-Processing pytest-3.5.1-py3.6.egg
-
-Using /home/ko4la/GIT/smooth-progressbar/.eggs/pytest-3.5.1-py3.6.egg
 running egg_info
 writing smoothprogressbar.egg-info/PKG-INFO
 writing dependency_links to smoothprogressbar.egg-info/dependency_links.txt
+writing requirements to smoothprogressbar.egg-info/requires.txt
 writing top-level names to smoothprogressbar.egg-info/top_level.txt
 reading manifest file 'smoothprogressbar.egg-info/SOURCES.txt'
-reading manifest template 'MANIFEST.in'
 writing manifest file 'smoothprogressbar.egg-info/SOURCES.txt'
 running build_ext
 ============================= test session starts ==============================
 platform linux -- Python 3.6.5, pytest-3.5.1, py-1.5.3, pluggy-0.6.0 -- /usr/bin/python3
 cachedir: .pytest_cache
 rootdir: /home/ko4la/GIT/smooth-progressbar, inifile: setup.cfg
-collecting ... collected 26 items
+collecting ... collected 23 items
 
-tests/test_doctest.py::RunDocTest::test_mod___about__.py PASSED          [  3%]
-tests/test_doctest.py::RunDocTest::test_mod___config__.py PASSED         [  7%]
-tests/test_doctest.py::RunDocTest::test_mod___init__.py PASSED           [ 11%]
-tests/test_doctest.py::RunDocTest::test_mod_console.py PASSED            [ 15%]
-tests/test_doctest.py::RunDocTest::test_mod_consoleprgbr.py PASSED       [ 19%]
-tests/test_doctest.py::RunDocTest::test_mod_consoleprogress.py PASSED    [ 23%]
-tests/test_doctest.py::RunDocTest::test_mod_consolestring.py PASSED      [ 26%]
-tests/test_doctest.py::RunDocTest::test_mod_elapse.py PASSED             [ 30%]
-tests/test_doctest.py::RunDocTest::test_mod_multithreading.py PASSED     [ 34%]
-tests/test_doctest.py::RunDocTest::test_mod_percent.py PASSED            [ 38%]
-tests/test_doctest.py::RunDocTest::test_mod_prgbr.py PASSED              [ 42%]
-tests/test_pycodestyle.py::RunPyCodeStyle::test___about__.py PASSED      [ 46%]
-tests/test_pycodestyle.py::RunPyCodeStyle::test___config__.py PASSED     [ 50%]
-tests/test_pycodestyle.py::RunPyCodeStyle::test___init__.py PASSED       [ 53%]
-tests/test_pycodestyle.py::RunPyCodeStyle::test_console.py PASSED        [ 57%]
-tests/test_pycodestyle.py::RunPyCodeStyle::test_consoleprgbr.py PASSED   [ 61%]
-tests/test_pycodestyle.py::RunPyCodeStyle::test_consoleprogress.py PASSED [ 65%]
-tests/test_pycodestyle.py::RunPyCodeStyle::test_consolestring.py PASSED  [ 69%]
-tests/test_pycodestyle.py::RunPyCodeStyle::test_elapse.py PASSED         [ 73%]
-tests/test_pycodestyle.py::RunPyCodeStyle::test_multithreading.py PASSED [ 76%]
-tests/test_pycodestyle.py::RunPyCodeStyle::test_percent.py PASSED        [ 80%]
-tests/test_pycodestyle.py::RunPyCodeStyle::test_prgbr.py PASSED          [ 84%]
-tests/test_pycodestyle.py::RunPyCodeStyle::test_run_it.py PASSED         [ 88%]
-tests/test_pycodestyle.py::RunPyCodeStyle::test_setup.py PASSED          [ 92%]
-tests/test_pycodestyle.py::RunPyCodeStyle::test_test_doctest.py PASSED   [ 96%]
+tests/test_doctest.py::RunDocTest::test_mod_console.py PASSED            [  4%]
+tests/test_doctest.py::RunDocTest::test_mod_consoleprgbr.py PASSED       [  8%]
+tests/test_doctest.py::RunDocTest::test_mod_consoleprogress.py PASSED    [ 13%]
+tests/test_doctest.py::RunDocTest::test_mod_consolestring.py PASSED      [ 17%]
+tests/test_doctest.py::RunDocTest::test_mod_elapse.py PASSED             [ 21%]
+tests/test_doctest.py::RunDocTest::test_mod_multithreading.py PASSED     [ 26%]
+tests/test_doctest.py::RunDocTest::test_mod_percent.py PASSED            [ 30%]
+tests/test_doctest.py::RunDocTest::test_mod_prgbr.py PASSED              [ 34%]
+tests/test_pycodestyle.py::RunPyCodeStyle::test___about__.py PASSED      [ 39%]
+tests/test_pycodestyle.py::RunPyCodeStyle::test___config__.py PASSED     [ 43%]
+tests/test_pycodestyle.py::RunPyCodeStyle::test___init__.py PASSED       [ 47%]
+tests/test_pycodestyle.py::RunPyCodeStyle::test_console.py PASSED        [ 52%]
+tests/test_pycodestyle.py::RunPyCodeStyle::test_consoleprgbr.py PASSED   [ 56%]
+tests/test_pycodestyle.py::RunPyCodeStyle::test_consoleprogress.py PASSED [ 60%]
+tests/test_pycodestyle.py::RunPyCodeStyle::test_consolestring.py PASSED  [ 65%]
+tests/test_pycodestyle.py::RunPyCodeStyle::test_elapse.py PASSED         [ 69%]
+tests/test_pycodestyle.py::RunPyCodeStyle::test_multithreading.py PASSED [ 73%]
+tests/test_pycodestyle.py::RunPyCodeStyle::test_percent.py PASSED        [ 78%]
+tests/test_pycodestyle.py::RunPyCodeStyle::test_prgbr.py PASSED          [ 82%]
+tests/test_pycodestyle.py::RunPyCodeStyle::test_run_it.py PASSED         [ 86%]
+tests/test_pycodestyle.py::RunPyCodeStyle::test_setup.py PASSED          [ 91%]
+tests/test_pycodestyle.py::RunPyCodeStyle::test_test_doctest.py PASSED   [ 95%]
 tests/test_pycodestyle.py::RunPyCodeStyle::test_test_pycodestyle.py PASSED [100%]
 
-========================== 26 passed in 3.48 seconds ===========================
+========================== 23 passed in 3.85 seconds ===========================

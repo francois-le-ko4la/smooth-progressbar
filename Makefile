@@ -22,20 +22,21 @@ uninstall:
 	sudo -H pip3 uninstall -y $(PACKAGE_NAME)
 
 install:
-	@sudo ./setup.py install
+	@./setup.py sdist bdist_wheel
+	@sudo -H pip3 install . --upgrade
 
 dev:
-	@sudo python3 setup.py develop
+	@sudo -H pip3 install -e .
 
 clean:
-	@sudo rm -Rf *.egg *.egg-info .cache .coverage .tox build dist docs/build htmlcov .pytest_cache
+	@sudo rm -Rf .eggs *.egg-info .cache .coverage .tox build dist docs/build htmlcov .pytest_cache
 	@sudo find -depth -type d -name __pycache__ -exec rm -Rf {} \;
 	@sudo find -type f -name '*.pyc' -delete
 
 doc:
 	@pyreverse $(PACKAGE_DIR) -f ALL -o png -p $(PACKAGE_NAME)
 	@mv *.png pictures/
-	@export_docstring2md.py -i $(PACKAGE_DIR) -o README.md -r requirements.txt -t runtime.txt -u pictures/classes_$(PACKAGE_NAME).png
+	@export_docstring2md.py -i $(PACKAGE_DIR) -o README.md -t runtime.txt -u pictures/classes_$(PACKAGE_NAME).png
 
 release:
 	@$(MAKE) clean
@@ -44,7 +45,6 @@ release:
 
 publish:
 	@$(MAKE) test
-	@pipreqs .
 	@git add .
 	@git commit
 	@git push

@@ -81,6 +81,7 @@ class SmoothProgressBar(object):
         self.__updated = True
         self.__percent.part = value
         self.__msg = msg
+        # self.__refresh()
 
     def __refresh(self):
         if self.__updated is not True:
@@ -100,7 +101,9 @@ class SmoothProgressBar(object):
                 self.__msg,
                 str(self.__elapse)
             ).get()
-        ).print()
+        )
+        self.__console.goback()
+        self.__console.print()
         self.__updated = False
         self.__lock.release()
 

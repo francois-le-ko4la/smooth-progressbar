@@ -14,7 +14,7 @@
 
 
 THEME = {
-    "refresh_time": 0.25,
+    "refresh_time": 0.1,
     "done": '#',
     "not_done": '.',
     "beggining": '[',

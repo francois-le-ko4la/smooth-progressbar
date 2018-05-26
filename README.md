@@ -76,18 +76,11 @@ my_progressbar.stop()
 ## License
 
 This package is distributed under the [GPLv3 license](./LICENSE)
-## Dev notes
+
 ### Runtime
 
 ```
 python-3.6.x
-
-```
-### Requirements
-
-```
-pycodestyle>=2.3.1
-setuptools>=36.2.7
 
 ```
 ### UML Diagram
@@ -95,57 +88,42 @@ setuptools>=36.2.7
 
 ### Objects
 [Console()](#console)<br />
-[@Property: Console.size](#property-consolesize)<br />
-[Console.addmsg(self, msg)](#consoleaddmsgself-msg)<br />
-[Console.addtab(self)](#consoleaddtabself)<br />
-[Console.emptyline(self)](#consoleemptylineself)<br />
-[Console.goback(self)](#consolegobackself)<br />
-[Console.newline(self)](#consolenewlineself)<br />
-[Console.print(self)](#consoleprintself)<br />
+[@Property Console.size](#property-consolesize)<br />
+[Console.addmsg()](#consoleaddmsg)<br />
+[Console.emptyline()](#consoleemptyline)<br />
+[Console.addtab()](#consoleaddtab)<br />
+[Console.goback()](#consolegoback)<br />
+[Console.newline()](#consolenewline)<br />
+[Console.print()](#consoleprint)<br />
+[ConsolePrgBr()](#consoleprgbr)<br />
+[ConsolePrgBr.update()](#consoleprgbrupdate)<br />
+[ConsolePrgBr.get()](#consoleprgbrget)<br />
 [ConsoleProgress()](#consoleprogress)<br />
-[ConsoleProgress.update(self, size, ratio)](#consoleprogressupdateself-size-ratio)<br />
-[ConsoleString.align_left(self)](#consolestringalign_leftself)<br />
-[ConsoleString.align_right(self)](#consolestringalign_rightself)<br />
+[ConsoleProgress.update()](#consoleprogressupdate)<br />
 [ConsoleString()](#consolestring)<br />
-[@Property: ConsoleString.current_text_size](#property-consolestringcurrent_text_size)<br />
-[@Property: ConsoleString.enable](#property-consolestringenable)<br />
-[@Property: ConsoleString.max_size](#property-consolestringmax_size)<br />
-[@Property: ConsoleString.max_text_size](#property-consolestringmax_text_size)<br />
-[@Property: ConsoleString.tag_size](#property-consolestringtag_size)<br />
-[ConsoleString.align_left(self)](#consolestringalign_leftself)<br />
-[ConsoleString.align_right(self)](#consolestringalign_rightself)<br />
-[ConsoleString.update(self, text=None, max_size=None, tag_beg=None, tag_end=None)](#consolestringupdateself-textnone-max_sizenone-tag_begnone-tag_endnone)<br />
+[@Property ConsoleString.enable](#property-consolestringenable)<br />
+[@Property ConsoleString.max_size](#property-consolestringmax_size)<br />
+[@Property ConsoleString.tag_size](#property-consolestringtag_size)<br />
+[@Property ConsoleString.max_text_size](#property-consolestringmax_text_size)<br />
+[@Property ConsoleString.current_text_size](#property-consolestringcurrent_text_size)<br />
+[ConsoleString.align_left()](#consolestringalign_left)<br />
+[ConsoleString.align_right()](#consolestringalign_right)<br />
+[ConsoleString.update()](#consolestringupdate)<br />
 [ElapseTime()](#elapsetime)<br />
-[ElapseTime.start(self)](#elapsetimestartself)<br />
+[ElapseTime.start()](#elapsetimestart)<br />
 [MultiThread()](#multithread)<br />
-[@Property: MultiThread.func](#property-multithreadfunc)<br />
-[MultiThread.run(self)](#multithreadrunself)<br />
-[MultiThread.stop(self)](#multithreadstopself)<br />
-[Thread._bootstrap(self)](#thread_bootstrapself)<br />
-[Thread._bootstrap_inner(self)](#thread_bootstrap_innerself)<br />
-[Thread._delete(self)](#thread_deleteself)<br />
-[Thread._reset_internal_locks(self, is_alive)](#thread_reset_internal_locksself-is_alive)<br />
-[Thread._set_ident(self)](#thread_set_identself)<br />
-[Thread._set_tstate_lock(self)](#thread_set_tstate_lockself)<br />
-[Thread._stop(self)](#thread_stopself)<br />
-[Thread._wait_for_tstate_lock(self, block=True, timeout=-1)](#thread_wait_for_tstate_lockself-blocktrue-timeout-1)<br />
-[Thread.getName(self)](#threadgetnameself)<br />
-[Thread.isDaemon(self)](#threadisdaemonself)<br />
-[Thread.is_alive(self)](#threadis_aliveself)<br />
-[Thread.join(self, timeout=None)](#threadjoinself-timeoutnone)<br />
-[Thread.setDaemon(self, daemonic)](#threadsetdaemonself-daemonic)<br />
-[Thread.setName(self, name)](#threadsetnameself-name)<br />
-[Thread.start(self)](#threadstartself)<br />
+[@Property MultiThread.func](#property-multithreadfunc)<br />
+[MultiThread.run()](#multithreadrun)<br />
+[MultiThread.stop()](#multithreadstop)<br />
 [Percent()](#percent)<br />
-[@Property: Percent.part](#property-percentpart)<br />
-[@Property: Percent.value](#property-percentvalue)<br />
-[@Property: Percent.whole](#property-percentwhole)<br />
+[@Property Percent.whole](#property-percentwhole)<br />
+[@Property Percent.part](#property-percentpart)<br />
+[@Property Percent.value](#property-percentvalue)<br />
 [SmoothProgressBar()](#smoothprogressbar)<br />
-[@Property: SmoothProgressBar.msg](#property-smoothprogressbarmsg)<br />
-[SmoothProgressBar.start(self, max_value)](#smoothprogressbarstartself-max_value)<br />
-[SmoothProgressBar.stop(self)](#smoothprogressbarstopself)<br />
-[SmoothProgressBar.update(self, value, msg='')](#smoothprogressbarupdateself-value-msg)<br />
-
+[@Property SmoothProgressBar.msg](#property-smoothprogressbarmsg)<br />
+[SmoothProgressBar.start()](#smoothprogressbarstart)<br />
+[SmoothProgressBar.stop()](#smoothprogressbarstop)<br />
+[SmoothProgressBar.update()](#smoothprogressbarupdate)<br />
 
 #### Console()
 ```python
@@ -164,56 +142,112 @@ Use:
     LOREM
 ```
 
-##### @Property: Console.size
+##### @Property Console.size
 ```python
 @property
 def Console.size(self):
-
 ```
 > <br />
 > screen size (columns)<br />
 > <br />
-##### Console.addmsg(self, msg)
+##### Console.addmsg()
 ```python
+
 def Console.addmsg(self, msg):
 ```
 > <br />
 > store a message<br />
 > <br />
-##### Console.addtab(self)
+##### Console.emptyline()
 ```python
-def Console.addtab(self):
-```
-> <br />
-> store a tab<br />
-> <br />
-##### Console.emptyline(self)
-```python
+
 def Console.emptyline(self):
 ```
 > <br />
 > store an empty line<br />
 > <br />
-##### Console.goback(self)
+##### Console.addtab()
 ```python
+
+def Console.addtab(self):
+```
+> <br />
+> store a tab<br />
+> <br />
+##### Console.goback()
+```python
+
 def Console.goback(self):
 ```
 > <br />
 > store a goback caracter<br />
 > <br />
-##### Console.newline(self)
+##### Console.newline()
 ```python
+
 def Console.newline(self):
 ```
 > <br />
 > store a new line<br />
 > <br />
-##### Console.print(self)
+##### Console.print()
 ```python
+
 def Console.print(self):
 ```
 > <br />
 > print the buffer<br />
+> <br />
+#### ConsolePrgBr()
+```python
+class ConsolePrgBr(object):
+```
+
+```
+This class print all components according to parameters.
+
+Use:
+>>> from smoothprogressbar.percent import Percent
+>>> from smoothprogressbar.elapse import ElapseTime
+>>> size = 40
+>>> percent = Percent(10)
+>>> percent.part = 2
+>>> msg = "lorem ipsum dolor sit amet consectetur adipiscing elit"
+>>> elapse = ElapseTime()
+>>> elapse.start()
+>>> prgbr = ConsolePrgBr(debug=True)
+>>> prgbr.update(size, percent, msg, str(elapse)).get()
+'Processing: [ 20.0%] [...] 0:00:00 lorem'
+>>> size = 70
+>>> prgbr = ConsolePrgBr(debug=True)
+>>> prgbr.update(size, percent, msg, str(elapse)).get()
+'Processing: [ 20.0%] [###...............] 0:00:00 lorem ipsum dolor si'
+>>> prgbr = ConsolePrgBr(enable_elapse=False, enable_msg=False, debug=True)
+>>> prgbr.update(size, percent, msg, str(elapse)).get()
+'Processing: [ 20.0%] [#########......................................]'
+>>> prgbr = ConsolePrgBr(enable_elapse=True, enable_msg=False, debug=True)
+>>> prgbr.update(size, percent, msg, str(elapse)).get()
+'Processing: [ 20.0%] [#######................................] 0:00:00'
+>>> prgbr = ConsolePrgBr(enable_elapse=False, enable_msg=True, debug=True)
+>>> prgbr.update(size, percent, msg, str(elapse)).get()
+'Processing: [ 20.0%] [####..................] lorem ipsum dolor sit am'
+```
+
+##### ConsolePrgBr.update()
+```python
+
+def ConsolePrgBr.update(self, size, percent, msg=, elapse=):
+```
+> <br />
+> Update() the progress bar<br />
+> <br />
+##### ConsolePrgBr.get()
+```python
+
+def ConsolePrgBr.get(self):
+```
+> <br />
+> Get the string<br />
 > <br />
 #### ConsoleProgress()
 ```python
@@ -233,26 +267,13 @@ Use:
     12
 ```
 
-##### ConsoleProgress.update(self, size, ratio)
+##### ConsoleProgress.update()
 ```python
+
 def ConsoleProgress.update(self, size, ratio):
 ```
 > <br />
-> update the string<br />
-> <br />
-##### ConsoleString.align_left(self)
-```python
-def ConsoleString.align_left(self):
-```
-> <br />
-> Apply 'align-left' to the string<br />
-> <br />
-##### ConsoleString.align_right(self)
-```python
-def ConsoleString.align_right(self):
-```
-> <br />
-> Apply 'align-right' to the string<br />
+> None<br />
 > <br />
 #### ConsoleString()
 ```python
@@ -325,70 +346,66 @@ Use:
     '*** lorem ipsum'
 ```
 
-##### @Property: ConsoleString.current_text_size
+##### @Property ConsoleString.enable
+```python
+@property
+def ConsoleString.enable(self):
+```
+> <br />
+> Enable object<br />
+> <br />
+##### @Property ConsoleString.max_size
+```python
+@property
+def ConsoleString.max_size(self):
+```
+> <br />
+> string max size<br />
+> <br />
+##### @Property ConsoleString.tag_size
+```python
+@property
+def ConsoleString.tag_size(self):
+```
+> <br />
+> Tag size<br />
+> <br />
+##### @Property ConsoleString.max_text_size
+```python
+@property
+def ConsoleString.max_text_size(self):
+```
+> <br />
+> Tag size setter<br />
+> <br />
+##### @Property ConsoleString.current_text_size
 ```python
 @property
 def ConsoleString.current_text_size(self):
-
 ```
 > <br />
 > Text size according to text_size and max_text_size<br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  min(text_size, len(text))<br />
 > <br />
-##### @Property: ConsoleString.enable
+##### ConsoleString.align_left()
 ```python
-@property
-def ConsoleString.enable(self):
 
-```
-> <br />
-> Enable object<br />
-> <br />
-##### @Property: ConsoleString.max_size
-```python
-@property
-def ConsoleString.max_size(self):
-@max_size.setter
-def ConsoleString.max_size(self, value):
-
-```
-> <br />
-> string max size<br />
-> <br />
-##### @Property: ConsoleString.max_text_size
-```python
-@property
-def ConsoleString.max_text_size(self):
-
-```
-> <br />
-> Tag size setter<br />
-> <br />
-##### @Property: ConsoleString.tag_size
-```python
-@property
-def ConsoleString.tag_size(self):
-
-```
-> <br />
-> Tag size<br />
-> <br />
-##### ConsoleString.align_left(self)
-```python
 def ConsoleString.align_left(self):
 ```
 > <br />
 > Apply 'align-left' to the string<br />
 > <br />
-##### ConsoleString.align_right(self)
+##### ConsoleString.align_right()
 ```python
+
 def ConsoleString.align_right(self):
 ```
 > <br />
 > Apply 'align-right' to the string<br />
 > <br />
-##### ConsoleString.update(self, text=None, max_size=None, tag_beg=None, tag_end=None)
+##### ConsoleString.update()
 ```python
+
 def ConsoleString.update(self, text=None, max_size=None, tag_beg=None, tag_end=None):
 ```
 > <br />
@@ -421,8 +438,9 @@ Use:
     '0:00:02'
 ```
 
-##### ElapseTime.start(self)
+##### ElapseTime.start()
 ```python
+
 def ElapseTime.start(self):
 ```
 > <br />
@@ -440,7 +458,14 @@ class MultiThread(Thread):
 ```
 
 ```
+A class that represents a thread of control.
+This class subclassed Thread class :
+    class Thread(builtins.object)
+
+We specify the activity by passing a callable object to the constructor.
+
 Use:
+    >>> import time
     >>> def mytask(): print("lorem ipsum dolor sit amet consectetur")
     >>> mthr = MultiThread(mytask, 0.1)
     >>> mthr.start() ; print("other task");time.sleep(0.3) ; mthr.stop()
@@ -448,172 +473,53 @@ Use:
     other task
     lorem ipsum dolor sit amet consectetur
     lorem ipsum dolor sit amet consectetur
-    lorem ipsum dolor sit amet consectetur
 ```
 
-##### @Property: MultiThread.func
+##### @Property MultiThread.func
 ```python
 @property
 def MultiThread.func(self):
-
 ```
 > <br />
-> define the func called by the Thread<br />
+> Returns the callable object defined by Thread constructor.<br />
 > <br />
-##### MultiThread.run(self)
+> <b>Args:</b><br />
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  None.<br />
+> <br />
+> <b>Returns:</b><br />
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  callable object<br />
+> <br />
+##### MultiThread.run()
 ```python
+
 def MultiThread.run(self):
 ```
 > <br />
-> Method representing the thread's activity.<br />
+> Method (override) representing the thread's activity.<br />
+> This method will raise a RuntimeError if called more than once on the<br />
+> same thread object.<br />
 > <br />
-> You may override this method in a subclass. The standard run() method<br />
-> invokes the callable object passed to the object's constructor as the<br />
-> target argument, if any, with sequential and keyword arguments taken<br />
-> from the args and kwargs arguments, respectively.<br />
+> <b>Args:</b><br />
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  None.<br />
 > <br />
-##### MultiThread.stop(self)
+> <b>Returns:</b><br />
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  None.<br />
+> <br />
+##### MultiThread.stop()
 ```python
+
 def MultiThread.stop(self):
 ```
 > <br />
-> Stop the Thread<br />
-> <br />
-##### Thread._bootstrap(self)
-```python
-def Thread._bootstrap(self):
-```
-> <br />
-> Docstring empty<br />
-> <br />
-##### Thread._bootstrap_inner(self)
-```python
-def Thread._bootstrap_inner(self):
-```
-> <br />
-> Docstring empty<br />
-> <br />
-##### Thread._delete(self)
-```python
-def Thread._delete(self):
-```
-> <br />
-> Remove current thread from the dict of currently running threads.<br />
-> <br />
-##### Thread._reset_internal_locks(self, is_alive)
-```python
-def Thread._reset_internal_locks(self, is_alive):
-```
-> <br />
-> Docstring empty<br />
-> <br />
-##### Thread._set_ident(self)
-```python
-def Thread._set_ident(self):
-```
-> <br />
-> Docstring empty<br />
-> <br />
-##### Thread._set_tstate_lock(self)
-```python
-def Thread._set_tstate_lock(self):
-```
-> <br />
-> Set a lock object which will be released by the interpreter when<br />
-> the underlying thread state (see pystate.h) gets deleted.<br />
-> <br />
-##### Thread._stop(self)
-```python
-def Thread._stop(self):
-```
-> <br />
-> Docstring empty<br />
-> <br />
-##### Thread._wait_for_tstate_lock(self, block=True, timeout=-1)
-```python
-def Thread._wait_for_tstate_lock(self, block=True, timeout=-1):
-```
-> <br />
-> Docstring empty<br />
-> <br />
-##### Thread.getName(self)
-```python
-def Thread.getName(self):
-```
-> <br />
-> Docstring empty<br />
-> <br />
-##### Thread.isDaemon(self)
-```python
-def Thread.isDaemon(self):
-```
-> <br />
-> Docstring empty<br />
-> <br />
-##### Thread.is_alive(self)
-```python
-def Thread.is_alive(self):
-```
-> <br />
-> Return whether the thread is alive.<br />
-> <br />
-> This method returns True just before the run() method starts until just<br />
-> after the run() method terminates. The module function enumerate()<br />
-> returns a list of all alive threads.<br />
-> <br />
-##### Thread.join(self, timeout=None)
-```python
-def Thread.join(self, timeout=None):
-```
-> <br />
 > Wait until the thread terminates.<br />
-> <br />
 > This blocks the calling thread until the thread whose join() method is<br />
-> called terminates -- either normally or through an unhandled exception<br />
-> or until the optional timeout occurs.<br />
+> called terminates -- either normally or through an unhandled exception.<br />
 > <br />
-> When the timeout argument is present and not None, it should be a<br />
-> floating point number specifying a timeout for the operation in seconds<br />
-> (or fractions thereof). As join() always returns None, you must call<br />
-> isAlive() after join() to decide whether a timeout happened -- if the<br />
-> thread is still alive, the join() call timed out.<br />
+> <b>Args:</b><br />
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  None.<br />
 > <br />
-> When the timeout argument is not present or None, the operation will<br />
-> block until the thread terminates.<br />
-> <br />
-> A thread can be join()ed many times.<br />
-> <br />
-> join() raises a RuntimeError if an attempt is made to join the current<br />
-> thread as that would cause a deadlock. It is also an error to join() a<br />
-> thread before it has been started and attempts to do so raises the same<br />
-> exception.<br />
-> <br />
-##### Thread.setDaemon(self, daemonic)
-```python
-def Thread.setDaemon(self, daemonic):
-```
-> <br />
-> Docstring empty<br />
-> <br />
-##### Thread.setName(self, name)
-```python
-def Thread.setName(self, name):
-```
-> <br />
-> Docstring empty<br />
-> <br />
-##### Thread.start(self)
-```python
-def Thread.start(self):
-```
-> <br />
-> Start the thread's activity.<br />
-> <br />
-> It must be called at most once per thread object. It arranges for the<br />
-> object's run() method to be invoked in a separate thread of control.<br />
-> <br />
-> This method will raise a RuntimeError if called more than once on the<br />
-> same thread object.<br />
+> <b>Returns:</b><br />
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  None.<br />
 > <br />
 #### Percent()
 ```python
@@ -669,34 +575,29 @@ Use:
     100.0%-1.0
 ```
 
-##### @Property: Percent.part
-```python
-@property
-def Percent.part(self):
-@part.setter
-def Percent.part(self, value):
-
-```
-> <br />
-> X% = 100 * (part / whole)<br />
-> <br />
-##### @Property: Percent.value
-```python
-@property
-def Percent.value(self):
-
-```
-> <br />
-> value = X%/100 = part / whole<br />
-> <br />
-##### @Property: Percent.whole
+##### @Property Percent.whole
 ```python
 @property
 def Percent.whole(self):
-
 ```
 > <br />
 > X% = 100 * (part / whole)<br />
+> <br />
+##### @Property Percent.part
+```python
+@property
+def Percent.part(self):
+```
+> <br />
+> X% = 100 * (part / whole)<br />
+> <br />
+##### @Property Percent.value
+```python
+@property
+def Percent.value(self):
+```
+> <br />
+> value = X%/100 = part / whole<br />
 > <br />
 #### SmoothProgressBar()
 ```python
@@ -709,36 +610,37 @@ This class use all others component to manage the progressbar.
 Use:
 ```
 
-##### @Property: SmoothProgressBar.msg
+##### @Property SmoothProgressBar.msg
 ```python
 @property
 def SmoothProgressBar.msg(self):
-@msg.setter
-def SmoothProgressBar.msg(self, msg):
-
 ```
 > <br />
 > Message<br />
 > <br />
-##### SmoothProgressBar.start(self, max_value)
+##### SmoothProgressBar.start()
 ```python
+
 def SmoothProgressBar.start(self, max_value):
 ```
 > <br />
 > start the progress bar<br />
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  init percent(), screen size, elapse & multithreading<br />
 > <br />
-##### SmoothProgressBar.stop(self)
+##### SmoothProgressBar.stop()
 ```python
+
 def SmoothProgressBar.stop(self):
 ```
 > <br />
 > stop the progress bar<br />
 > <br />
-##### SmoothProgressBar.update(self, value, msg='')
+##### SmoothProgressBar.update()
 ```python
-def SmoothProgressBar.update(self, value, msg=''):
+
+def SmoothProgressBar.update(self, value, msg=):
 ```
 > <br />
 > update the progressbar<br />
 > <br />
+

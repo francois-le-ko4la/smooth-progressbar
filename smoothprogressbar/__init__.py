@@ -45,19 +45,27 @@ my_progressbar.stop()
 ├── last_check.log
 ├── LICENSE
 ├── Makefile
-├── MANIFEST.in
 ├── pictures
 │   ├── classes_smooth-progressbar.png
-│   └── packages_smooth-progressbar.png
+│   ├── classes_smoothprogressbar.png
+│   ├── packages_smooth-progressbar.png
+│   └── packages_smoothprogressbar.png
 ├── README.md
-├── requirements.txt
 ├── runtime.txt
 ├── setup.cfg
 ├── setup.py
-├── smooth_progressbar
+├── smoothprogressbar
 │   ├── __about__.py
+│   ├── __config__.py
+│   ├── consoleprgbr.py
+│   ├── consoleprogress.py
+│   ├── console.py
+│   ├── consolestring.py
+│   ├── elapse.py
 │   ├── __init__.py
-│   └── progressbar.py
+│   ├── multithreading.py
+│   ├── percent.py
+│   └── prgbr.py
 └── tests
     ├── run_it.py
     ├── test_doctest.py

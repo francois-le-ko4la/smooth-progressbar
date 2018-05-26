@@ -11,6 +11,7 @@
 
 """
 
+import shutil
 import subprocess
 import sys
 from smoothprogressbar.__config__ import THEME
@@ -40,15 +41,7 @@ class Console(object):
         """
         screen size (columns)
         """
-        cur_proc = subprocess.Popen(
-            'stty size',
-            stdout=subprocess.PIPE,
-            shell=True
-        )
-        (output, err) = cur_proc.communicate()
-        p_status = cur_proc.wait()
-        self.__rows, self.__columns = output.split()
-        return int(self.__columns.decode('UTF-8'))
+        return int(shutil.get_terminal_size().columns)
 
     def addmsg(self, msg):
         """
