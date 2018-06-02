@@ -23,10 +23,10 @@ uninstall:
 
 install:
 	@./setup.py sdist bdist_wheel
-	@sudo -H pip3 install . --upgrade
+	@sudo -H pip3 install --extra-index-url https://francois-le-ko4la.github.io/pep-503/ . --upgrade
 
 dev:
-	@sudo -H pip3 install -e .
+	@sudo -H pip3 install --extra-index-url https://francois-le-ko4la.github.io/pep-503/ -e .
 
 clean:
 	@sudo rm -Rf .eggs *.egg-info .cache .coverage .tox build dist docs/build htmlcov .pytest_cache
