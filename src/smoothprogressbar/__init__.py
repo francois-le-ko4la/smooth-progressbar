@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""smooth-progressbar.
+# noqa: D205,D400
+"""
+smooth-progressbar:
 
     [![badge](https://forthebadge.com/images/badges/made-with-python.svg)]()
     ![](./doc/pycodestyle-passing.svg)

@@ -1,4 +1,5 @@
 # smooth-progressbar:
+
 [![badge](https://forthebadge.com/images/badges/made-with-python.svg)]()
 ![](./doc/pycodestyle-passing.svg)
 ![](./doc/pylint-passing.svg)
@@ -394,7 +395,7 @@ classDiagram
     finished
     function
     interval
-    kwargs : dict, NoneType
+    kwargs : NoneType, dict
     cancel()
     run()
   }
