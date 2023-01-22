@@ -37,6 +37,9 @@ for i in range(1, 11):
 my_progressbar.stop()
 ```
 
+# Compatibility:
+Python 3.7+
+
 # Setup:
 - User:
 
@@ -102,7 +105,7 @@ version = "0.3.0"
 authors = [
   {name = "ko4la" }
 ]
-description = "Docstring extractor to generate readme."
+description = "Smoothprogressbar."
 license = {file = "LICENSE"}
 readme = "README.md"
 requires-python = ">=3.7"
@@ -138,6 +141,9 @@ dev = [
     "types-setuptools",
     "types-PyYAML"]
 
+[project.urls]
+"Homepage" = "https://github.com/francois-le-ko4la/smooth-progressbar"
+
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
@@ -158,8 +164,8 @@ xfail_strict = true
 filterwarnings = [
     "ignore:.*U.*mode is deprecated:DeprecationWarning",
     "ignore::DeprecationWarning"]
+
 [tool.mypy]
-mypy_path = "stubs/"
 disallow_any_generics = true
 disallow_untyped_defs = true
 warn_redundant_casts = true
@@ -395,7 +401,7 @@ classDiagram
     finished
     function
     interval
-    kwargs : NoneType, dict
+    kwargs : dict, NoneType
     cancel()
     run()
   }
@@ -445,7 +451,6 @@ classDiagram
 
 [Theme()](#theme)<br />
 [Console()](#console)<br />
-[Console.__init__()](#consoleinit)<br />
 [@Property Console.size()](#property-consolesize)<br />
 [Console.addmsg()](#consoleaddmsg)<br />
 [Console.emptyline()](#consoleemptyline)<br />
@@ -454,16 +459,11 @@ classDiagram
 [Console.newline()](#consolenewline)<br />
 [Console.print()](#consoleprint)<br />
 [ConsolePrgBr()](#consoleprgbr)<br />
-[ConsolePrgBr.__init__()](#consoleprgbrinit)<br />
 [ConsolePrgBr.update()](#consoleprgbrupdate)<br />
 [ConsolePrgBr.get()](#consoleprgbrget)<br />
-[ConsolePrgBr.__repr__()](#consoleprgbrrepr)<br />
-[ConsolePrgBr.__str__()](#consoleprgbrstr)<br />
 [ConsoleProgress()](#consoleprogress)<br />
-[ConsoleProgress.__init__()](#consoleprogressinit)<br />
 [ConsoleProgress.update()](#consoleprogressupdate)<br />
 [ConsoleString()](#consolestring)<br />
-[ConsoleString.__init__()](#consolestringinit)<br />
 [@Property ConsoleString.enable()](#property-consolestringenable)<br />
 [@Property ConsoleString.max_size()](#property-consolestringmax_size)<br />
 [ConsoleString.max_size()](#consolestringmax_size)<br />
@@ -473,36 +473,23 @@ classDiagram
 [ConsoleString.align_left()](#consolestringalign_left)<br />
 [ConsoleString.align_right()](#consolestringalign_right)<br />
 [ConsoleString.update()](#consolestringupdate)<br />
-[ConsoleString.__len__()](#consolestringlen)<br />
-[ConsoleString.__repr__()](#consolestringrepr)<br />
-[ConsoleString.__str__()](#consolestringstr)<br />
 [ElapseTime()](#elapsetime)<br />
-[ElapseTime.__init__()](#elapsetimeinit)<br />
 [ElapseTime.start()](#elapsetimestart)<br />
-[ElapseTime.__repr__()](#elapsetimerepr)<br />
-[ElapseTime.__str__()](#elapsetimestr)<br />
 [MultiThread()](#multithread)<br />
-[MultiThread.__init__()](#multithreadinit)<br />
 [@Property MultiThread.func()](#property-multithreadfunc)<br />
 [MultiThread.run()](#multithreadrun)<br />
 [MultiThread.stop()](#multithreadstop)<br />
 [Percent()](#percent)<br />
-[Percent.__new__()](#percentnew)<br />
-[Percent.__init__()](#percentinit)<br />
 [@Property Percent.whole()](#property-percentwhole)<br />
 [@Property Percent.part()](#property-percentpart)<br />
 [Percent.part()](#percentpart)<br />
 [@Property Percent.value()](#property-percentvalue)<br />
-[Percent.__repr__()](#percentrepr)<br />
-[Percent.__str__()](#percentstr)<br />
 [SmoothProgressBar()](#smoothprogressbar)<br />
-[SmoothProgressBar.__init__()](#smoothprogressbarinit)<br />
 [@Property SmoothProgressBar.msg()](#property-smoothprogressbarmsg)<br />
 [SmoothProgressBar.msg()](#smoothprogressbarmsg)<br />
 [SmoothProgressBar.start()](#smoothprogressbarstart)<br />
 [SmoothProgressBar.stop()](#smoothprogressbarstop)<br />
 [SmoothProgressBar.update()](#smoothprogressbarupdate)<br />
-[SmoothProgressBar.__refresh()](#smoothprogressbar__refresh)<br />
 ### Theme()
 ```python
 class Theme(Enum):
@@ -527,15 +514,6 @@ This Class provides a simple way to manage the screen.
     >>> c.addmsg("lorem ipsum dolor").newline().addmsg("LOREM").print()
     lorem ipsum dolor
     LOREM
-
-</pre>
-#### Console.__init__()
-```python
-def Console.__init__(self) -> None:
-```
-<pre>
-
-Init.
 
 </pre>
 #### @Property Console.size()
@@ -637,18 +615,9 @@ This class print all components according to parameters.
 'Processing: [ 20.0%] [####..................] lorem ipsum dolor sit am'
 
 </pre>
-#### ConsolePrgBr.__init__()
-```python
-def ConsolePrgBr.__init__(self, enable_elapse: bool = True, enable_msg: bool = True, debug: bool = False) -> None:
-```
-<pre>
-
-Init.
-
-</pre>
 #### ConsolePrgBr.update()
 ```python
-def ConsolePrgBr.update(self, size: int, percent: Percent, msg: str = , elapse: str = ) -> ConsolePrgBr:
+def ConsolePrgBr.update(self, size: int, percent: Percent, msg: str = "", elapse: str = "") -> ConsolePrgBr:
 ```
 <pre>
 
@@ -662,24 +631,6 @@ def ConsolePrgBr.get(self) -> str:
 <pre>
 
 Get the string.
-
-</pre>
-#### ConsolePrgBr.__repr__()
-```python
-def ConsolePrgBr.__repr__(self) -> str:
-```
-<pre>
-
-Get repr().
-
-</pre>
-#### ConsolePrgBr.__str__()
-```python
-def ConsolePrgBr.__str__(self) -> str:
-```
-<pre>
-
-Get str().
 
 </pre>
 ### ConsoleProgress()
@@ -700,15 +651,6 @@ Define ConsoleProgress.
     '[##########]'
     >>> len(c.update(12, 1))
     12
-
-</pre>
-#### ConsoleProgress.__init__()
-```python
-def ConsoleProgress.__init__(self, tag_beg: str = Theme.BEG, tag_end: str = Theme.END) -> None:
-```
-<pre>
-
-Init.
 
 </pre>
 #### ConsoleProgress.update()
@@ -786,15 +728,6 @@ fixed size.
     >>> txt = "lorem ipsum dolor sit amet consectetur adipiscing elit"
     >>> str(c.update(text=txt, max_size=15, tag_beg="*** "))
     '*** lorem ipsum'
-
-</pre>
-#### ConsoleString.__init__()
-```python
-def ConsoleString.__init__(self, text: str, max_size: int = 0, tag_beg: str = , tag_end: str = , enable: bool = True) -> None:
-```
-<pre>
-
-Init ConsoleString.
 
 </pre>
 #### @Property ConsoleString.enable()
@@ -884,33 +817,6 @@ def ConsoleString.update(self, text: Optional[str] = None, max_size: Optional[in
 Update the string.
 
 </pre>
-#### ConsoleString.__len__()
-```python
-def ConsoleString.__len__(self) -> int:
-```
-<pre>
-
-Get len().
-
-</pre>
-#### ConsoleString.__repr__()
-```python
-def ConsoleString.__repr__(self) -> str:
-```
-<pre>
-
-Get ConsoleString repr().
-
-</pre>
-#### ConsoleString.__str__()
-```python
-def ConsoleString.__str__(self) -> str:
-```
-<pre>
-
-Get ConsoleString str().
-
-</pre>
 ### ElapseTime()
 ```python
 class ElapseTime():
@@ -938,18 +844,6 @@ Calculate elapse time.
     '0:00:02'
 
 </pre>
-#### ElapseTime.__init__()
-```python
-def ElapseTime.__init__(self) -> None:
-```
-<pre>
-
-Init the default values.
-
-<b>Returns:</b>
-    obj
-
-</pre>
 #### ElapseTime.start()
 ```python
 def ElapseTime.start(self) -> None:
@@ -960,30 +854,6 @@ Store the current timestamp in self.__start_time.
 
 <b>Returns:</b>
     None
-
-</pre>
-#### ElapseTime.__repr__()
-```python
-def ElapseTime.__repr__(self) -> str:
-```
-<pre>
-
-Provide the string.
-
-<b>Returns:</b>
-    str: 'X:XX:XX'
-
-</pre>
-#### ElapseTime.__str__()
-```python
-def ElapseTime.__str__(self) -> str:
-```
-<pre>
-
-Call repr().
-
-<b>Returns:</b>
-    str: 'X:XX:XX'
 
 </pre>
 ### MultiThread()
@@ -1009,15 +879,6 @@ We specify the activity by passing a callable object to the constructor.
     other task
     lorem ipsum dolor sit amet consectetur
     lorem ipsum dolor sit amet consectetur
-
-</pre>
-#### MultiThread.__init__()
-```python
-def MultiThread.__init__(self, func: Callable[[], None], elapse: float) -> None:
-```
-<pre>
-
-Init.
 
 </pre>
 #### @Property MultiThread.func()
@@ -1099,24 +960,6 @@ Calc percent.
     100.0%-1.0
 
 </pre>
-#### Percent.__new__()
-```python
-def Percent.__new__(cls, whole: float) -> Percent:
-```
-<pre>
-
-Do new.
-
-</pre>
-#### Percent.__init__()
-```python
-def Percent.__init__(self, whole: int) -> None:
-```
-<pre>
-
-Init.
-
-</pre>
 #### @Property Percent.whole()
 ```python
 @property
@@ -1166,30 +1009,6 @@ Get Value.
     float: value = X%/100 = part / whole
 
 </pre>
-#### Percent.__repr__()
-```python
-def Percent.__repr__(self) -> str:
-```
-<pre>
-
-Get str.
-
-<b>Returns:</b>
-    str: "XXX.X%"
-
-</pre>
-#### Percent.__str__()
-```python
-def Percent.__str__(self) -> str:
-```
-<pre>
-
-Get str.
-
-<b>Returns:</b>
-    str: "XXX.X%"
-
-</pre>
 ### SmoothProgressBar()
 ```python
 class SmoothProgressBar():
@@ -1197,15 +1016,6 @@ class SmoothProgressBar():
 <pre>
 
 This class use all others component to manage the progressbar.
-
-</pre>
-#### SmoothProgressBar.__init__()
-```python
-def SmoothProgressBar.__init__(self, enable_elapse: bool = True, enable_msg: bool = True, debug: bool = False) -> None:
-```
-<pre>
-
-Init.
 
 </pre>
 #### @Property SmoothProgressBar.msg()
@@ -1250,19 +1060,10 @@ Stop the progress bar.
 </pre>
 #### SmoothProgressBar.update()
 ```python
-def SmoothProgressBar.update(self, value: int, msg: str = ) -> None:
+def SmoothProgressBar.update(self, value: int, msg: str = "") -> None:
 ```
 <pre>
 
 Update the progressbar.
-
-</pre>
-#### SmoothProgressBar.__refresh()
-```python
-def SmoothProgressBar.__refresh(self) -> None:
-```
-<pre>
-
-None
 
 </pre>

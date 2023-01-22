@@ -41,6 +41,9 @@ Use:
     my_progressbar.stop()
     ```
 
+Compatibility:
+    Python 3.7+
+
 Setup:
     - User:
 
