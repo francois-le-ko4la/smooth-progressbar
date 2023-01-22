@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-smooth-progressbar:
+"""smooth-progressbar.
+
     [![badge](https://forthebadge.com/images/badges/made-with-python.svg)]()
     ![](./doc/pycodestyle-passing.svg)
     ![](./doc/pylint-passing.svg)
