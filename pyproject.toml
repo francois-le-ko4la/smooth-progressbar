@@ -5,7 +5,7 @@ version = "0.3.0"
 authors = [
   {name = "ko4la" }
 ]
-description = "Docstring extractor to generate readme."
+description = "Smoothprogressbar."
 license = {file = "LICENSE"}
 readme = "README.md"
 requires-python = ">=3.7"
