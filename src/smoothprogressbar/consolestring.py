@@ -1,19 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
+# pylint: disable=too-many-arguments
+"""Define ConsoleString."""
 
-  ####    #####  #####      #    #    #   ####
- #          #    #    #     #    ##   #  #    #
-  ####      #    #    #     #    # #  #  #
-      #     #    #####      #    #  # #  #  ###
- #    #     #    #   #      #    #   ##  #    #
-  ####      #    #    #     #    #    #   ####
+from __future__ import annotations
 
-"""
+from typing import Optional
 
 
-class ConsoleString(object):
-    """
+class ConsoleString:
+    """Print messages.
+
     Console string is a string to print (stdout) with
     fixed size.
 
@@ -26,11 +23,6 @@ class ConsoleString(object):
         It's usefull to manage the screen size.
 
     Use:
-        >>> #oups
-        >>> c = ConsoleString("lorem", max_size="3")
-        Traceback (most recent call last):
-        ...
-        TypeError: invalid literal for int() with base 10: '3'
         >>> c = ConsoleString("lorem", max_size=3)
         >>> c
         lor
@@ -79,80 +71,66 @@ class ConsoleString(object):
         '*** lorem ipsum'
     """
 
-    def __init__(self, text, max_size=0, tag_beg="", tag_end="", enable=True):
-        self.__enable = enable
-        self.__align = "<"
-        self.__max_size = 0
-        self.max_size = max_size
-        self.text = text
-        self.tag_beg = tag_beg
-        self.tag_end = tag_end
+    def __init__(self, text: str, max_size: int = 0, tag_beg: str = "",
+                 tag_end: str = "", enable: bool = True) -> None:
+        """Init ConsoleString."""
+        self.__enable: bool = enable
+        self.__align: str = "<"
+        self.__max_size: int = 0
+        self.max_size: int = max_size
+        self.text: str = text
+        self.tag_beg: str = tag_beg
+        self.tag_end: str = tag_end
 
     @property
-    def enable(self):
-        """
-        Enable object
-        """
+    def enable(self) -> bool:
+        """Get enable."""
         return self.__enable
 
     @property
-    def max_size(self):
-        """
-        string max size
-        """
+    def max_size(self) -> int:
+        """Get max size."""
         return self.__max_size
 
     @max_size.setter
-    def max_size(self, value):
+    def max_size(self, value: int) -> None:
+        """Set max size."""
         if isinstance(value, int):
             self.__max_size = value
         else:
             raise TypeError(
-                "invalid literal for int() with base 10: '{}'".format(
-                    value
-                )
-            )
+                f"invalid literal for int() with base 10: '{value}'")
 
     @property
-    def tag_size(self):
-        """
-        Tag size
-        """
+    def tag_size(self) -> int:
+        """Get tag_size."""
         return len(self.tag_beg + self.tag_end)
 
     @property
-    def max_text_size(self):
-        """
-        Tag size setter
-        """
+    def max_text_size(self) -> int:
+        """Get max_text_size."""
         return max(0, int(self.max_size) - int(self.tag_size))
 
     @property
-    def current_text_size(self):
-        """
-        Text size according to text_size and max_text_size
-            min(text_size, len(text))
-        """
+    def current_text_size(self) -> int:
+        """Get current_text_size."""
         return min(self.max_text_size, len(self.text))
 
-    def align_left(self):
-        """
-        Apply 'align-left' to the string
-        """
+    def align_left(self) -> ConsoleString:
+        """Apply 'align-left' to the string."""
         self.__align = "<"
         return self
 
-    def align_right(self):
-        """
-        Apply 'align-right' to the string
-        """
+    def align_right(self) -> ConsoleString:
+        """Apply 'align-right' to the string."""
         self.__align = ">"
         return self
 
-    def update(self, text=None, max_size=None, tag_beg=None, tag_end=None):
-        """
-        update the string
-        """
+    def update(self, text: Optional[str] = None,
+               max_size: Optional[int] = None,
+               tag_beg: Optional[str] = None,
+               tag_end: Optional[str] = None) -> ConsoleString:
+        """Update the string."""
         if text is not None:
             self.text = text
         if max_size is not None:
@@ -163,19 +141,18 @@ class ConsoleString(object):
             self.tag_end = tag_end
         return self
 
-    def __len__(self):
+    def __len__(self) -> int:
+        """Get len()."""
         return len(str(self))
 
-    def __repr__(self):
-        result = '{0:{fill}{align}{size}}'.format(
-            self.tag_beg + self.text[0:self.current_text_size] + self.tag_end,
-            fill=" ",
-            align=self.__align,
-            size=self.max_size
-        )
+    def __repr__(self) -> str:
+        """Get ConsoleString repr()."""
+        txt = self.tag_beg + self.text[0:self.current_text_size] + self.tag_end
+        result = f'{txt: {self.__align}{self.max_size}}'
         return result[0:self.max_size]
 
-    def __str__(self):
+    def __str__(self) -> str:
+        """Get ConsoleString str()."""
         return repr(self)
 
 

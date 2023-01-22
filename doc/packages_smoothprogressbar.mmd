@@ -1,0 +1,43 @@
+classDiagram
+  class smoothprogressbar {
+  }
+  class __about__ {
+  }
+  class __config__ {
+  }
+  class console {
+  }
+  class consoleprgbr {
+  }
+  class consoleprogress {
+  }
+  class consolestring {
+  }
+  class elapse {
+  }
+  class multithreading {
+  }
+  class percent {
+  }
+  class prgbr {
+  }
+  smoothprogressbar --> __about__
+  smoothprogressbar --> console
+  smoothprogressbar --> consoleprogress
+  smoothprogressbar --> consolestring
+  smoothprogressbar --> elapse
+  smoothprogressbar --> multithreading
+  smoothprogressbar --> percent
+  smoothprogressbar --> prgbr
+  console --> __config__
+  consoleprgbr --> __config__
+  consoleprgbr --> consoleprogress
+  consoleprgbr --> consolestring
+  consoleprogress --> __config__
+  consoleprogress --> consolestring
+  prgbr --> __config__
+  prgbr --> console
+  prgbr --> consoleprgbr
+  prgbr --> elapse
+  prgbr --> multithreading
+  prgbr --> percent

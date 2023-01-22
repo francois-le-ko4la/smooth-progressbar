@@ -89,8 +89,8 @@ celerybeat-schedule
 .env
 
 # virtualenv
-.venv
-venv/
+.venv*
+venv*/
 ENV/
 
 # Spyder project settings
@@ -105,3 +105,9 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# mac
+.DS_Store
+
+# Pycharm
+.idea

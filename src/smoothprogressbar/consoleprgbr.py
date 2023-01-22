@@ -1,24 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# pylint: disable=R0903
-"""
+"""Define ConsolePrgBr."""
 
-  ####   #####   #####    ####   #####   #####
- #    #  #    #  #    #  #    #  #    #  #    #
- #       #    #  #    #  #       #####   #    #
- #       #####   #####   #  ###  #    #  #####
- #    #  #       #   #   #    #  #    #  #   #
-  ####   #       #    #   ####   #####   #    #
+from __future__ import annotations
 
-"""
-
-from smoothprogressbar.consolestring import ConsoleString
+from smoothprogressbar.__config__ import Theme
 from smoothprogressbar.consoleprogress import ConsoleProgress
-from smoothprogressbar.__config__ import THEME
+from smoothprogressbar.consolestring import ConsoleString
+from smoothprogressbar.percent import Percent
 
 
-class ConsolePrgBr(object):
-
+class ConsolePrgBr:
     """
     This class print all components according to parameters.
 
@@ -49,31 +41,33 @@ class ConsolePrgBr(object):
     'Processing: [ 20.0%] [####..................] lorem ipsum dolor sit am'
 
     """
+
     progress_label = "Processing: "
     size_widgt_label_label = len(progress_label)
     size_widgt_percent = 5
 
-    def __init__(self, enable_elapse=True, enable_msg=True, debug=False):
+    def __init__(self, enable_elapse: bool = True, enable_msg: bool = True,
+                 debug: bool = False) -> None:
+        """Init."""
         self.__debug = debug
         self.__output = ""
         """ DEF """
-        self.__widgt_label = ConsoleString(THEME["label"], len(THEME["label"]))
+        self.__widgt_label = ConsoleString(Theme.LABEL.value,
+                                           len(Theme.LABEL.value))
         self.__widgt_percent = ConsoleString(
             "",
             max_size=8,
-            tag_beg=THEME["beggining"],
-            tag_end=THEME["end"]
+            tag_beg=Theme.BEG.value,
+            tag_end=Theme.END.value
         )
         self.__widgt_elapse = ConsoleString("", enable=enable_elapse)
         self.__widgt_msg = ConsoleString("", tag_beg=" ", enable=enable_msg)
         self.__widgt_progress = ConsoleProgress(
-            tag_beg=" " + THEME["beggining"])
+            tag_beg=" " + Theme.BEG.value)
 
-    def update(self, size, percent, msg="", elapse=""):
-        """
-        Update() the progress bar
-        """
-        size_widgt_progress = 0
+    def update(self, size: int, percent: Percent,
+               msg: str = "", elapse: str = "") -> ConsolePrgBr:
+        """Update the progress bar."""
         if self.__widgt_elapse.enable:
             self.__widgt_elapse.max_size = 8
         else:
@@ -90,33 +84,33 @@ class ConsolePrgBr(object):
             size_widgt_progress = psize
             self.__widgt_msg.max_size = 0
 
-        color_start = THEME["info"]
-        color_stop = THEME["reset"]
+        color_start: str = Theme.INFO.value
+        color_stop: str = Theme.RESET.value
         if self.__debug:
             color_start = ""
             color_stop = ""
 
-        self.__output = "{}{}{}{}{}{}{}".format(
+        self.__output = "".join([
             color_start,
-            self.__widgt_label,
-            self.__widgt_percent.update(str(percent)),
+            str(self.__widgt_label),
+            str(self.__widgt_percent.update(str(percent))),
             color_stop,
-            self.__widgt_progress.update(size_widgt_progress, percent.value),
-            self.__widgt_elapse.update(elapse).align_right(),
-            self.__widgt_msg.update(msg)
-        )
+            str(self.__widgt_progress.update(
+                size_widgt_progress, percent.value)),
+            str(self.__widgt_elapse.update(elapse).align_right()),
+            str(self.__widgt_msg.update(msg))])
         return self
 
-    def get(self):
-        """
-        Get the string
-        """
+    def get(self) -> str:
+        """Get the string."""
         return str(self)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
+        """Get repr()."""
         return self.__output
 
-    def __str__(self):
+    def __str__(self) -> str:
+        """Get str()."""
         return repr(self)
 
 
