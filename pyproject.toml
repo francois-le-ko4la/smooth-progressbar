@@ -41,6 +41,9 @@ dev = [
     "types-setuptools",
     "types-PyYAML"]
 
+[project.urls]
+"Homepage" = "https://github.com/francois-le-ko4la/smooth-progressbar"
+
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
