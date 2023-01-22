@@ -7,6 +7,7 @@
 
 ## Description:
 
+![](./doc/demo.gif)
 This progress bar is a tool that allows users to monitor the progress of
 long-running tasks, such as data loading and cleaning, and make sure that 
 the task is progressing as expected.
@@ -22,7 +23,6 @@ different environments, whether you're working on a local machine or a
 remote server. Overall, this Python progress bar project is a useful tool 
 for  anyone who wants to track the progress of a task or process, and make 
 sure that it's running smoothly.
-
 
 ## Use:
 ```python
