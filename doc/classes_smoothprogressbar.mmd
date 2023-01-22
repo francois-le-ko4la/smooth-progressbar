@@ -120,28 +120,35 @@ classDiagram
     utcoffset()
     utctimetuple()
   }
+  class Enum {
+    name()
+    value()
+  }
+  class Theme {
+    name
+  }
   class Console {
     size
-    addmsg(msg)
-    addtab()
-    emptyline()
-    goback()
-    newline()
-    print()
+    addmsg(msg: str) Console
+    addtab() Console
+    emptyline() Console
+    goback() Console
+    newline() Console
+    print() None
   }
   class ConsolePrgBr {
     progress_label : str
     size_widgt_label_label : int
     size_widgt_percent : int
-    get()
-    update(size, percent, msg, elapse)
+    get() str
+    update(size: int, percent: Percent, msg: str, elapse: str) ConsolePrgBr
   }
   class ConsoleProgress {
     max_size
     tag_beg : str
     tag_end : str
     text
-    update(size, ratio)
+    update(size: int, ratio: float) ConsoleProgress
   }
   class ConsoleString {
     current_text_size
@@ -152,30 +159,30 @@ classDiagram
     tag_beg : str
     tag_end : str
     tag_size
-    text
-    align_left()
-    align_right()
-    update(text, max_size, tag_beg, tag_end)
+    text : str
+    align_left() ConsoleString
+    align_right() ConsoleString
+    update(text: Optional[str], max_size: Optional[int], tag_beg: Optional[str], tag_end: Optional[str]) ConsoleString
   }
   class ElapseTime {
-    start()
+    start() None
   }
   class MultiThread {
     func
-    run()
-    stop()
+    run() None
+    stop() None
   }
   class Percent {
     part
-    part
+    part : int
     value
     whole
   }
   class SmoothProgressBar {
     msg
-    start(max_value)
-    stop()
-    update(value, msg)
+    start(max_value: int) None
+    stop() None
+    update(value: int, msg: str) None
   }
   class Condition {
     acquire
@@ -214,7 +221,7 @@ classDiagram
     finished
     function
     interval
-    kwargs : dict, NoneType
+    kwargs : NoneType, dict
     cancel()
     run()
   }
@@ -230,6 +237,7 @@ classDiagram
   TextIOWrapper --|> _TextIOBase
   _TextIOBase --|> _IOBase
   datetime --|> date
+  Theme --|> Enum
   ConsoleProgress --|> ConsoleString
   MultiThread --|> Thread
   Timer --|> Thread
@@ -248,9 +256,11 @@ classDiagram
   ElapseTime --* SmoothProgressBar : __elapse
   MultiThread --* SmoothProgressBar : __mthr
   Percent --* SmoothProgressBar : __percent
+  Percent --* SmoothProgressBar : __percent
   Condition --* Event : _cond
   Event --* Thread : _started
   Event --* Timer : finished
+  Timer --* MultiThread : __timer
   Timer --* MultiThread : __timer
   _RLock --* Condition : _lock
   lock --* SmoothProgressBar : __lock
