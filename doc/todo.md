@@ -7,4 +7,8 @@
 - [X] Write Doc/stringdoc
 - [X] Run PEP8 validation
 - [X] Clean & last check
-- [X] Release
+- [X] Release 0.3.0
+- [X] add stubs
+- [X] update pyproject.toml
+- [X] update doc
+- [X] Release 0.3.1

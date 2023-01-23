@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 [project]
 name = "smoothprogressbar"
-version = "0.3.0"
+version = "0.3.1"
 authors = [
   {name = "ko4la" }
 ]
@@ -38,8 +38,7 @@ dev = [
     "pytest-mypy",
     "pytest-pydocstyle",
     "pytest-isort",
-    "types-setuptools",
-    "types-PyYAML"]
+    "types-setuptools"]
 
 [project.urls]
 "Homepage" = "https://github.com/francois-le-ko4la/smooth-progressbar"

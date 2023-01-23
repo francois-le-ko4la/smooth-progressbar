@@ -91,7 +91,11 @@ This package is distributed under the [GPLv3 license](./LICENSE)
 - [X] Write Doc/stringdoc
 - [X] Run PEP8 validation
 - [X] Clean & last check
-- [X] Release
+- [X] Release 0.3.0
+- [X] add stubs
+- [X] update pyproject.toml
+- [X] update doc
+- [X] Release 0.3.1
 
 # Dev notes
 ## TOML file:
@@ -101,7 +105,7 @@ This package is distributed under the [GPLv3 license](./LICENSE)
 # -*- coding: utf-8 -*-
 [project]
 name = "smoothprogressbar"
-version = "0.3.0"
+version = "0.3.1"
 authors = [
   {name = "ko4la" }
 ]
@@ -138,8 +142,7 @@ dev = [
     "pytest-mypy",
     "pytest-pydocstyle",
     "pytest-isort",
-    "types-setuptools",
-    "types-PyYAML"]
+    "types-setuptools"]
 
 [project.urls]
 "Homepage" = "https://github.com/francois-le-ko4la/smooth-progressbar"

@@ -42,6 +42,9 @@ docstring2md:
 test:
 	@pytest --pyargs $(PACKAGE_NAME)
 
+stubs:
+	@stubgen src/$(PACKAGE_NAME) -o stubs
+
 publish:
 	@pytest --pyargs $(PACKAGE_NAME)
 	@git add .
