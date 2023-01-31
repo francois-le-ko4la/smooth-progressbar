@@ -47,7 +47,7 @@ Get the package:
 ```shell
 git clone https://github.com/francois-le-ko4la/smooth-progressbar.git
 ```
-Enter in the directory:
+Change to the folder:
 ```shell
 cd smooth-progressbar
 ```
@@ -62,7 +62,7 @@ Get the package:
 ```shell
 git clone https://github.com/francois-le-ko4la/smooth-progressbar.git
 ```
-Enter in the directory:
+Change to the folder:
 ```shell
 cd smooth-progressbar
 ```
