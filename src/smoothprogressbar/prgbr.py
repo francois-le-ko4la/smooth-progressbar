@@ -32,7 +32,7 @@ class SmoothProgressBar:
         self.__console: Console = Console()
         self.__elapse: ElapseTime = ElapseTime()
         self.__mthr: MultiThread = MultiThread(
-            self.__refresh, Theme.REFRESH_TIME.value)
+            Theme.REFRESH_TIME.value, self.__refresh)
         self.__updated: bool = False
         self.__lock = Lock()
 
